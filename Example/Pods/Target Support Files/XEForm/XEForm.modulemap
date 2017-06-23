@@ -1,0 +1,6 @@
+framework module XEForm {
+  umbrella header "XEForm-umbrella.h"
+
+  export *
+  module * { export * }
+}
