@@ -6,10 +6,10 @@
 //
 //
 
-@class XEFormRow;
+@class XEFormRowObject;
 
 @protocol XEFormRowViewControllerDelegate <NSObject>
 
-@property (nonatomic, strong) XEFormRow *row;
+@property (nonatomic, strong) XEFormRowObject *row;
 
 @end

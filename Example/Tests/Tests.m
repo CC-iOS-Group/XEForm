@@ -8,7 +8,7 @@
 
 // https://github.com/kiwi-bdd/Kiwi
 
-#import "TestForm2.h"
+#import "TestForm.h"
 
 SPEC_BEGIN(InitialTests)
 
@@ -17,10 +17,12 @@ describe(@"XEForm tests", ^{
   context(@"Test Form Object", ^{
 
       it(@"test properties", ^{
-          TestForm2 *form = [[TestForm2 alloc] init];
-          form.rows = @[@"haha"];
-          NSArray *objects = [XEFormObject objectsWithForm:form controller:nil];
-          NSArray *objects2 = [XEFormObject objectsWithForm:form controller:nil];
+          TestForm *form = [[TestForm alloc] init];
+          form.rows = @[
+                        @"games",
+                        @"age",
+                        ];;
+//          NSArray *objects = [XEFormRowObject objectsWithForm:form controller:nil];
           [[@(1) should] equal:@(1)];
       });
   });

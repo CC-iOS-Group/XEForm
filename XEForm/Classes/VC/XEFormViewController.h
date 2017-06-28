@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "XEFormControllerDelegate.h"
 #import "XEFormRowViewControllerDelegate.h"
 #import "XEFormController.h"
+
 
 @interface XEFormViewController : UIViewController<XEFormRowViewControllerDelegate, XEFormControllerDelegate>
 
 @property (nonatomic, strong, readonly) XEFormController *formController;
 
 @property (nonatomic, strong) UITableView *formTableView;
+
 
 @end

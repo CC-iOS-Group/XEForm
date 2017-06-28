@@ -45,3 +45,6 @@ UIKIT_EXTERN NSString *const XEFormRowTypeDate; //date
 UIKIT_EXTERN NSString *const XEFormRowTypeTime; //time
 UIKIT_EXTERN NSString *const XEFormRowTypeDateTime; //datetime
 UIKIT_EXTERN NSString *const XEFormRowTypeImage; //image
+
+
+UIKIT_EXTERN NSString *const XEFormsException;

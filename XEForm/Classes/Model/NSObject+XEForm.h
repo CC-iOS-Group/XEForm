@@ -10,12 +10,14 @@
 
 #import "XEFormDelegate.h"
 
-@class XEFormObject;
+@class XEFormObject, XEFormController;
 
 @interface NSObject(XEForm)<XEFormDelegate>
 
-- (NSString *)formDescription;
+- (NSArray<XEFormObject *> *)getRowObjectsFromClass;
 
-- (NSArray<XEFormObject *> *)getFormObjects;
+- (BOOL)canGetValueForKey:(NSString *)key;
+
+- (BOOL)canSetValueForKey:(NSString *)key;
 
 @end

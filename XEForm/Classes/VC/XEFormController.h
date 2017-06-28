@@ -9,33 +9,37 @@
 #import <Foundation/Foundation.h>
 
 #import "XEFormDelegate.h"
+#import "XEFormControllerDelegate.h"
 
-@class XEFormRow;
+@class XEFormRowObject;
 
-@protocol XEFormControllerDelegate <UITableViewDelegate>
-
-
-@end
-
-@interface XEFormController : NSObject
+@interface XEFormController : NSObject<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *formTableView;
 @property (nonatomic, strong) XEFormController *parentFormController;
-@property (nonatomic, strong) id<XEFormControllerDelegate> delegate;
-@property (nonatomic, strong) id<XEFormDelegate> form;
+@property (nonatomic, weak) id<XEFormControllerDelegate> delegate;
+@property (nonatomic, weak) id<XEFormDelegate> form;
+
+@property (nonatomic, copy) NSArray *sections;
+@property (nonatomic, strong) NSMutableDictionary *cellHeightCache;
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldTypes;
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldClasses;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForFieldTypes;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForFieldClasses;
+@property (nonatomic, assign) UIEdgeInsets originalTableContentInset;
 
 - (NSUInteger)numberOfSections;
 - (NSUInteger)numberOfFieldsInSection:(NSUInteger)section;
-- (XEFormRow *)rowForIndexPath:(NSIndexPath *)indexPath;
-- (NSIndexPath *)indexPathForRow:(XEFormRow *)row;
-- (void)enumerateFieldsWithBlock:(void (^)(XEFormRow *row, NSIndexPath *indexPath))block;
+- (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row;
+- (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block;
 
-- (Class)cellClassForRow:(XEFormRow *)row;
+- (Class)cellClassForRow:(XEFormRowObject *)row;
 - (void)registerDefaultFieldCellClass:(Class)cellClass;
 - (void)registerCellClass:(Class)cellClass forFieldType:(NSString *)fieldType;
 - (void)registerCellClass:(Class)cellClass forFieldClass:(Class)fieldClass;
 
-- (Class)viewControllerClassForRow:(XEFormRow *)row;
+- (Class)viewControllerClassForRow:(XEFormRowObject *)row;
 - (void)registerDefaultViewControllerClass:(Class)controllerClass;
 - (void)registerViewControllerClass:(Class)controllerClass forFieldType:(NSString *)fieldType;
 - (void)registerViewControllerClass:(Class)controllerClass forFieldClass:(Class)fieldClass;

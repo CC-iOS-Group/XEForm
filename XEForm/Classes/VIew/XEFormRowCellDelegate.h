@@ -6,15 +6,15 @@
 //
 //
 
-@class XEFormRow;
+@class XEFormRowObject;
 
 @protocol XEFormRowCellDelegate <NSObject>
 
-@property (nonatomic, strong) XEFormRow *row;
+@property (nonatomic, strong) XEFormRowObject *row;
 
 @optional
 
-+ (CGFloat)heightForRow:(XEFormRow *)row width:(CGFloat)width;
++ (CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width;
 - (void)didSelectWithTableView:(UITableView *)tableView
                     controller:(UIViewController *)controller;
 

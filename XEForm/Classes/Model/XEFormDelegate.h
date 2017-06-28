@@ -6,7 +6,7 @@
 //
 //
 
-@class XEFormObject;
+@class XEFormRowObject, XEFormController;
 
 @protocol XEFormDelegate <NSObject>
 
@@ -14,10 +14,13 @@
 /**
  The dataSource of a form, you can set and get as you want
  */
-@property (nonatomic, strong) NSArray<XEFormObject *> *rows;
+@property (nonatomic, strong) NSArray<XEFormRowObject *> *rows;
+
+@property (nonatomic, strong) XEFormController *formController;
 
 @optional
 
+@property (nonatomic, strong) XEFormRowObject *row;
 
 /**
  Only used to Ignore the property you don't want to count in,
@@ -25,14 +28,7 @@
 
  @return The property key you don't want to count in
  */
-- (NSArray<NSString *> *)excludeRows;
+- (NSSet<NSString *> *)excludeProperties;
 
-
-/**
- For property 'XXX', you can implements selector 'XXXrow' to set the
- details of this row
- 
- @return The XEFormObject you want to display for property through key
- */
 
 @end
