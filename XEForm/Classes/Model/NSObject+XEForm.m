@@ -38,6 +38,7 @@ static XEFormController *_formController;
         [propertiesDic setObject:rowObject forKey:rowObject.key];
     }
     // combine property and @selector(rows)
+    NSArray *test = [filterArray valueForKey:XEFormRowKey];
     if(rows.count > 0)
     {
         for (id row in rows)
@@ -45,7 +46,11 @@ static XEFormController *_formController;
             if ([row isKindOfClass:[NSString class]])
             {
                 XEFormRowObject *propertyObject = [propertiesDic objectForKey:row];
-                propertyObject ? [allRows addObject:propertyObject] : nil;
+                if(propertyObject &&
+                   ![[allRows valueForKey:XEFormRowKey] containsObject:propertyObject.key])
+                {
+                    [allRows addObject:propertyObject];
+                }
             }
             else if([row isKindOfClass:[XEFormRowObject class]])
             {
@@ -53,7 +58,10 @@ static XEFormController *_formController;
                 if(rowObject.key.length > 0 && rowObject.valueClass && rowObject.type.length > 0)
                 {
                     [rowObject configWithForm:self formController:formController];
-                    [allRows addObject:rowObject];
+                    if([[allRows valueForKey:XEFormRowKey] containsObject:rowObject.key])
+                    {
+                        [allRows addObject:rowObject];
+                    }
                 }
                 else
                 {

@@ -19,8 +19,9 @@ describe(@"XEForm tests", ^{
       it(@"test properties", ^{
           TestForm *form = [[TestForm alloc] init];
           form.rows = @[
-                        @"games",
-                        @"age",
+                        @"test",
+                        @"username",
+                        @"password"
                         ];;
 //          NSArray *objects = [XEFormRowObject objectsWithForm:form controller:nil];
           [[@(1) should] equal:@(1)];

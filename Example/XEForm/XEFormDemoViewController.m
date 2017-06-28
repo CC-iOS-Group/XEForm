@@ -9,7 +9,7 @@
 #import "XEFormDemoViewController.h"
 
 #import "SimpleForm2.h"
-#import <XEForm/XEFormObject.h>
+#import <XEForm/XEFormRowObject.h>
 
 @interface XEFormDemoViewController ()
 
