@@ -11,6 +11,8 @@
 #import "XEFormSectionObject.h"
 #import "XEFormConst.h"
 #import "XEFormRowObject.h"
+#import "XETemplateForm.h"
+#import "XEFormUtils.h"
 
 #import "XEFormRowCellDelegate.h"
 #import "XEFormViewController.h"
@@ -107,7 +109,7 @@
     }
 }
 
-- (void)registerDefaultFieldCellClass:(Class)cellClass
+- (void)registerDefaultRowCellClass:(Class)cellClass
 {
     NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
     if(cellClass) [self.cellClassesForFieldTypes setDictionary:@{XEFormRowTypeDefault: cellClass}];
@@ -169,6 +171,8 @@
 }
 
 #pragma mark - forward Method
+
+
 
 - (BOOL)respondsToSelector:(SEL)selector
 {
@@ -266,30 +270,349 @@
     }
 }
 
+#pragma mark - Notification Handle
+
+- (UITableViewCell *)cellContainingView:(UIView *)view
+{
+    if (view == nil || [view isKindOfClass:[UITableViewCell class]])
+    {
+        return (UITableViewCell *)view;
+    }
+    return [self cellContainingView:view.superview];
+}
+// TODO: there is a bug when show keyboard
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    UITableViewCell *cell = [self cellContainingView:XEFormsFirstResponder(self.formTableView)];
+    if (cell && ![self.delegate isKindOfClass:[UITableViewController class]])
+    {
+        // calculate the size of the keyboard and how much is and isn't covering the tableview
+        NSDictionary *keyboardInfo = [notification userInfo];
+        CGRect keyboardFrame = [keyboardInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        keyboardFrame = [self.formTableView.window convertRect:keyboardFrame toView:self.formTableView.superview];
+        CGFloat heightOfTableViewThatIsCoveredByKeyboard = self.formTableView.frame.origin.y + self.formTableView.frame.size.height - keyboardFrame.origin.y;
+        CGFloat heightOfTableViewThatIsNotCoveredByKeyboard = self.formTableView.frame.size.height - heightOfTableViewThatIsCoveredByKeyboard;
+        
+        UIEdgeInsets tableContentInset = self.formTableView.contentInset;
+        self.originalTableContentInset = tableContentInset;
+        tableContentInset.bottom = heightOfTableViewThatIsCoveredByKeyboard;
+        
+        UIEdgeInsets tableScrollIndicatorInsets = self.formTableView.scrollIndicatorInsets;
+        tableScrollIndicatorInsets.bottom += heightOfTableViewThatIsCoveredByKeyboard;
+        
+        [UIView beginAnimations:nil context:nil];
+        
+        // adjust the tableview insets by however much the keyboard is overlapping the tableview
+        self.formTableView.contentInset = tableContentInset;
+        self.formTableView.scrollIndicatorInsets = tableScrollIndicatorInsets;
+        
+        UIView *firstResponder = XEFormsFirstResponder(self.formTableView);
+        if ([firstResponder isKindOfClass:[UITextView class]])
+        {
+            UITextView *textView = (UITextView *)firstResponder;
+            
+            // calculate the position of the cursor in the textView
+            NSRange range = textView.selectedRange;
+            UITextPosition *beginning = textView.beginningOfDocument;
+            UITextPosition *start = [textView positionFromPosition:beginning offset:range.location];
+            UITextPosition *end = [textView positionFromPosition:start offset:range.length];
+            CGRect caretFrame = [textView caretRectForPosition:end];
+            
+            // convert the cursor to the same coordinate system as the tableview
+            CGRect caretViewFrame = [textView convertRect:caretFrame toView:self.formTableView.superview];
+            
+            // padding makes sure that the cursor isn't sitting just above the
+            // keyboard and will adjust to 3 lines of text worth above keyboard
+            CGFloat padding = textView.font.lineHeight * 3;
+            CGFloat keyboardToCursorDifference = (caretViewFrame.origin.y + caretViewFrame.size.height) - heightOfTableViewThatIsNotCoveredByKeyboard + padding;
+            
+            // if there is a difference then we want to adjust the keyboard, otherwise
+            // the cursor is fine to stay where it is and the keyboard doesn't need to move
+            if (keyboardToCursorDifference > 0)
+            {
+                // adjust offset by this difference
+                CGPoint contentOffset = self.formTableView.contentOffset;
+                contentOffset.y += keyboardToCursorDifference;
+                [self.formTableView setContentOffset:contentOffset animated:YES];
+            }
+        }
+        
+        [UIView commitAnimations];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)note
+{
+    UITableViewCell *cell = [self cellContainingView:XEFormsFirstResponder(self.formTableView)];
+    if (cell && ![self.delegate isKindOfClass:[UITableViewController class]])
+    {
+        NSDictionary *keyboardInfo = [note userInfo];
+        UIEdgeInsets tableScrollIndicatorInsets = self.formTableView.scrollIndicatorInsets;
+        tableScrollIndicatorInsets.bottom = 0;
+        
+        //restore insets
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationCurve:(UIViewAnimationCurve)keyboardInfo[UIKeyboardAnimationCurveUserInfoKey]];
+        [UIView setAnimationDuration:[keyboardInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+        self.formTableView.contentInset = self.originalTableContentInset;
+        self.formTableView.scrollIndicatorInsets = tableScrollIndicatorInsets;
+        self.originalTableContentInset = UIEdgeInsetsZero;
+        [UIView commitAnimations];
+    }
+}
 
 #pragma mark - UITableViewDataSource
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self numberOfSections];
+}
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[self sectionAtIndex:section].header description];
+}
 
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return [[self sectionAtIndex:section].footer description];
+}
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self numberOfRowsInSection:section];
+}
 
+- (UITableViewCell *)cellForRow:(XEFormRowObject *)row
+{
+    //don't recycle cells - it would make things complicated
+    Class cellClass = row.cellClass ? : [self cellClassForRow:row];
+    NSString *nibName = NSStringFromClass(cellClass);
+    if ([nibName rangeOfString:@"."].location != NSNotFound) {
+        nibName = nibName.pathExtension; //Removes Swift namespace
+    }
+    if ([[NSBundle mainBundle] pathForResource:nibName ofType:@"nib"])
+    {
+        //load cell from nib
+        return [[[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil] firstObject];
+    }
+    else
+    {
 
+        UITableViewCellStyle style = UITableViewCellStyleDefault;
+        if (row.cellConfig)
+        {
+            style = [[row.cellConfig objectForKey:@"style"] integerValue];
+        }
+        else if (row.form && [row.form canGetValueForKey:row.key])
+        {
+            style = UITableViewCellStyleValue1;
+        }
 
+        //don't recycle cells - it would make things complicated
+        return [[cellClass alloc] initWithStyle:style reuseIdentifier:NSStringFromClass(cellClass)];
+    }
+}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XEFormRowObject *row = [self rowForIndexPath:indexPath];
+    Class cellClass = row.cellClass ? : [self cellClassForRow:row];
+    if([cellClass respondsToSelector:@selector(heightForField:width:)])
+    {
+        return [cellClass heightForRow:row width:self.formTableView.frame.size.width];
+    }
+    
+    NSString *className = NSStringFromClass(cellClass);
+    NSNumber *cachedHeight = _cellHeightCache[className];
+    if(!cachedHeight)
+    {
+        UITableViewCell *cell = [self cellForRow:row];
+        cachedHeight = @(cell.bounds.size.height);
+        _cellHeightCache[className] = cachedHeight;
+    }
+    
+    return [cachedHeight floatValue];
+}
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self cellForRow:[self rowForIndexPath:indexPath]];
+}
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [tableView beginUpdates];
+        
+        [self.form removeRowAtIndexPath:indexPath];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [self.form moveRowAtIndexPath:sourceIndexPath toIndexPath:destinationIndexPath];
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    XEFormSectionObject *section = [self sectionAtIndex:sourceIndexPath.section];
+    if (sourceIndexPath.section == proposedDestinationIndexPath.section &&
+        proposedDestinationIndexPath.row < (NSInteger)[section.rows count] - 1)
+    {
+        return proposedDestinationIndexPath;
+    }
+    return sourceIndexPath;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XEFormSectionObject *section = [self sectionAtIndex:indexPath.section];
+    if ([self.form isKindOfClass:[XETemplateForm class]])
+    {
+        if (indexPath.row < section.rows.count -1)
+        {
+            XEFormRowObject *row = self.form.row;
+            return row ? ([row isOrderedCollectionType] && row.isSortable) : NO;
+        }
+    }
+    return NO;
+}
 
 #pragma mark - UITableViewDelegate
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        return [self.delegate tableView:tableView viewForHeaderInSection:section];
+    }
+    
+    //handle view or class
+    id header = [self sectionAtIndex:section].header;
+    if ([header isKindOfClass:[UIView class]])
+    {
+        return header;
+    }
+    return nil;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        return [self.delegate tableView:tableView heightForHeaderInSection:section];
+    }
+    
+    //handle view or class
+    UIView *header = [self sectionAtIndex:section].header;
+    if ([header isKindOfClass:[UIView class]])
+    {
+        return header.frame.size.height ?: UITableViewAutomaticDimension;
+    }
+    return UITableViewAutomaticDimension;
+}
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        return [self.delegate tableView:tableView viewForFooterInSection:section];
+    }
+    
+    //handle view or class
+    id footer = [self sectionAtIndex:section].footer;
+    if ([footer isKindOfClass:[UIView class]])
+    {
+        return footer;
+    }
+    return nil;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        return [self.delegate tableView:tableView heightForFooterInSection:section];
+    }
+    
+    //handle view or class
+    UIView *footer = [self sectionAtIndex:section].footer;
+    if ([footer isKindOfClass:[UIView class]])
+    {
+        return footer.frame.size.height ?: UITableViewAutomaticDimension;
+    }
+    return UITableViewAutomaticDimension;
+}
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XEFormRowObject *row = [self rowForIndexPath:indexPath];
+    
+    // set form row
+     ((id<XEFormRowCellDelegate>)cell).row = row;
+        
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        [self.delegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
+}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //forward to cell
+    UITableViewCell<XEFormRowCellDelegate> *cell = (UITableViewCell<XEFormRowCellDelegate> *)[tableView cellForRowAtIndexPath:indexPath];
+    if ([cell respondsToSelector:@selector(didSelectWithTableView:controller:)])
+    {
+        [cell didSelectWithTableView:tableView controller:[self tableViewController]];
+    }
+    
+    //forward to delegate
+    if ([self.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)])
+    {
+        [self.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
 
+- (UITableViewCellEditingStyle)tableView:(__unused UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XEFormSectionObject *section = [self sectionAtIndex:indexPath.section];
+    if ([self.form isKindOfClass:[XETemplateForm class]])
+    {
+        if (indexPath.row == (NSInteger)[section.rows count] - 1)
+        {
+            return UITableViewCellEditingStyleInsert;
+        }
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
 
+- (BOOL)tableView:(__unused UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(__unused NSIndexPath *)indexPath
+{
+    return NO;
+}
 
-
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    //dismiss keyboard
+    [XEFormsFirstResponder(self.formTableView) resignFirstResponder];
+    
+    //forward to delegate
+    if ([self.delegate respondsToSelector:_cmd])
+    {
+        [self.delegate scrollViewWillBeginDragging:scrollView];
+    }
+}
 
 #pragma mark - Getter & setter
 
@@ -309,6 +632,10 @@
     self.formTableView.delegate = self;
     self.formTableView.editing = YES;
     self.formTableView.allowsSelectionDuringEditing = YES;
+    if([_delegate respondsToSelector:@selector(didSetFormTableView:)])
+    {
+        [_delegate didSetFormTableView:_formTableView];
+    }
     [self.formTableView reloadData];
 }
 

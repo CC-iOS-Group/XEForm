@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SimpleForm : NSObject
+#import <XEForm/XEForm.h>
 
-@property (nonatomic, copy) NSString *username;
+@interface SimpleForm : XEForm
 
-@property (nonatomic, copy) NSString *password;
+@property (nonatomic, assign) BOOL test;
+
+@property (nonatomic, assign) BOOL test2;
 
 @end

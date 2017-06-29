@@ -16,6 +16,23 @@
 static NSSet *NSObjectProperties;
 static NSArray *kExcludeProperties;
 
+static UIView *XEFormsFirstResponder(UIView *view)
+{
+    if ([view isFirstResponder])
+    {
+        return view;
+    }
+    for (UIView *subview in view.subviews)
+    {
+        UIView *responder = XEFormsFirstResponder(subview);
+        if (responder)
+        {
+            return responder;
+        }
+    }
+    return nil;
+}
+
 static Class XEFormClassFromString(NSString *className)
 {
     Class cls = NSClassFromString(className);

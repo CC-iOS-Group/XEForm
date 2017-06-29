@@ -249,6 +249,7 @@
     _rows = [self mergeObjectsWithRows:rows];
     _sections = [XEFormSectionObject sectionsWithForm:self];
     _hasSetRows = YES;
+    // TODO: update controller through delegate
 }
 
 

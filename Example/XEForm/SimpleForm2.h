@@ -8,6 +8,12 @@
 
 #import "SimpleForm.h"
 
-@interface SimpleForm2 : SimpleForm
+#import <XEForm/XEForm.h>
+
+@interface SimpleForm2 : XEForm
+
+@property (nonatomic, copy) NSString *username;
+
+@property (nonatomic, copy) NSString *password;
 
 @end

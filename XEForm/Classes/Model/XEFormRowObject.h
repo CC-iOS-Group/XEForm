@@ -50,7 +50,9 @@
 - (NSString *)rowDescription;
 
 // TODO: Util category
+- (BOOL)isIndexedType;
 - (BOOL)isCollectionType;
+- (BOOL)isOrderedCollectionType;
 
 // TODO: Options methods should move to category
 - (NSUInteger)optionCount;

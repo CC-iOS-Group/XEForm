@@ -11,4 +11,6 @@
 @protocol XEFormControllerDelegate <UITableViewDelegate>
 
 
+- (void)didSetFormTableView:(UITableView *)formTableView;
+
 @end

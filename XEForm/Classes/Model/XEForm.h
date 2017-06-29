@@ -36,9 +36,9 @@
 - (BOOL)canGetValueForKey:(NSString *)key;
 - (BOOL)canSetValueForKey:(NSString *)key;
 
-- (void)addNewRowAtIndex:(NSInteger)index;
-- (void)removeRowAtIndex:(NSUInteger)index;
-- (void)moveFieldAtIndex:(NSUInteger)index1 toIndex:(NSUInteger)index2;
+- (void)addNewRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)removeRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)moveRowAtIndexPath:(NSIndexPath *)indexPath1 toIndexPath:(NSIndexPath *)indexPath2;
 
 #pragma mark - Customizing
 

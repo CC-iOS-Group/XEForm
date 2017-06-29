@@ -28,20 +28,20 @@
 @property (nonatomic, assign) UIEdgeInsets originalTableContentInset;
 
 - (NSUInteger)numberOfSections;
-- (NSUInteger)numberOfFieldsInSection:(NSUInteger)section;
+- (NSUInteger)numberOfRowsInSection:(NSUInteger)section;
 - (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath;
 - (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row;
 - (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block;
 
 - (Class)cellClassForRow:(XEFormRowObject *)row;
-- (void)registerDefaultFieldCellClass:(Class)cellClass;
-- (void)registerCellClass:(Class)cellClass forFieldType:(NSString *)fieldType;
-- (void)registerCellClass:(Class)cellClass forFieldClass:(Class)fieldClass;
+- (void)registerDefaultRowCellClass:(Class)cellClass;
+- (void)registerCellClass:(Class)cellClass forRowType:(NSString *)rowType;
+- (void)registerCellClass:(Class)cellClass forRowClass:(Class)rowClass;
 
 - (Class)viewControllerClassForRow:(XEFormRowObject *)row;
 - (void)registerDefaultViewControllerClass:(Class)controllerClass;
-- (void)registerViewControllerClass:(Class)controllerClass forFieldType:(NSString *)fieldType;
-- (void)registerViewControllerClass:(Class)controllerClass forFieldClass:(Class)fieldClass;
+- (void)registerViewControllerClass:(Class)controllerClass forRowType:(NSString *)rowType;
+- (void)registerViewControllerClass:(Class)controllerClass forRowClass:(Class)rowClass;
 
 - (void)performAction:(SEL)selector withSender:(id)sender;
 - (UIViewController *)tableViewController;

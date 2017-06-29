@@ -150,6 +150,40 @@
     return [self valueDescription:self.value];
 }
 
+- (BOOL)isIndexedType
+{
+    //return YES if value should be set as index of option, not value of option
+    if ([self.valueClass isSubclassOfClass:[NSNumber class]] && ![self.type isEqualToString:XEFormRowTypeBitfield])
+    {
+        return ![[self.options firstObject] isKindOfClass:[NSNumber class]];
+    }
+    return NO;
+}
+
+- (BOOL)isCollectionType
+{
+    for (Class valueClass in @[[NSArray class], [NSSet class], [NSOrderedSet class], [NSIndexSet class], [NSDictionary class]])
+    {
+        if ([self.valueClass isSubclassOfClass:valueClass])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isOrderedCollectionType
+{
+    for (Class valueClass in @[[NSArray class], [NSOrderedSet class], [NSIndexSet class]])
+    {
+        if ([self.valueClass isSubclassOfClass:valueClass])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #pragma mark Options
 
 -(NSUInteger)optionCount
@@ -359,40 +393,6 @@
 }
 
 #pragma mark - Private method
-
-- (BOOL)isIndexedType
-{
-    //return YES if value should be set as index of option, not value of option
-    if ([self.valueClass isSubclassOfClass:[NSNumber class]] && ![self.type isEqualToString:XEFormRowTypeBitfield])
-    {
-        return ![[self.options firstObject] isKindOfClass:[NSNumber class]];
-    }
-    return NO;
-}
-
-- (BOOL)isCollectionType
-{
-    for (Class valueClass in @[[NSArray class], [NSSet class], [NSOrderedSet class], [NSIndexSet class], [NSDictionary class]])
-    {
-        if ([self.valueClass isSubclassOfClass:valueClass])
-        {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (BOOL)isOrderedCollectionType
-{
-    for (Class valueClass in @[[NSArray class], [NSOrderedSet class], [NSIndexSet class]])
-    {
-        if ([self.valueClass isSubclassOfClass:valueClass])
-        {
-            return YES;
-        }
-    }
-    return NO;
-}
 
 - (BOOL)isSubform
 {

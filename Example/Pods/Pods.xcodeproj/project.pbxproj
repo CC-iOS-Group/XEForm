@@ -172,10 +172,10 @@
 		BE32FE4C1EFBC8D900F74DDB /* XEFormRowObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE4A1EFBC8D900F74DDB /* XEFormRowObject.m */; };
 		BE32FE4F1EFBC8FB00F74DDB /* XEFormController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE4D1EFBC8FB00F74DDB /* XEFormController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE501EFBC8FB00F74DDB /* XEFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE4E1EFBC8FB00F74DDB /* XEFormController.m */; };
-		BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE511EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h */; };
+		BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE511EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE531EFBCB9500F74DDB /* XEFormViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE561EFBCB9500F74DDB /* XEFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE541EFBCB9500F74DDB /* XEFormViewController.m */; };
-		BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE571EFBCCAF00F74DDB /* XEFormRowCellDelegate.h */; };
+		BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE571EFBCCAF00F74DDB /* XEFormRowCellDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE5B1EFBCD2B00F74DDB /* XEFormBaseCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE591EFBCD2B00F74DDB /* XEFormBaseCell.h */; };
 		BE32FE5C1EFBCD2B00F74DDB /* XEFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE5A1EFBCD2B00F74DDB /* XEFormBaseCell.m */; };
 		BE32FE5F1EFBD09700F74DDB /* XEFormDefaultCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE5D1EFBD09700F74DDB /* XEFormDefaultCell.h */; };
@@ -183,9 +183,9 @@
 		BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE611EFBD0D000F74DDB /* XEFormSwitchCell.h */; };
 		BE32FE641EFBD0D000F74DDB /* XEFormSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE621EFBD0D000F74DDB /* XEFormSwitchCell.m */; };
 		BE32FE9F1EFCED3C00F74DDB /* XEFormUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE9D1EFCED3C00F74DDB /* XEFormUtils.h */; };
-		BE37D0441F0372FD0061329A /* XEOptionsForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0421F0372FD0061329A /* XEOptionsForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE37D0441F0372FD0061329A /* XEOptionsForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0421F0372FD0061329A /* XEOptionsForm.h */; };
 		BE37D0451F0372FD0061329A /* XEOptionsForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0431F0372FD0061329A /* XEOptionsForm.m */; };
-		BE37D0461F0373030061329A /* XEFormSectionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0391F03707D0061329A /* XEFormSectionObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE37D0461F0373030061329A /* XEFormSectionObject.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0391F03707D0061329A /* XEFormSectionObject.h */; };
 		BE37D0471F03730F0061329A /* XEFormSectionObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D03A1F03707D0061329A /* XEFormSectionObject.m */; };
 		BE37D04C1F038CCB0061329A /* NSObject+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D04A1F038CCB0061329A /* NSObject+Utils.h */; };
 		BE37D04D1F038CCB0061329A /* NSObject+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D04B1F038CCB0061329A /* NSObject+Utils.m */; };
@@ -193,9 +193,9 @@
 		BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D04F1F0392C10061329A /* XETemplateForm.m */; };
 		BE37D0541F03C7FD0061329A /* XEFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */; };
 		BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */; };
-		BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0561F03C9B10061329A /* XEFormTextInputViewController.h */; };
+		BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0561F03C9B10061329A /* XEFormTextInputViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0591F03C9B10061329A /* XEFormTextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0571F03C9B10061329A /* XEFormTextInputViewController.m */; };
-		BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */; };
+		BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0621F0499E60061329A /* XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0601F0499E60061329A /* XEForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0631F0499E60061329A /* XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0611F0499E60061329A /* XEForm.m */; };
 		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = F3BE6E7E9D30491C8B9E297277B5D008 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -976,9 +976,9 @@
 		BE32FE431EFBC59E00F74DDB /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */,
 				BE32FE4D1EFBC8FB00F74DDB /* XEFormController.h */,
 				BE32FE4E1EFBC8FB00F74DDB /* XEFormController.m */,
-				BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */,
 				BE32FE531EFBCB9500F74DDB /* XEFormViewController.h */,
 				BE32FE541EFBCB9500F74DDB /* XEFormViewController.m */,
 				BE32FE511EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h */,
