@@ -8,18 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XEFormDelegate.h"
-
-@class XEFormController;
+@class XEFormController, XEForm, XEFormRowObject;
 
 @interface XEFormSectionObject : NSObject
 
-@property (nonatomic, weak) id<XEFormDelegate> form;
 @property (nonatomic, strong) id header;
 @property (nonatomic, strong) id footer;
-@property (nonatomic, strong) NSMutableArray *rows;
+@property (nonatomic, strong) NSMutableArray<XEFormRowObject *> *rows;
 @property (nonatomic, assign) BOOL isSortable;
 
-+ (NSArray *)sectionsWithForm:(id<XEFormDelegate>)form controller:(XEFormController *)formController;
++ (NSArray *)sectionsWithForm:(XEForm *)form;
 
 @end

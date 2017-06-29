@@ -20,13 +20,13 @@
     self = [super init];
     if (self)
     {
-        _row = row;
+        self.row = row;
         id action = ^(__unused id sender)
         {
             if (row.action)
             {
                 // Pass the expected cell as the sender
-                XEFormController *formController = row.formController;
+                XEFormController *formController = row.form.formController;
                 [formController enumerateRowsWithBlock:^(XEFormRowObject *aRow, NSIndexPath *indexPath) {
                     if([aRow.key isEqualToString:row.key])
                     {

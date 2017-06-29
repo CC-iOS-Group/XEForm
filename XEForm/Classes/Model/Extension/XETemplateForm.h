@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XEFormDelegate.h"
+#import "XEForm.h"
 
 @class XEFormRowObject;
 
-@interface XETemplateForm : NSObject<XEFormDelegate>
+@interface XETemplateForm : XEForm
 
-@property (nonatomic, strong) XEFormRowObject *row;
+//@property (nonatomic, strong) XEFormRowObject *row;
 @property (nonatomic, strong) NSMutableArray *values;
 
 - (instancetype)initWithRow:(XEFormRowObject *)row;

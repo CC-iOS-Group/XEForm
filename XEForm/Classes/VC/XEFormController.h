@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XEFormDelegate.h"
+#import "XEForm.h"
 #import "XEFormControllerDelegate.h"
 
 @class XEFormRowObject;
@@ -18,9 +18,8 @@
 @property (nonatomic, strong) UITableView *formTableView;
 @property (nonatomic, strong) XEFormController *parentFormController;
 @property (nonatomic, weak) id<XEFormControllerDelegate> delegate;
-@property (nonatomic, weak) id<XEFormDelegate> form;
+@property (nonatomic, strong) XEForm *form;
 
-@property (nonatomic, copy) NSArray *sections;
 @property (nonatomic, strong) NSMutableDictionary *cellHeightCache;
 @property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldTypes;
 @property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldClasses;

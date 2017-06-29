@@ -184,12 +184,12 @@
 
 - (NSUInteger)numberOfSections
 {
-    return [self.sections count];
+    return [self.form.sections count];
 }
 
 - (XEFormSectionObject *)sectionAtIndex:(NSUInteger)index
 {
-    return self.sections[index];
+    return self.form.sections[index];
 }
 
 - (NSUInteger)numberOfRowsInSection:(NSUInteger)index
@@ -205,7 +205,7 @@
 - (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row
 {
     NSUInteger sectionIndex = 0;
-    for (XEFormSectionObject *section in self.sections)
+    for (XEFormSectionObject *section in self.form.sections)
     {
         NSUInteger fieldIndex = [section.rows indexOfObject:row];
         if (fieldIndex != NSNotFound)
@@ -220,7 +220,7 @@
 - (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block
 {
     NSUInteger sectionIndex = 0;
-    for (XEFormSectionObject *section in self.sections)
+    for (XEFormSectionObject *section in self.form.sections)
     {
         NSUInteger fieldIndex = 0;
         for (XEFormRowObject *row in section.rows)
@@ -269,7 +269,26 @@
 
 #pragma mark - UITableViewDataSource
 
+
+
+
+
+
+
+
+
+
+
 #pragma mark - UITableViewDelegate
+
+
+
+
+
+
+
+
+
 
 
 #pragma mark - Getter & setter
@@ -307,10 +326,10 @@
     return nil;
 }
 
--(void)setForm:(id<XEFormDelegate>)form
+-(void)setForm:(XEForm *)form
 {
-    self.sections = [XEFormSectionObject sectionsWithForm:form controller:self];
     _form = form;
+    _form.formController = self;
 }
 
 

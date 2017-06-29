@@ -10,7 +10,6 @@
 
 #import "XEFormUtils.h"
 #import "XEFormController.h"
-#import "NSObject+XEForm.h"
 #import "NSObject+Utils.h"
 
 @interface XEFormRowObject ()
@@ -62,10 +61,9 @@
     return self;
 }
 
-- (void)configWithForm:(id<XEFormDelegate>)form formController:(XEFormController *)formController
+- (void)configWithForm:(XEForm *)form
 {
     self.form = form;
-    self.formController = formController;
     if([form respondsToSelector:@selector(row)])
     {
         self.cellConfig = ((XEFormRowObject *)[form row]).cellConfig;
@@ -78,12 +76,6 @@
 
 - (NSString *)rowDescription
 {
-    NSString *descriptionKey = [self.key stringByAppendingString:@"RowDescription"];
-    if (descriptionKey && [self.form respondsToSelector:NSSelectorFromString(descriptionKey)])
-    {
-        return [(id)self.form valueForKey:descriptionKey];
-    }
-    
     if (self.options)
     {
         if ([self isIndexedType])
@@ -405,7 +397,7 @@
 - (BOOL)isSubform
 {
     return (![self.type isEqualToString:XEFormRowTypeLabel] &&
-            ([self.valueClass conformsToProtocol:@protocol(XEFormDelegate)] ||
+            ([self.valueClass isSubclassOfClass:[XEForm class]] ||
              [self.valueClass isSubclassOfClass:[UIViewController class]] ||
              self.options || [self isCollectionType] || self.viewController));
 }
@@ -456,9 +448,9 @@
 
 - (id)valueWithoutDefaultSubstitution
 {
-    if (self.form && [(NSObject *)self.form canGetValueForKey:self.key])
+    if (self.form && [self.form canGetValueForKey:self.key])
     {
-        id value = [(NSObject *)self.form valueForKey:self.key];
+        id value = [self.form valueForKey:self.key];
         if(value && self.options)
         {
             if ([self isIndexedType])
@@ -483,9 +475,9 @@
 
 -(id)value
 {
-    if (self.form && [(NSObject *)self.form canGetValueForKey: self.key])
+    if (self.form && [self.form canGetValueForKey: self.key])
     {
-        id value = [(NSObject *)self.form valueForKey:self.key];
+        id value = [self.form valueForKey:self.key];
         if(value && self.options)
         {
             if([self isIndexedType])
@@ -514,7 +506,7 @@
 
 -(void)setValue:(id)value forKey:(NSString *)key
 {
-    if (self.form && [(NSObject *)self.form canSetValueForKey:self.key])
+    if (self.form && [self.form canSetValueForKey:self.key])
     {
         value = value ? : self.defaultValue;
         
@@ -564,7 +556,7 @@
         
         if (!value)
         {
-            for (XEFormRowObject *row in [(NSObject *)self.form getRowObjectsFromClass])
+            for (XEFormRowObject *row in self.form.propertyRows)
             {
                 if ([row.key isEqualToString:self.key])
                 {
@@ -579,7 +571,7 @@
             }
         }
         
-        [(NSObject *)self.form setValue:value forKey:self.key];
+        [self.form setValue:value forKey:self.key];
     }
 }
 
@@ -620,7 +612,7 @@
         __weak XEFormRowObject *weakSelf = self;
         action = ^(id sender)
         {
-            [weakSelf.formController performAction:selector withSender:sender];
+            [weakSelf.form.formController performAction:selector withSender:sender];
         };
     }
     

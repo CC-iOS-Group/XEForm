@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XEFormDelegate.h"
+#import "XEForm.h"
 
 @class XEFormRowObject;
 /**
  an options select extention of XEForm Use index as key
  */
-@interface XEOptionsForm : NSObject<XEFormDelegate>
+@interface XEOptionsForm : XEForm;
 
-@property (nonatomic, strong) XEFormRowObject *row;
+//@property (nonatomic, strong) XEFormRowObject *row;
 
 - (instancetype)initWithRow:(XEFormRowObject *)row;
 

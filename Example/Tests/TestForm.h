@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import <XEForm/XEFormDelegate.h>
+#import <XEForm/XEForm.h>
 
 #import "TestForm2.h"
 
-@interface TestForm : NSObject<XEFormDelegate>
+@interface TestForm : XEForm
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "XEFormDelegate.h"
-
 #import <objc/runtime.h>
+
+#import "XEForm.h"
 
 @class XEFormController;
 
@@ -19,7 +19,7 @@
 #pragma mark - Property
 
 @property (nonatomic, copy, readonly) NSString *key;
-@property (nonatomic, weak) id<XEFormDelegate> form;
+@property (nonatomic, weak) XEForm *form;
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) id defaultValue;
 @property (nonatomic, strong) NSArray *options;
@@ -31,7 +31,6 @@
 @property (nonatomic, strong) id footer;
 @property (nonatomic, copy) id (^valueTransformer)(id input);
 @property (nonatomic, copy) id (^reverseValueTransformer)(id input);
-@property (nonatomic, weak) XEFormController *formController;
 
 #pragma mark UI
 @property (nonatomic, strong) Class cellClass;
@@ -46,7 +45,7 @@
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;
 - (instancetype)initWithKey:(NSString *)key Class:(Class)class type:(NSString *)type;
-- (void)configWithForm:(id<XEFormDelegate>)form formController:(XEFormController *)formController;
+- (void)configWithForm:(XEForm *)form;
 
 - (NSString *)rowDescription;
 

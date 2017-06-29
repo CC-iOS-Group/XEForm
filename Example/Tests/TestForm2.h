@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <XEForm/XEFormDelegate.h>
+#import <XEForm/XEForm.h>
 
-@interface TestForm2 : NSObject<XEFormDelegate>
+@interface TestForm2 : XEForm
 
 @property (nonatomic, assign) int age;
 

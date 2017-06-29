@@ -9,7 +9,6 @@
 #import "XEFormSectionObject.h"
 
 #import "XEFormRowObject.h"
-#import "NSObject+XEForm.h"
 #import "XEOptionsForm.h"
 #import "XETemplateForm.h"
 #import "XEFormUtils.h"
@@ -17,14 +16,13 @@
 
 @implementation XEFormSectionObject
 
-+(NSArray *)sectionsWithForm:(id<XEFormDelegate>)form controller:(XEFormController *)formController
++(NSArray *)sectionsWithForm:(XEForm *)form
 {
-    form.formController = formController;
     NSMutableArray *sections = [NSMutableArray array];
     XEFormSectionObject *section = nil;
     for (XEFormRowObject *row in form.rows)
     {
-        id<XEFormDelegate> subform = nil;
+        XEForm *subform = nil;
         if(row.options && row.isInline)
         {
             subform = [[XEOptionsForm alloc] initWithRow:row];
@@ -34,7 +32,7 @@
             subform = [[XETemplateForm alloc] initWithRow:row];
         }
         // custom sub XEForm
-        else if([row.valueClass conformsToProtocol:@protocol(XEFormDelegate)] && row.isInline)
+        else if([row.valueClass isSubclassOfClass:[XEForm class]] && row.isInline)
         {
             if(!row.value && [row respondsToSelector:@selector(init)] &&
                [row.valueClass isSubclassOfClass:XEFormClassFromString(@"NSManagedObject")])
@@ -46,7 +44,7 @@
         
         if(subform)
         {
-            NSArray *subsections = [XEFormSectionObject sectionsWithForm:subform controller:formController];
+            NSArray *subsections = [XEFormSectionObject sectionsWithForm:subform];
             [sections addObjectsFromArray:subsections];
             
             section = [subsections firstObject];
@@ -62,7 +60,7 @@
             if(!section || row.header)
             {
                 section = [[XEFormSectionObject alloc] init];
-                section.form = form;
+                //                section.form = form;
                 section.header = row.header;
                 section.isSortable = ([form isKindOfClass:[XETemplateForm class]] && ((XETemplateForm *)form).row.isSortable);
                 [sections addObject:section];
@@ -80,32 +78,17 @@
 
 - (void)addNewRowAtIndex:(NSInteger)index
 {
-    XEFormController *controller = ((XEFormRowObject *)self.rows.lastObject).formController;
-    if(controller)
-    {
-        [(XETemplateForm *)self.form addNewRowAtIndex:index];
-        [self.rows setArray:self.form.rows];
-    }
+
 }
 
 - (void)removeFieldAtIndex:(NSUInteger)index
 {
-    XEFormController *controller = ((XEFormRowObject *)self.rows.lastObject).formController;
-    if(controller)
-    {
-        [(XETemplateForm *)self.form removeRowAtIndex:index];
-        [self.rows setArray:self.form.rows];
-    }
+
 }
 
 - (void)moveFieldAtIndex:(NSUInteger)index1 toIndex:(NSUInteger)index2
 {
-    XEFormController *controller = ((XEFormRowObject *)self.rows.lastObject).formController;
-    if(controller)
-    {
-        [(XETemplateForm *)self.form moveFieldAtIndex:index1 toIndex:index2];
-        [self.rows setArray:self.form.rows];
-    }
+
 }
 
 - (BOOL)respondsToSelector:(SEL)selector
@@ -119,7 +102,7 @@
 
 #pragma mark - Getter & setter
 
--(NSMutableArray *)rows
+-(NSMutableArray<XEFormRowObject *> *)rows
 {
     if (nil == _rows)
     {

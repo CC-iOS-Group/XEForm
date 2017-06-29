@@ -9,4 +9,4 @@ FOUNDATION_EXPORT const unsigned char XEFormVersionString[];
 
 #import <XEForm/XEFormConst.h>
 #import <XEForm/XEFormRowObject.h>
-#import <XEForm/XEFormDelegate.h>
+#import <XEForm/XEForm.h>
