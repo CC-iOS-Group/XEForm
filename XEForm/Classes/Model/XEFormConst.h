@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/** String*/
 UIKIT_EXTERN NSString *const XEFormRowKey; //key
 UIKIT_EXTERN NSString *const XEFormRowType; //type
 UIKIT_EXTERN NSString *const XEFormRowClass; //class
@@ -46,5 +47,19 @@ UIKIT_EXTERN NSString *const XEFormRowTypeTime; //time
 UIKIT_EXTERN NSString *const XEFormRowTypeDateTime; //datetime
 UIKIT_EXTERN NSString *const XEFormRowTypeImage; //image
 
-
 UIKIT_EXTERN NSString *const XEFormsException;
+
+
+/** Size*/
+
+UIKIT_EXTERN const CGFloat XEFormRowLabelSpacing ;
+UIKIT_EXTERN const CGFloat XEFormRowMinLabelWidth ;
+UIKIT_EXTERN const CGFloat XEFormRowMaxLabelWidth ;
+UIKIT_EXTERN const CGFloat XEFormRowMinFontSize ;
+UIKIT_EXTERN const CGFloat XEFormRowPaddingLeft ;
+UIKIT_EXTERN const CGFloat XEFormRowPaddingRight ;
+UIKIT_EXTERN const CGFloat XEFormRowPaddingTop ;
+UIKIT_EXTERN const CGFloat XEFormRowPaddingBottom ;
+
+
+

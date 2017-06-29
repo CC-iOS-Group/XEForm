@@ -72,6 +72,12 @@
     {
         self.cellConfig = [NSMutableDictionary dictionary];
     }
+    // TODO: configure other properties with existing properites
+    
+    
+    
+    
+    
 }
 
 - (NSString *)rowDescription
@@ -182,6 +188,14 @@
         }
     }
     return NO;
+}
+
+- (BOOL)isSubform
+{
+    return (![self.type isEqualToString:XEFormRowTypeLabel] &&
+            ([self.valueClass isSubclassOfClass:[XEForm class]] ||
+             [self.valueClass isSubclassOfClass:[UIViewController class]] ||
+             self.options || [self isCollectionType] || self.viewController));
 }
 
 #pragma mark Options
@@ -393,14 +407,6 @@
 }
 
 #pragma mark - Private method
-
-- (BOOL)isSubform
-{
-    return (![self.type isEqualToString:XEFormRowTypeLabel] &&
-            ([self.valueClass isSubclassOfClass:[XEForm class]] ||
-             [self.valueClass isSubclassOfClass:[UIViewController class]] ||
-             self.options || [self isCollectionType] || self.viewController));
-}
 
 - (NSString *)valueDescription:(id)value
 {

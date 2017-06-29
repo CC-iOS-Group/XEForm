@@ -48,3 +48,17 @@ NSString *const XEFormRowTypeImage = @"image";
 
 
 NSString *const XEFormsException = @"XEFormsException";
+
+
+
+const CGFloat XEFormRowLabelSpacing = 5;
+const CGFloat XEFormRowMinLabelWidth = 97;
+const CGFloat XEFormRowMaxLabelWidth = 240;
+const CGFloat XEFormRowMinFontSize = 12;
+const CGFloat XEFormRowPaddingLeft = 10;
+const CGFloat XEFormRowPaddingRight = 10;
+const CGFloat XEFormRowPaddingTop = 12;
+const CGFloat XEFormRowPaddingBottom = 12;
+
+
+

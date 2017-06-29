@@ -149,7 +149,6 @@
     NSMutableDictionary *propertiesDic = [NSMutableDictionary dictionary];
     for (XEFormRowObject *rowObject in filterArray)
     {
-        [rowObject configWithForm:self];
         [propertiesDic setObject:rowObject forKey:rowObject.key];
     }
     // combine property and @selector(rows)
@@ -163,6 +162,7 @@
                 if(propertyObject &&
                    ![[allRows valueForKey:XEFormRowKey] containsObject:propertyObject.key])
                 {
+                    [propertyObject configWithForm:self];
                     [allRows addObject:propertyObject];
                 }
             }
@@ -172,7 +172,7 @@
                 if(rowObject.key.length > 0 && rowObject.valueClass && rowObject.type.length > 0)
                 {
                     [rowObject configWithForm:self];
-                    if([[allRows valueForKey:XEFormRowKey] containsObject:rowObject.key])
+                    if(![[allRows valueForKey:XEFormRowKey] containsObject:rowObject.key])
                     {
                         [allRows addObject:rowObject];
                     }

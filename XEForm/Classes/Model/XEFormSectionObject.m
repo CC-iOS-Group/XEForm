@@ -76,21 +76,6 @@
     return sections;
 }
 
-- (void)addNewRowAtIndex:(NSInteger)index
-{
-
-}
-
-- (void)removeFieldAtIndex:(NSUInteger)index
-{
-
-}
-
-- (void)moveFieldAtIndex:(NSUInteger)index1 toIndex:(NSUInteger)index2
-{
-
-}
-
 - (BOOL)respondsToSelector:(SEL)selector
 {
     if ([NSStringFromSelector(selector) hasPrefix:@"set"])

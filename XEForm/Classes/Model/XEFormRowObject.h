@@ -49,10 +49,10 @@
 
 - (NSString *)rowDescription;
 
-// TODO: Util category
 - (BOOL)isIndexedType;
 - (BOOL)isCollectionType;
 - (BOOL)isOrderedCollectionType;
+- (BOOL)isSubform;
 
 // TODO: Options methods should move to category
 - (NSUInteger)optionCount;

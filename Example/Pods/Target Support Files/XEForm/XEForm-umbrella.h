@@ -6,7 +6,7 @@
 FOUNDATION_EXPORT double XEFormVersionNumber;
 FOUNDATION_EXPORT const unsigned char XEFormVersionString[];
 
-
+#import <XEForm/XEFormController.h>
 #import <XEForm/XEFormConst.h>
 #import <XEForm/XEFormRowObject.h>
 #import <XEForm/XEForm.h>

@@ -9,12 +9,29 @@
 #import "XEFormDemoViewController.h"
 
 #import "SimpleForm2.h"
+#import <XEForm/XEFormController.h>
+#import <XEForm/XEFormRowObject.h>
+#import <XEForm/XEFormConst.h>
 
 @interface XEFormDemoViewController ()
 
 @end
 
 @implementation XEFormDemoViewController
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        SimpleForm2 *forms = [[SimpleForm2 alloc] init];
+        XEFormRowObject *username = [[XEFormRowObject alloc] initWithKey:@"username" Class:[NSString class] type:XEFormRowTypeLabel];
+        XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypeLabel];
+        forms.rows = @[username, password];
+        self.formController.form = forms;
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {

@@ -13,6 +13,8 @@
 
 #import <objc/runtime.h>
 
+#pragma mark - UI
+
 static NSSet *NSObjectProperties;
 static NSArray *kExcludeProperties;
 
@@ -32,6 +34,26 @@ static UIView *XEFormsFirstResponder(UIView *view)
     }
     return nil;
 }
+
+static inline void XEFormLabelSetMinFontSize(UILabel *label, CGFloat fontSize)
+{
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+    
+    if (![label respondsToSelector:@selector(setMinimumScaleFactor:)])
+    {
+        label.minimumFontSize = fontSize;
+    }
+    else
+        
+#endif
+        
+    {
+        label.minimumScaleFactor = fontSize / label.font.pointSize;
+    }
+}
+
+#pragma mark - Data
 
 static Class XEFormClassFromString(NSString *className)
 {
