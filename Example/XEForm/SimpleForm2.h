@@ -13,7 +13,9 @@
 @interface SimpleForm2 : XEForm
 
 @property (nonatomic, copy) NSString *username;
-
 @property (nonatomic, copy) NSString *password;
+
+@property (nonatomic, assign) BOOL enable;
+@property (nonatomic, assign) BOOL hasLogin;
 
 @end
