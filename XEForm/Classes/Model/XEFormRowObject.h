@@ -26,14 +26,13 @@
 @property (nonatomic, strong) Class valueClass;
 @property (nonatomic, strong) id placeholder;
 @property (nonatomic, copy) NSString *type;
-
-@property (nonatomic, strong) id header;
-@property (nonatomic, strong) id footer;
 @property (nonatomic, copy) id (^valueTransformer)(id input);
 @property (nonatomic, copy) id (^reverseValueTransformer)(id input);
 
 #pragma mark UI
 @property (nonatomic, strong) Class cellClass;
+@property (nonatomic, strong) id header;
+@property (nonatomic, strong) id footer;
 @property (nonatomic, strong) id viewController;
 @property (nonatomic, strong) NSMutableDictionary *cellConfig;
 @property (nonatomic, copy) NSString *title;

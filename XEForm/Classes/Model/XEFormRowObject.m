@@ -72,12 +72,114 @@
     {
         self.cellConfig = [NSMutableDictionary dictionary];
     }
-    // TODO: configure other properties with existing properites
     
+    if ((self.options || self.viewController) &&
+        ![self.type isEqualToString:XEFormRowTypeBitfield] &&
+        !self.isInline)
+    {
+        //TODO: is there a good way to support custom type for non-inline options cells?
+        //TODO: is there a better way to force non-inline cells to use base cell?
+        self.type = XEFormRowTypeDefault;
+    }
     
+    // Get row value class
+    if (nil == self.valueClass)
+    {
+        [self XEFormRowInferClass];
+    }
     
+    // Get default value
+    if (self.defaultValue)
+    {
+        //workaround for common mistake where type is collection, but default value is a single value
+        if ([self.valueClass isSubclassOfClass:[NSArray class]] &&
+            ![self.defaultValue isKindOfClass:[NSArray class]])
+        {
+            self.defaultValue = [self.valueClass arrayWithObject:self.defaultValue];
+        }
+        else if([self.valueClass isSubclassOfClass:[NSSet class]] &&
+                ![self.defaultValue isKindOfClass:[NSSet class]])
+        {
+            self.defaultValue = [self.valueClass setWithObject:self.defaultValue];
+        }
+        else if([self.valueClass isSubclassOfClass:[NSOrderedSet class]] &&
+                ![self.defaultValue isKindOfClass:[NSOrderedSet class]])
+        {
+            self.defaultValue = [self.valueClass orderedSetWithObject:self.defaultValue];
+        }
+    }
     
+    // Get row type
+    if (nil == self.type)
+    {
+        self.type = [self XEFormRowInferType];
+    }
     
+    // Convert view controller from string to class
+    if ([self.viewController isKindOfClass:[NSString class]])
+    {
+        self.viewController = XEFormClassFromString(self.viewController);
+    }
+    
+    // Convert header from string to class
+    if ([self.header isKindOfClass:[NSString class]])
+    {
+        Class viewClass = XEFormClassFromString(self.header);
+        if ([viewClass isSubclassOfClass:[UIView class]])
+        {
+            self.header = viewClass;
+        }
+        else
+        {
+            
+        }
+    }
+    else if ([self.header isKindOfClass:[NSNull class]])
+    {
+        self.header = @"";
+    }
+    
+    // Convert footer from string to class
+    if ([self.footer isKindOfClass:[NSString class]])
+    {
+        Class viewClass = XEFormClassFromString(self.footer);
+        if ([viewClass isSubclassOfClass:[UIView class]])
+        {
+            self.footer = viewClass;
+        }
+        else
+        {
+            
+        }
+    }
+    else if ([self.footer isKindOfClass:[NSNull class]])
+    {
+        self.footer = @"";
+    }
+    
+    // Derive title from key or selector name
+    if (nil == self.title)
+    {
+        BOOL wasCapital = YES;
+        NSString *key = self.key;
+        NSMutableString *output = nil;
+        if (key)
+        {
+            output = [NSMutableString stringWithString:[[key substringToIndex:1] uppercaseString]];
+            for (NSUInteger j = 1; j < [key length]; j++)
+            {
+                unichar character = [key characterAtIndex:j];
+                BOOL isCapital = ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:character]);
+                if (isCapital && !wasCapital) [output appendString:@" "];
+                wasCapital = isCapital;
+                if (character != ':') [output appendFormat:@"%C", character];
+            }
+        }
+        if ([output length])
+        {
+            self.title = NSLocalizedString(output, nil);
+        }
+    }
 }
 
 - (NSString *)rowDescription
@@ -407,6 +509,95 @@
 }
 
 #pragma mark - Private method
+
+- (NSString *)XEFormRowInferType
+{
+    //guess type from class
+    if ([self.valueClass isSubclassOfClass:[NSURL class]])
+    {
+        return XEFormRowTypeURL;
+    }
+    else if ([self.valueClass isSubclassOfClass:[NSNumber class]])
+    {
+        return XEFormRowTypeNumber;
+    }
+    else if ([self.valueClass isSubclassOfClass:[NSDate class]])
+    {
+        return XEFormRowTypeDate;
+    }
+    else if ([self.valueClass isSubclassOfClass:[UIImage class]])
+    {
+        return XEFormRowTypeImage;
+    }
+    
+    if (!self.valueClass && ! self.action && !self.segue)
+    {
+        //assume string if there's no action and nothing else to go on
+        self.valueClass = [NSString class];
+    }
+    
+    //guess type from key name
+    if ([self.valueClass isSubclassOfClass:[NSString class]])
+    {
+        NSString *lowercaseKey = [self.key lowercaseString];
+        if ([lowercaseKey hasSuffix:@"password"])
+        {
+            return XEFormRowTypePassword;
+        }
+        else if ([lowercaseKey hasSuffix:@"email"] || [lowercaseKey hasSuffix:@"emailaddress"])
+        {
+            return XEFormRowTypeEmail;
+        }
+        else if ([lowercaseKey hasSuffix:@"phone"] || [lowercaseKey hasSuffix:@"phonenumber"])
+        {
+            return XEFormRowTypePhone;
+        }
+        else if ([lowercaseKey hasSuffix:@"url"] || [lowercaseKey hasSuffix:@"link"])
+        {
+            return XEFormRowTypeURL;
+        }
+        else if (self.valueClass)
+        {
+            //only return text type if there's no action and no better guess
+            return XEFormRowTypeText;
+        }
+    }
+    
+    return XEFormRowTypeDefault;
+}
+
+- (Class) XEFormRowInferClass
+{
+    //if there are options, type should match first option
+    if (self.options.count)
+    {
+        //use same type as options
+        return [[self.options firstObject] classForCoder];
+    }
+    
+    //attempt to determine class from type
+    NSString *type = self.type ? : [self XEFormRowInferType];
+    return @{
+             XEFormRowTypeLabel: [NSString class],
+             XEFormRowTypeText: [NSString class],
+             XEFormRowTypeLongText: [NSString class],
+             XEFormRowTypeURL: [NSURL class],
+             XEFormRowTypeEmail: [NSString class],
+             XEFormRowTypePhone: [NSString class],
+             XEFormRowTypePassword: [NSString class],
+             XEFormRowTypeNumber: [NSNumber class],
+             XEFormRowTypeInteger: [NSNumber class],
+             XEFormRowTypeUnsigned: [NSNumber class],
+             XEFormRowTypeFloat: [NSNumber class],
+             XEFormRowTypeBitfield: [NSNumber class],
+             XEFormRowTypeBoolean: [NSNumber class],
+             XEFormRowTypeOption: [NSNumber class],
+             XEFormRowTypeDate: [NSDate class],
+             XEFormRowTypeTime: [NSDate class],
+             XEFormRowTypeDateTime: [NSDate class],
+             XEFormRowTypeImage: [UIImage class]
+             }[type];
+}
 
 - (NSString *)valueDescription:(id)value
 {

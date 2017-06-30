@@ -108,6 +108,7 @@
 {
     return [NSSet set];
 }
+
 #pragma mark - Private method
 
 - (NSArray<XEFormRowObject *> *)getRowsFromProperties
