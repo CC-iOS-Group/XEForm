@@ -21,10 +21,10 @@
 @property (nonatomic, strong) XEForm *form;
 
 @property (nonatomic, strong) NSMutableDictionary *cellHeightCache;
-@property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldTypes;
-@property (nonatomic, strong) NSMutableDictionary *cellClassesForFieldClasses;
-@property (nonatomic, strong) NSMutableDictionary *controllerClassesForFieldTypes;
-@property (nonatomic, strong) NSMutableDictionary *controllerClassesForFieldClasses;
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForRowTypes;
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForRowClasses;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowTypes;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowClasses;
 @property (nonatomic, assign) UIEdgeInsets originalTableContentInset;
 
 - (NSUInteger)numberOfSections;

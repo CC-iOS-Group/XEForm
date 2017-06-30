@@ -25,8 +25,12 @@
     if (self)
     {
         SimpleForm2 *forms = [[SimpleForm2 alloc] init];
-        XEFormRowObject *username = [[XEFormRowObject alloc] initWithKey:@"username" Class:[NSString class] type:XEFormRowTypeLabel];
-        XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypeLabel];
+        XEFormRowObject *username = [[XEFormRowObject alloc] initWithKey:@"username" Class:[NSString class] type:XEFormRowTypeText];
+        username.header = @"请输入用户名、密码";
+        username.title = @"用户名";
+        XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypePassword];
+        password.footer = @"注意";
+        password.title= @"密码";
         forms.rows = @[username, password];
         self.formController.form = forms;
     }

@@ -12,19 +12,19 @@
 
 - (NSString *)rowDescription
 {
-    for (Class fieldClass in @[[NSString class], [NSNumber class], [NSDate class]])
+    for (Class rowClass in @[[NSString class], [NSNumber class], [NSDate class]])
     {
-        if ([self isKindOfClass:fieldClass])
+        if ([self isKindOfClass:rowClass])
         {
             return [self description];
         }
     }
-    for (Class fieldClass in @[[NSDictionary class], [NSArray class], [NSSet class], [NSOrderedSet class]])
+    for (Class rowClass in @[[NSDictionary class], [NSArray class], [NSSet class], [NSOrderedSet class]])
     {
-        if ([self isKindOfClass:fieldClass])
+        if ([self isKindOfClass:rowClass])
         {
             id collection = self;
-            if (fieldClass == [NSDictionary class])
+            if (rowClass == [NSDictionary class])
             {
                 collection = [collection allValues];
             }

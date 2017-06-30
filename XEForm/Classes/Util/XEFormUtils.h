@@ -18,7 +18,7 @@
 static NSSet *NSObjectProperties;
 static NSArray *kExcludeProperties;
 
-static UIView *XEFormsFirstResponder(UIView *view)
+static inline UIView *XEFormsFirstResponder(UIView *view)
 {
     if ([view isFirstResponder])
     {
@@ -33,6 +33,21 @@ static UIView *XEFormsFirstResponder(UIView *view)
         }
     }
     return nil;
+}
+
+static inline CGFloat XEFormLabelMinFontSize(UILabel *label)
+{
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+    
+    if (![label respondsToSelector:@selector(setMinimumScaleFactor:)])
+    {
+        return label.minimumFontSize;
+    }
+    
+#endif
+    
+    return label.font.pointSize * label.minimumScaleFactor;
 }
 
 static inline void XEFormLabelSetMinFontSize(UILabel *label, CGFloat fontSize)

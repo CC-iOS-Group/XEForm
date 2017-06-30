@@ -16,8 +16,6 @@
 
 + (CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width;
 
-- (void)configWithValue:(id)value;
-
 - (void)didSelectWithTableView:(UITableView *)tableView
                     controller:(UIViewController *)controller;
 

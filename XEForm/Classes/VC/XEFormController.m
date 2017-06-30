@@ -31,36 +31,33 @@
     if (self)
     {
         _cellHeightCache = [NSMutableDictionary dictionary];
-        _cellClassesForFieldTypes = [@{
+        _cellClassesForRowTypes = [@{
                                        XEFormRowTypeDefault: NSClassFromString(@"XEFormDefaultCell"),
                                        XEFormRowTypeText: NSClassFromString(@"XEFormTextFieldCell"),
 //                                       XEFormRowTypeLongText: [FXFormTextViewCell class],
                                        XEFormRowTypeURL: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypeEmail: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypePhone: NSClassFromString(@"XEFormTextFieldCell"),
-//                                       XEFormRowTypePassword: [FXFormTextFieldCell class],
-//                                       XEFormRowTypeNumber: [FXFormTextFieldCell class],
-//                                       XEFormRowTypeFloat: [FXFormTextFieldCell class],
-//                                       XEFormRowTypeInteger: [FXFormTextFieldCell class],
-//                                       XEFormRowTypeUnsigned: [FXFormTextFieldCell class],
+                                       XEFormRowTypePassword: NSClassFromString(@"XEFormTextFieldCell"),
+                                       XEFormRowTypeNumber: NSClassFromString(@"XEFormTextFieldCell"),
+                                       XEFormRowTypeFloat: NSClassFromString(@"XEFormTextFieldCell"),
+                                       XEFormRowTypeInteger: NSClassFromString(@"XEFormTextFieldCell"),
+                                       XEFormRowTypeUnsigned: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypeBoolean: NSClassFromString(@"XEFormSwitchCell"),
 //                                       XEFormRowTypeDate: [FXFormDatePickerCell class],
 //                                       XEFormRowTypeTime: [FXFormDatePickerCell class],
 //                                       XEFormRowTypeDateTime: [FXFormDatePickerCell class],
 //                                       XEFormRowTypeImage: [FXFormImagePickerCell class],
                                        
-                                       
-                                       
-                                       
-                                       
+
                                        } mutableCopy];
-        _cellClassesForFieldClasses = [@{
+        _cellClassesForRowClasses = [@{
                                          
                                          } mutableCopy];
-        _controllerClassesForFieldTypes = [@{
+        _controllerClassesForRowTypes = [@{
                                              XEFormRowTypeDefault: [XEFormViewController class],
                                              } mutableCopy];
-        _controllerClassesForFieldClasses = [NSMutableDictionary dictionary];
+        _controllerClassesForRowClasses = [NSMutableDictionary dictionary];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(keyboardDidShow:)
@@ -89,85 +86,85 @@
 {
     if (row.type != XEFormRowTypeDefault)
     {
-        return self.cellClassesForFieldTypes[row.type] ? :
-        self.parentFormController.cellClassesForFieldTypes[row.type] ? :
-        self.cellClassesForFieldTypes[XEFormRowTypeDefault];
+        return self.cellClassesForRowTypes[row.type] ? :
+        self.parentFormController.cellClassesForRowTypes[row.type] ? :
+        self.cellClassesForRowTypes[XEFormRowTypeDefault];
     }
     else
     {
         Class valueClass = row.valueClass;
         while (valueClass && valueClass != [NSObject class]) {
-            Class cellClass = self.cellClassesForFieldClasses[NSStringFromClass(valueClass)] ? :
-            self.parentFormController.cellClassesForFieldClasses[NSStringFromClass(valueClass)];
+            Class cellClass = self.cellClassesForRowClasses[NSStringFromClass(valueClass)] ? :
+            self.parentFormController.cellClassesForRowClasses[NSStringFromClass(valueClass)];
             if (cellClass)
             {
                 return cellClass;
             }
             valueClass = [valueClass superclass];
         }
-        return self.cellClassesForFieldTypes[XEFormRowTypeDefault];
+        return self.cellClassesForRowTypes[XEFormRowTypeDefault];
     }
 }
 
 - (void)registerDefaultRowCellClass:(Class)cellClass
 {
     NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
-    if(cellClass) [self.cellClassesForFieldTypes setDictionary:@{XEFormRowTypeDefault: cellClass}];
+    if(cellClass) [self.cellClassesForRowTypes setDictionary:@{XEFormRowTypeDefault: cellClass}];
 }
 
 - (void)registerCellClass:(Class)cellClass forRowType:(NSString *)rowType
 {
     NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
-    if(rowType) self.cellClassesForFieldTypes[rowType] = cellClass;
+    if(rowType) self.cellClassesForRowTypes[rowType] = cellClass;
 }
 
 - (void)registerCellClass:(Class)cellClass forRowClass:(__unsafe_unretained Class)rowClass
 {
     NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
-    if(rowClass) self.cellClassesForFieldClasses[NSStringFromClass(rowClass)] = cellClass;
+    if(rowClass) self.cellClassesForRowClasses[NSStringFromClass(rowClass)] = cellClass;
 }
 
 -(Class)viewControllerClassForRow:(XEFormRowObject *)row
 {
     if(row.type != XEFormRowTypeDefault)
     {
-        return self.controllerClassesForFieldTypes[row.type] ?:
-        self.parentFormController.controllerClassesForFieldTypes[row.type] ?:
-        self.controllerClassesForFieldTypes[XEFormRowTypeDefault];
+        return self.controllerClassesForRowTypes[row.type] ?:
+        self.parentFormController.controllerClassesForRowTypes[row.type] ?:
+        self.controllerClassesForRowTypes[XEFormRowTypeDefault];
     }
     else
     {
         Class valueClass = row.valueClass;
         while (valueClass != [NSObject class])
         {
-            Class controllerClass = self.controllerClassesForFieldClasses[NSStringFromClass(valueClass)] ?:
-            self.parentFormController.controllerClassesForFieldClasses[NSStringFromClass(valueClass)];
+            Class controllerClass = self.controllerClassesForRowClasses[NSStringFromClass(valueClass)] ?:
+            self.parentFormController.controllerClassesForRowClasses[NSStringFromClass(valueClass)];
             if (controllerClass)
             {
                 return controllerClass;
             }
             valueClass = [valueClass superclass];
         }
-        return self.controllerClassesForFieldTypes[XEFormRowTypeDefault];
+        return self.controllerClassesForRowTypes[XEFormRowTypeDefault];
     }
 }
 
 - (void)registerDefaultViewControllerClass:(Class)controllerClass
 {
     NSParameterAssert([controllerClass conformsToProtocol:@protocol(XEFormRowViewControllerDelegate)]);
-    if(controllerClass) [self.controllerClassesForFieldTypes setDictionary:@{XEFormRowTypeDefault: controllerClass}];
+    if(controllerClass) [self.controllerClassesForRowTypes setDictionary:@{XEFormRowTypeDefault: controllerClass}];
 }
 
 - (void)registerViewControllerClass:(Class)controllerClass forRowType:(NSString *)rowType
 {
     NSParameterAssert([controllerClass conformsToProtocol:@protocol(XEFormRowViewControllerDelegate)]);
-    if(rowType) self.controllerClassesForFieldTypes[rowType] = controllerClass;
+    if(rowType) self.controllerClassesForRowTypes[rowType] = controllerClass;
 }
 
 - (void)registerViewControllerClass:(Class)controllerClass forRowClass:(__unsafe_unretained Class)rowClass
 {
     NSParameterAssert([controllerClass conformsToProtocol:@protocol(XEFormRowViewControllerDelegate)]);
-    if(rowClass) self.controllerClassesForFieldClasses[NSStringFromClass(rowClass)] = controllerClass;
+    if(rowClass) self.controllerClassesForRowClasses[NSStringFromClass(rowClass)] = controllerClass;
 }
 
 #pragma mark - forward Method
@@ -400,9 +397,10 @@
     {
 
         UITableViewCellStyle style = UITableViewCellStyleDefault;
-        if (row.cellConfig)
+        id styleNum = [row.cellConfig objectForKey:@"style"];
+        if (styleNum)
         {
-            style = [[row.cellConfig objectForKey:@"style"] integerValue];
+            style = [styleNum integerValue];
         }
         else if (row.form && [row.form canGetValueForKey:row.key])
         {
