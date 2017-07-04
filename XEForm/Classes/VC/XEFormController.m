@@ -34,7 +34,7 @@
         _cellClassesForRowTypes = [@{
                                        XEFormRowTypeDefault: NSClassFromString(@"XEFormDefaultCell"),
                                        XEFormRowTypeText: NSClassFromString(@"XEFormTextFieldCell"),
-//                                       XEFormRowTypeLongText: [FXFormTextViewCell class],
+                                       XEFormRowTypeLongText: NSClassFromString(@"XEFormTextViewCell"),
                                        XEFormRowTypeURL: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypeEmail: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypePhone: NSClassFromString(@"XEFormTextFieldCell"),
@@ -416,7 +416,7 @@
 {
     XEFormRowObject *row = [self rowForIndexPath:indexPath];
     Class cellClass = row.cellClass ? : [self cellClassForRow:row];
-    if([cellClass respondsToSelector:@selector(heightForField:width:)])
+    if([cellClass respondsToSelector:@selector(heightForRow:width:)])
     {
         return [cellClass heightForRow:row width:self.formTableView.frame.size.width];
     }

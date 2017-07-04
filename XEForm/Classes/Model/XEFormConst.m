@@ -50,6 +50,9 @@ NSString *const XEFormRowTypeImage = @"image";
 NSString *const XEFormsException = @"XEFormsException";
 
 
+#pragma mark - SIZE
+
+const CGFloat XEFormDefaultFontSize = 17.;
 
 const CGFloat XEFormRowLabelSpacing = 5;
 const CGFloat XEFormRowMinLabelWidth = 97;

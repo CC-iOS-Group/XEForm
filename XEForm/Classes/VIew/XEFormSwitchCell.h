@@ -9,5 +9,7 @@
 #import "XEFormBaseCell.h"
 
 @interface XEFormSwitchCell : XEFormBaseCell
+// TODO: Use customize Switch
+@property (nonatomic, strong) UISwitch *switchControl;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface XEFormTextFieldCell : XEFormBaseCell
 
+@property (nonatomic, strong) UITextField *textField;
+
 @end

@@ -18,5 +18,6 @@
 - (void)update;
 - (void)didSelectWithTableView:(UITableView *)tableView
                     controller:(UIViewController *)controller;
+- (UITableView *)tableView;
 
 @end

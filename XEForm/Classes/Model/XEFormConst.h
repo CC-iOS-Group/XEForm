@@ -52,6 +52,8 @@ UIKIT_EXTERN NSString *const XEFormsException;
 
 /** Size*/
 
+UIKIT_EXTERN const CGFloat XEFormDefaultFontSize ;
+
 UIKIT_EXTERN const CGFloat XEFormRowLabelSpacing ;
 UIKIT_EXTERN const CGFloat XEFormRowMinLabelWidth ;
 UIKIT_EXTERN const CGFloat XEFormRowMaxLabelWidth ;
@@ -60,6 +62,7 @@ UIKIT_EXTERN const CGFloat XEFormRowPaddingLeft ;
 UIKIT_EXTERN const CGFloat XEFormRowPaddingRight ;
 UIKIT_EXTERN const CGFloat XEFormRowPaddingTop ;
 UIKIT_EXTERN const CGFloat XEFormRowPaddingBottom ;
+
 
 
 

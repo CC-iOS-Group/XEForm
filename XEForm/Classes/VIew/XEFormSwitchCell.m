@@ -12,7 +12,6 @@
 
 @interface XEFormSwitchCell ()
 
-@property (nonatomic, strong) UISwitch *switchControl;
 
 @end
 
@@ -29,10 +28,6 @@
     self.textLabel.text = self.row.title;
     self.textLabel.accessibilityValue = self.textLabel.text;
     self.switchControl.on = [self.row.value boolValue];
-    UIImage *switchOnImage = [self imageWithObject: [self.row.cellConfig objectForKey:@"switchOnImage"]];
-    if (switchOnImage) [self.switchControl setOnImage:switchOnImage];
-    UIImage *switchOffImage = [self imageWithObject: [self.row.cellConfig objectForKey:@"switchOffImage"]];
-    if (switchOffImage) [self.switchControl setOffImage:switchOffImage];
     
 }
 
@@ -50,23 +45,7 @@
 
 #pragma mark - Private method
 
-- (UIImage *)imageWithObject:(id)imageObject
-{
-    UIImage *image;
-    if(imageObject == nil)
-    {
-        image = nil;
-    }
-    else if ([imageObject isKindOfClass:[NSString class]])
-    {
-        image = [UIImage imageNamed:imageObject];
-    }
-    else if([imageObject isKindOfClass:[UIImage class]])
-    {
-        image = imageObject;
-    }
-    return image;
-}
+
 
 #pragma mark - Getter & setter
 

@@ -12,8 +12,6 @@
 #import "XEFormUtils.h"
 #import "XEFormConst.h"
 
-static const CGFloat kDefaultFontSize = 17.;
-
 @implementation XEFormBaseCell
 
 @synthesize row = _row;
@@ -23,9 +21,9 @@ static const CGFloat kDefaultFontSize = 17.;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.textLabel.font = [UIFont boldSystemFontOfSize:kDefaultFontSize];
+        self.textLabel.font = [UIFont boldSystemFontOfSize:XEFormDefaultFontSize];
         XEFormLabelSetMinFontSize(self.textLabel, XEFormRowMinFontSize);
-        self.detailTextLabel.font = [UIFont systemFontOfSize:kDefaultFontSize];
+        self.detailTextLabel.font = [UIFont systemFontOfSize:XEFormDefaultFontSize];
         XEFormLabelSetMinFontSize(self.detailTextLabel, XEFormRowMinFontSize);
         
         if([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)

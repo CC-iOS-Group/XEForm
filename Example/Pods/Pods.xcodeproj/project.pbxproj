@@ -165,6 +165,8 @@
 		B8BF4CF4222A4ACAA0D206B4E7E06E8F /* KWDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = DFA2B85FDF66D57188E94E167B9D6248 /* KWDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC8CCE24E583DFF4F7922EE69C6EFDC2 /* KWRegularExpressionPatternMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 32339A8F11C4B0EF03FB0FFE9B60ABCF /* KWRegularExpressionPatternMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		BC952FC04FC963C1294DCD619C9B6B3B /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DC5A419F3C437B97E7825FCBE174DBA /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */; };
+		BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */; };
 		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A92EE8DFABFCDEC800F6B1D1AFD48D /* FBSnapshotTestCase.m */; };
 		BE32FE401EFBC58F00F74DDB /* XEFormConst.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE411EFBC58F00F74DDB /* XEFormConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE3E1EFBC58F00F74DDB /* XEFormConst.m */; };
@@ -475,6 +477,8 @@
 		BC02105D508E892996FD08A18BB88540 /* NSNumber+KiwiAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+KiwiAdditions.m"; path = "Classes/Core/NSNumber+KiwiAdditions.m"; sourceTree = "<group>"; };
 		BC49DF4D3CCFFB301FA99FE0FDD0DD1E /* KWExistVerifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWExistVerifier.m; path = Classes/Verifiers/KWExistVerifier.m; sourceTree = "<group>"; };
 		BC5BDDDEEC6BB8CAEEBC1675C1D4BC38 /* KWReporting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWReporting.h; path = Classes/Core/KWReporting.h; sourceTree = "<group>"; };
+		BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextViewCell.h; sourceTree = "<group>"; };
+		BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextViewCell.m; sourceTree = "<group>"; };
 		BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormConst.h; sourceTree = "<group>"; };
 		BE32FE3E1EFBC58F00F74DDB /* XEFormConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormConst.m; sourceTree = "<group>"; };
 		BE32FE491EFBC8D900F74DDB /* XEFormRowObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormRowObject.h; sourceTree = "<group>"; };
@@ -1000,6 +1004,8 @@
 				BE32FE621EFBD0D000F74DDB /* XEFormSwitchCell.m */,
 				BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */,
 				BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */,
+				BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */,
+				BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1114,6 +1120,7 @@
 				BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */,
 				BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */,
 				BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */,
+				BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1482,6 +1489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */,
 				BE37D0471F03730F0061329A /* XEFormSectionObject.m in Sources */,
 				BE32FE411EFBC58F00F74DDB /* XEFormConst.m in Sources */,
 				BE32FE4C1EFBC8D900F74DDB /* XEFormRowObject.m in Sources */,

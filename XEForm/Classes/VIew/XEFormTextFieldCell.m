@@ -12,7 +12,6 @@
 
 @interface XEFormTextFieldCell ()<UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *textField;
 
 @property (nonatomic, assign, getter = isReturnKeyOverriden) BOOL returnKeyOverridden;
 

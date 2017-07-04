@@ -20,7 +20,7 @@
 
 @implementation XEFormRowObject
 
-@synthesize isSortable = _isSortable;
+@synthesize isSortable = _isSortable, value = _value;
 
 -(instancetype)init
 {
@@ -672,8 +672,8 @@
 
 -(id)value
 {
-    if (self.form && [self.form canGetValueForKey: self.key])
-    {
+    if ([self.form canGetValueForKey: self.key])
+    {   // Property
         id value = [self.form valueForKey:self.key];
         if(value && self.options)
         {
@@ -698,11 +698,23 @@
         }
         return value;
     }
-    return nil;
+    else
+    {
+        // extra
+        if(nil == _value)
+        {
+            return self.defaultValue;
+        }
+        else
+        {
+            return _value;
+        }
+    }
 }
 
--(void)setValue:(id)value forKey:(NSString *)key
+-(void)setValue:(id)value
 {
+    _value = value;
     if (self.form && [self.form canSetValueForKey:self.key])
     {
         value = value ? : self.defaultValue;

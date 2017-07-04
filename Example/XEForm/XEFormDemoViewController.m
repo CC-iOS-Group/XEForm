@@ -31,7 +31,8 @@
         XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypePassword];
         password.footer = @"注意";
         password.title= @"密码";
-        forms.rows = @[@"enable", username, password, @"hasLogin"];
+        XEFormRowObject *about = [[XEFormRowObject alloc] initWithKey:@"about" Class:[NSString class] type:XEFormRowTypeLongText];
+        forms.rows = @[@"enable", username, password, about, @"hasLogin"];
         self.formController.form = forms;
     } 
     return self;
