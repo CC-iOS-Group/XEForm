@@ -44,9 +44,9 @@
                                        XEFormRowTypeInteger: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypeUnsigned: NSClassFromString(@"XEFormTextFieldCell"),
                                        XEFormRowTypeBoolean: NSClassFromString(@"XEFormSwitchCell"),
-//                                       XEFormRowTypeDate: [FXFormDatePickerCell class],
-//                                       XEFormRowTypeTime: [FXFormDatePickerCell class],
-//                                       XEFormRowTypeDateTime: [FXFormDatePickerCell class],
+                                       XEFormRowTypeDate: NSClassFromString(@"XEFormDatePickerCell"),
+                                       XEFormRowTypeTime: NSClassFromString(@"XEFormDatePickerCell"),
+                                       XEFormRowTypeDateTime: NSClassFromString(@"XEFormDatePickerCell"),
 //                                       XEFormRowTypeImage: [FXFormImagePickerCell class],
                                        
 
@@ -402,7 +402,7 @@
         {
             style = [styleNum integerValue];
         }
-        else if (row.form && [row.form canGetValueForKey:row.key])
+        else if (row.needDescription)
         {
             style = UITableViewCellStyleValue1;
         }

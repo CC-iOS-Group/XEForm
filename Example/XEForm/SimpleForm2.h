@@ -17,5 +17,6 @@
 
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, assign) BOOL hasLogin;
+@property (nonatomic, strong) NSDate *birthday;
 
 @end

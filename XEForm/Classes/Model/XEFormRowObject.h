@@ -40,6 +40,7 @@
 @property (nonatomic, assign) BOOL isInline;
 @property (nonatomic, copy) void (^action)(id sender);
 @property (nonatomic, strong) id segue;
+@property (nonatomic, assign) BOOL needDescription;
 
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;

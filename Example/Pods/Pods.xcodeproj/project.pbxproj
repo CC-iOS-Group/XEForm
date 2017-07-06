@@ -178,7 +178,7 @@
 		BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE531EFBCB9500F74DDB /* XEFormViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE561EFBCB9500F74DDB /* XEFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE541EFBCB9500F74DDB /* XEFormViewController.m */; };
 		BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE571EFBCCAF00F74DDB /* XEFormRowCellDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE32FE5B1EFBCD2B00F74DDB /* XEFormBaseCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE591EFBCD2B00F74DDB /* XEFormBaseCell.h */; };
+		BE32FE5B1EFBCD2B00F74DDB /* XEFormBaseCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE591EFBCD2B00F74DDB /* XEFormBaseCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE5C1EFBCD2B00F74DDB /* XEFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE5A1EFBCD2B00F74DDB /* XEFormBaseCell.m */; };
 		BE32FE5F1EFBD09700F74DDB /* XEFormDefaultCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE5D1EFBD09700F74DDB /* XEFormDefaultCell.h */; };
 		BE32FE601EFBD09700F74DDB /* XEFormDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE5E1EFBD09700F74DDB /* XEFormDefaultCell.m */; };
@@ -200,6 +200,14 @@
 		BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0621F0499E60061329A /* XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0601F0499E60061329A /* XEForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0631F0499E60061329A /* XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0611F0499E60061329A /* XEForm.m */; };
+		BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB82C961F0B8C00008C1947 /* XEFormStepperCell.h */; };
+		BEB82C9B1F0B8C09008C1947 /* XEFormStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C971F0B8C00008C1947 /* XEFormStepperCell.m */; };
+		BEB82C9E1F0B903A008C1947 /* XEFormSliderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB82C9C1F0B903A008C1947 /* XEFormSliderCell.h */; };
+		BEB82C9F1F0B903A008C1947 /* XEFormSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82C9D1F0B903A008C1947 /* XEFormSliderCell.m */; };
+		BEB82CA21F0BA0D4008C1947 /* XEFormDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB82CA01F0BA0D4008C1947 /* XEFormDatePickerCell.h */; };
+		BEB82CA31F0BA0D4008C1947 /* XEFormDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82CA11F0BA0D4008C1947 /* XEFormDatePickerCell.m */; };
+		BEB82CA91F0C877A008C1947 /* XEFormImagePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB82CA71F0C877A008C1947 /* XEFormImagePickerCell.h */; };
+		BEB82CAA1F0C877A008C1947 /* XEFormImagePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82CA81F0C877A008C1947 /* XEFormImagePickerCell.m */; };
 		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = F3BE6E7E9D30491C8B9E297277B5D008 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDDC64BED1F1FE90275EE737375D40B /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C36451542704BC745CBB1FFA23922ED3 /* KWStub.h in Headers */ = {isa = PBXBuildFile; fileRef = E0F00D571E4B7B4347F70E716A31187F /* KWStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -511,6 +519,14 @@
 		BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XEFormControllerDelegate.h; sourceTree = "<group>"; };
 		BE37D0601F0499E60061329A /* XEForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEForm.h; sourceTree = "<group>"; };
 		BE37D0611F0499E60061329A /* XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEForm.m; sourceTree = "<group>"; };
+		BEB82C961F0B8C00008C1947 /* XEFormStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormStepperCell.h; sourceTree = "<group>"; };
+		BEB82C971F0B8C00008C1947 /* XEFormStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormStepperCell.m; sourceTree = "<group>"; };
+		BEB82C9C1F0B903A008C1947 /* XEFormSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormSliderCell.h; sourceTree = "<group>"; };
+		BEB82C9D1F0B903A008C1947 /* XEFormSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormSliderCell.m; sourceTree = "<group>"; };
+		BEB82CA01F0BA0D4008C1947 /* XEFormDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormDatePickerCell.h; sourceTree = "<group>"; };
+		BEB82CA11F0BA0D4008C1947 /* XEFormDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormDatePickerCell.m; sourceTree = "<group>"; };
+		BEB82CA71F0C877A008C1947 /* XEFormImagePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormImagePickerCell.h; sourceTree = "<group>"; };
+		BEB82CA81F0C877A008C1947 /* XEFormImagePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormImagePickerCell.m; sourceTree = "<group>"; };
 		BF76A002BD1832A0741E10E3E987D3D3 /* KWBeSubclassOfClassMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeSubclassOfClassMatcher.m; path = Classes/Matchers/KWBeSubclassOfClassMatcher.m; sourceTree = "<group>"; };
 		C08587D2C2D77A928DF715E70BE2ECC9 /* KWBeZeroMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeZeroMatcher.m; path = Classes/Matchers/KWBeZeroMatcher.m; sourceTree = "<group>"; };
 		C0A76764ADD07B9F43B4AC71FE3247AA /* KWAsyncVerifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWAsyncVerifier.h; path = Classes/Verifiers/KWAsyncVerifier.h; sourceTree = "<group>"; };
@@ -1006,6 +1022,14 @@
 				BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */,
 				BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */,
 				BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */,
+				BEB82C961F0B8C00008C1947 /* XEFormStepperCell.h */,
+				BEB82C971F0B8C00008C1947 /* XEFormStepperCell.m */,
+				BEB82C9C1F0B903A008C1947 /* XEFormSliderCell.h */,
+				BEB82C9D1F0B903A008C1947 /* XEFormSliderCell.m */,
+				BEB82CA01F0BA0D4008C1947 /* XEFormDatePickerCell.h */,
+				BEB82CA11F0BA0D4008C1947 /* XEFormDatePickerCell.m */,
+				BEB82CA71F0C877A008C1947 /* XEFormImagePickerCell.h */,
+				BEB82CA81F0C877A008C1947 /* XEFormImagePickerCell.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1107,6 +1131,7 @@
 				BE32FE5B1EFBCD2B00F74DDB /* XEFormBaseCell.h in Headers */,
 				BE37D0541F03C7FD0061329A /* XEFormTextFieldCell.h in Headers */,
 				BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */,
+				BEB82C9E1F0B903A008C1947 /* XEFormSliderCell.h in Headers */,
 				BE32FE5F1EFBD09700F74DDB /* XEFormDefaultCell.h in Headers */,
 				23F941C44E7A18A7105C98164BC302D0 /* XEForm-umbrella.h in Headers */,
 				BE37D04C1F038CCB0061329A /* NSObject+Utils.h in Headers */,
@@ -1114,9 +1139,12 @@
 				BE37D0461F0373030061329A /* XEFormSectionObject.h in Headers */,
 				BE37D0501F0392C10061329A /* XETemplateForm.h in Headers */,
 				BE32FE4F1EFBC8FB00F74DDB /* XEFormController.h in Headers */,
+				BEB82CA21F0BA0D4008C1947 /* XEFormDatePickerCell.h in Headers */,
+				BEB82CA91F0C877A008C1947 /* XEFormImagePickerCell.h in Headers */,
 				BE32FE9F1EFCED3C00F74DDB /* XEFormUtils.h in Headers */,
 				BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */,
 				BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */,
+				BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */,
 				BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */,
 				BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */,
 				BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */,
@@ -1490,15 +1518,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */,
+				BEB82C9B1F0B8C09008C1947 /* XEFormStepperCell.m in Sources */,
 				BE37D0471F03730F0061329A /* XEFormSectionObject.m in Sources */,
 				BE32FE411EFBC58F00F74DDB /* XEFormConst.m in Sources */,
 				BE32FE4C1EFBC8D900F74DDB /* XEFormRowObject.m in Sources */,
 				BE37D0631F0499E60061329A /* XEForm.m in Sources */,
 				BE32FE561EFBCB9500F74DDB /* XEFormViewController.m in Sources */,
+				BEB82CA31F0BA0D4008C1947 /* XEFormDatePickerCell.m in Sources */,
+				BEB82CAA1F0C877A008C1947 /* XEFormImagePickerCell.m in Sources */,
 				914658AE783572455F754E9316FCC08A /* XEForm-dummy.m in Sources */,
 				BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */,
 				BE37D04D1F038CCB0061329A /* NSObject+Utils.m in Sources */,
 				BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */,
+				BEB82C9F1F0B903A008C1947 /* XEFormSliderCell.m in Sources */,
 				BE32FE501EFBC8FB00F74DDB /* XEFormController.m in Sources */,
 				BE32FE601EFBD09700F74DDB /* XEFormDefaultCell.m in Sources */,
 				BE32FE641EFBD0D000F74DDB /* XEFormSwitchCell.m in Sources */,

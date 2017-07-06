@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UITextView *textView;
 
+@property (nonatomic, strong) UILabel *placeholder;
+
 @end

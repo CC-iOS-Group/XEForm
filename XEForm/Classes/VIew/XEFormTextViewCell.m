@@ -12,8 +12,6 @@
 
 @interface XEFormTextViewCell ()<UITextViewDelegate, XEFormRowCellDelegate>
 
-
-
 @end
 
 @implementation XEFormTextViewCell
@@ -46,9 +44,7 @@
     }
     self.textView.frame = textViewFrame;
     
-    textViewFrame.origin.x += 5;
-    textViewFrame.size.width -= 5;
-    self.detailTextLabel.frame = textViewFrame;
+    self.placeholder.frame = CGRectMake(5, 0, textViewFrame.size.width - 5, textViewFrame.size.height);
     
     CGRect contentViewFrame = self.contentView.frame;
     contentViewFrame.size.height = self.textView.frame.origin.y + self.textView.frame.size.height + XEFormRowPaddingBottom;
@@ -61,14 +57,12 @@
 -(void)setUp
 {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth |
+    self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth |
     UIViewAutoresizingFlexibleBottomMargin |
     UIViewAutoresizingFlexibleRightMargin;
     
     [self.contentView addSubview:self.textView];
     
-    self.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-    self.detailTextLabel.numberOfLines = 0;
     [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.textView action:NSSelectorFromString(@"becomeFirstResponder")]];
 }
 
@@ -77,9 +71,9 @@
     self.textLabel.text = self.row.title;
     self.textLabel.accessibilityValue = self.textLabel.text;
     self.textView.text = [self.row rowDescription];
-    self.detailTextLabel.text = self.row.placeholder;
-    self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
-    self.detailTextLabel.hidden = self.textView.text.length > 0;
+    self.placeholder.text = self.row.placeholder;
+    self.placeholder.accessibilityValue = self.detailTextLabel.text;
+    self.placeholder.hidden = self.textView.text.length > 0;
     
     self.textView.returnKeyType = UIReturnKeyDefault;
     self.textView.textAlignment = NSTextAlignmentLeft;
@@ -116,7 +110,7 @@
 {
     [self updateRowValue];
     
-    self.detailTextLabel.hidden = textView.text.length > 0;
+    self.placeholder.hidden = textView.text.length > 0;
     
     UITableView *tableView = [self tableView];
     [tableView beginUpdates];
@@ -125,10 +119,7 @@
     
     //scroll to show cursor
     CGRect cursorRect = [self.textView caretRectForPosition:self.textView.selectedTextRange.end];
-    [tableView scrollRectToVisible:[tableView convertRect:cursorRect
-                                                   toView:self.textView]
-                          animated:YES];
-    
+    [tableView scrollRectToVisible:[tableView convertRect:cursorRect fromView:self.textView] animated:YES];
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
@@ -198,9 +189,21 @@
         _textView.backgroundColor = [UIColor clearColor];
         _textView.delegate = self;
         _textView.scrollEnabled = NO;
+        [_textView addSubview:self.placeholder];
     }
     return _textView;
 }
 
+-(UILabel *)placeholder
+{
+    if (nil == _placeholder)
+    {
+        _placeholder = [[UILabel alloc] init];
+        _placeholder.textColor = [UIColor grayColor];
+        _placeholder.textAlignment = NSTextAlignmentLeft;
+        _placeholder.numberOfLines = 0;
+    }
+    return _placeholder;
+}
 
 @end

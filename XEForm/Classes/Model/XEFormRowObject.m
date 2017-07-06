@@ -35,7 +35,7 @@
 {
     NSString *key, *type;
     Class class;
-    if(XEFormRowObjectValueWithProperty(property, &key, class, &type))
+    if(XEFormRowObjectValueWithProperty(property, &key, &class, &type))
     {
         XEFormRowObject *rowObject = [[XEFormRowObject alloc] initWithKey:key Class:class type:type];
         return rowObject;
@@ -57,6 +57,7 @@
         self.key = key;
         self.valueClass = class;
         self.type = type;
+        self.needDescription = YES;
     }
     return self;
 }

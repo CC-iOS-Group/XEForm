@@ -105,7 +105,7 @@ static inline NSSet *getNSObjectProperties()
     return NSObjectProperties;
 }
 
-static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NSString **key, Class class, NSString **type)
+static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NSString **key, Class *rowValueClass, NSString **type)
 {
     getNSObjectProperties();
     const char *propertyName = property_getName(property);
@@ -199,7 +199,7 @@ static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NS
             break;
     }
     free(typeEncoding);
-    class = valueClass;
+    *rowValueClass = valueClass;
     *type = valueType;
     return YES;
 }
