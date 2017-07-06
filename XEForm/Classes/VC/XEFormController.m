@@ -47,7 +47,7 @@
                                        XEFormRowTypeDate: NSClassFromString(@"XEFormDatePickerCell"),
                                        XEFormRowTypeTime: NSClassFromString(@"XEFormDatePickerCell"),
                                        XEFormRowTypeDateTime: NSClassFromString(@"XEFormDatePickerCell"),
-//                                       XEFormRowTypeImage: [FXFormImagePickerCell class],
+                                       XEFormRowTypeImage: NSClassFromString(@"XEFormImagePickerCell"),
                                        
 
                                        } mutableCopy];

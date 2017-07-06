@@ -19,4 +19,6 @@
 @property (nonatomic, assign) BOOL hasLogin;
 @property (nonatomic, strong) NSDate *birthday;
 
+@property (nonatomic, strong) UIImage *image;
+
 @end

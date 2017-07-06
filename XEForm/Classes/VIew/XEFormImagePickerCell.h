@@ -10,4 +10,10 @@
 
 @interface XEFormImagePickerCell : XEFormBaseCell
 
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+
+@property (nonatomic, weak) UIViewController *controller;
+
+@property (nonatomic, strong) UIImageView *accessoryImageView;
+
 @end

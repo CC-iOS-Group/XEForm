@@ -40,7 +40,7 @@
         XEFormRowObject *intValue = [[XEFormRowObject alloc] initWithKey:@"intValue" Class:[NSNumber class] type:XEFormRowTypeInteger];
         intValue.cellClass = NSClassFromString(@"XEFormStepperCell");
         
-        forms.rows = @[@"enable", username, password, about, @"hasLogin", @"birthday", intValue];
+        forms.rows = @[@"enable", username, password, about, @"hasLogin", @"birthday", intValue, @"image"];
         self.formController.form = forms;
     } 
     return self;
