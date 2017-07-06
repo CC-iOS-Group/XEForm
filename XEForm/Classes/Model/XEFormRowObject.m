@@ -65,13 +65,16 @@
 - (void)configWithForm:(XEForm *)form
 {
     self.form = form;
-    if([form respondsToSelector:@selector(row)])
+    if (nil == self.cellConfig)
     {
-        self.cellConfig = ((XEFormRowObject *)[form row]).cellConfig;
-    }
-    else
-    {
-        self.cellConfig = [NSMutableDictionary dictionary];
+        if([form respondsToSelector:@selector(row)])
+        {
+            self.cellConfig = ((XEFormRowObject *)[form row]).cellConfig;
+        }
+        else
+        {
+            self.cellConfig = [NSMutableDictionary dictionary];
+        }
     }
     
     if ((self.options || self.viewController) &&

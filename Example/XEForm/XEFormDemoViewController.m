@@ -29,6 +29,10 @@
         XEFormRowObject *username = [[XEFormRowObject alloc] initWithKey:@"username" Class:[NSString class] type:XEFormRowTypeText];
         username.header = @"请输入用户名、密码";
         username.title = @"用户名";
+        username.cellConfig = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                               [UIColor redColor], @"textLabel.color",
+                               
+                               nil];
         
         XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypePassword];
         password.footer = @"注意";
@@ -40,7 +44,10 @@
         XEFormRowObject *intValue = [[XEFormRowObject alloc] initWithKey:@"intValue" Class:[NSNumber class] type:XEFormRowTypeInteger];
         intValue.cellClass = NSClassFromString(@"XEFormStepperCell");
         
-        forms.rows = @[@"enable", username, password, about, @"hasLogin", @"birthday", intValue, @"image"];
+        XEFormRowObject *plan = [[XEFormRowObject alloc] initWithKey:@"plan" Class:[NSString class] type:XEFormRowTypeText];
+        plan.options = @[@"Micro", @"Normal", @"Maxi"];
+        plan.cellClass = NSClassFromString(@"XEFormOptionPickerCell");
+        forms.rows = @[@"enable", username, password, about, @"hasLogin", @"birthday", intValue, @"image", plan];
         self.formController.form = forms;
     } 
     return self;
