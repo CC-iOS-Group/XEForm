@@ -21,4 +21,6 @@
 
 @property (nonatomic, strong) UIImage *image;
 
+@property (nonatomic, strong) SimpleForm *secondForm;
+
 @end

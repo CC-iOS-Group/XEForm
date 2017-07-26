@@ -118,6 +118,11 @@
             subcontroller = self.row.viewController;
             ((id <XEFormRowViewControllerDelegate>)subcontroller).row = self.row;
         }
+        else
+        {
+            subcontroller = [[self.row.viewController ? : NSClassFromString(@"XEFormViewController") alloc] init];
+            ((id <XEFormRowViewControllerDelegate>)subcontroller).row = self.row;
+        }
         if (subcontroller.title)
         {
             subcontroller.title = self.row.title;

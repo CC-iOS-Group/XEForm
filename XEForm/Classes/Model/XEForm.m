@@ -150,10 +150,11 @@
     NSMutableDictionary *propertiesDic = [NSMutableDictionary dictionary];
     for (XEFormRowObject *rowObject in filterArray)
     {
+        [rowObject configWithForm:self];
         [propertiesDic setObject:rowObject forKey:rowObject.key];
     }
     // combine property and @selector(rows)
-    if(rows.count > 0)
+    if(rows)
     {
         for (id row in rows)
         {
@@ -163,7 +164,6 @@
                 if(propertyObject &&
                    ![[allRows valueForKey:XEFormRowKey] containsObject:propertyObject.key])
                 {
-                    [propertyObject configWithForm:self];
                     [allRows addObject:propertyObject];
                 }
             }
@@ -236,6 +236,8 @@
         if(!_hasSetRows)
         {
             _rows = [self mergeObjectsWithRows:nil];
+            _sections = [XEFormSectionObject sectionsWithForm:self];
+            _hasSetRows = YES;
         }
         else
         {

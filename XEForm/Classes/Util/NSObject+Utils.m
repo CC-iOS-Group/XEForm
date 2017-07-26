@@ -44,6 +44,10 @@
         formatter.timeStyle = NSDateFormatterShortStyle;
         return [formatter stringFromDate:(NSDate *)self];
     }
+    if([self isKindOfClass:NSClassFromString(@"XEForm")])
+    {
+        return nil;
+    }
     return @"CAN'T RECOGNISE";
 }
 

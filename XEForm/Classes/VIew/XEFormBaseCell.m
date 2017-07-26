@@ -11,6 +11,13 @@
 
 #import "XEFormUtils.h"
 #import "XEFormConst.h"
+#import "UIImageView+XEForm.h"
+
+@interface XEFormBaseCell ()
+
+@property (nonatomic, strong) UIImageView *logoView;
+
+@end
 
 @implementation XEFormBaseCell
 
@@ -51,11 +58,33 @@
 - (void)setUp
 {
     //override
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (void)update
 {
     //override
+    if (self.row.logoStr)
+    {
+        NSURL *logoUrl = [NSURL URLWithString:self.row.logoStr];
+        if (logoUrl)
+        {
+            if (logoUrl.host)
+            {
+                [self.imageView setImageWithURL:logoUrl placeholder:self.row.form.logoPlaceholder];
+            }
+            else if ([logoUrl isFileURL])
+            {
+                UIImage *logo = [UIImage imageWithContentsOfFile:logoUrl.absoluteString];
+                [self.imageView setImage: logo];
+            }
+            else
+            {
+                UIImage *logo = [UIImage imageNamed:self.row.logoStr];
+                [self.imageView setImage: logo];
+            }
+        }
+    }
 }
 
 #pragma mark - Private method

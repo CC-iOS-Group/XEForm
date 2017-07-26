@@ -13,4 +13,14 @@
 
 @implementation SimpleForm2
 
+
+-(SimpleForm *)secondForm
+{
+    if (nil == _secondForm)
+    {
+        _secondForm = [[SimpleForm alloc] init];
+    }
+    return _secondForm;
+}
+
 @end

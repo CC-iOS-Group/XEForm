@@ -28,9 +28,11 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) id (^valueTransformer)(id input);
 @property (nonatomic, copy) id (^reverseValueTransformer)(id input);
+@property (nonatomic, copy) NSMutableDictionary *userInfo;
 
 #pragma mark UI
 @property (nonatomic, strong) Class cellClass;
+@property (nonatomic, copy) NSString *logoStr;
 @property (nonatomic, strong) id header;
 @property (nonatomic, strong) id footer;
 @property (nonatomic, strong) id viewController;

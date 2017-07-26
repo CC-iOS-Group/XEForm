@@ -212,6 +212,8 @@
 		BEB82CAE1F0DDEFF008C1947 /* XEFormOptionPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82CAC1F0DDEFF008C1947 /* XEFormOptionPickerCell.m */; };
 		BEB82CB11F0DECBD008C1947 /* XEFormSegmentsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEB82CAF1F0DECBD008C1947 /* XEFormSegmentsCell.h */; };
 		BEB82CB21F0DECBD008C1947 /* XEFormSegmentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB82CB01F0DECBD008C1947 /* XEFormSegmentsCell.m */; };
+		BEBE68A81F0F0EB600999892 /* UIImageView+XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBE68A51F0F0EB200999892 /* UIImageView+XEForm.m */; };
+		BEBE68A91F0F0EBB00999892 /* UIImageView+XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BEBE68A41F0F0EB200999892 /* UIImageView+XEForm.h */; };
 		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = F3BE6E7E9D30491C8B9E297277B5D008 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EDDC64BED1F1FE90275EE737375D40B /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C36451542704BC745CBB1FFA23922ED3 /* KWStub.h in Headers */ = {isa = PBXBuildFile; fileRef = E0F00D571E4B7B4347F70E716A31187F /* KWStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -535,6 +537,8 @@
 		BEB82CAC1F0DDEFF008C1947 /* XEFormOptionPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormOptionPickerCell.m; sourceTree = "<group>"; };
 		BEB82CAF1F0DECBD008C1947 /* XEFormSegmentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormSegmentsCell.h; sourceTree = "<group>"; };
 		BEB82CB01F0DECBD008C1947 /* XEFormSegmentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormSegmentsCell.m; sourceTree = "<group>"; };
+		BEBE68A41F0F0EB200999892 /* UIImageView+XEForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+XEForm.h"; sourceTree = "<group>"; };
+		BEBE68A51F0F0EB200999892 /* UIImageView+XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+XEForm.m"; sourceTree = "<group>"; };
 		BF76A002BD1832A0741E10E3E987D3D3 /* KWBeSubclassOfClassMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeSubclassOfClassMatcher.m; path = Classes/Matchers/KWBeSubclassOfClassMatcher.m; sourceTree = "<group>"; };
 		C08587D2C2D77A928DF715E70BE2ECC9 /* KWBeZeroMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeZeroMatcher.m; path = Classes/Matchers/KWBeZeroMatcher.m; sourceTree = "<group>"; };
 		C0A76764ADD07B9F43B4AC71FE3247AA /* KWAsyncVerifier.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWAsyncVerifier.h; path = Classes/Verifiers/KWAsyncVerifier.h; sourceTree = "<group>"; };
@@ -1052,6 +1056,8 @@
 				BE32FE9D1EFCED3C00F74DDB /* XEFormUtils.h */,
 				BE37D04A1F038CCB0061329A /* NSObject+Utils.h */,
 				BE37D04B1F038CCB0061329A /* NSObject+Utils.m */,
+				BEBE68A41F0F0EB200999892 /* UIImageView+XEForm.h */,
+				BEBE68A51F0F0EB200999892 /* UIImageView+XEForm.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1158,6 +1164,7 @@
 				BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */,
 				BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */,
 				BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */,
+				BEBE68A91F0F0EBB00999892 /* UIImageView+XEForm.h in Headers */,
 				BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */,
 				BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */,
 				BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */,
@@ -1543,6 +1550,7 @@
 				914658AE783572455F754E9316FCC08A /* XEForm-dummy.m in Sources */,
 				BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */,
 				BE37D04D1F038CCB0061329A /* NSObject+Utils.m in Sources */,
+				BEBE68A81F0F0EB600999892 /* UIImageView+XEForm.m in Sources */,
 				BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */,
 				BEB82C9F1F0B903A008C1947 /* XEFormSliderCell.m in Sources */,
 				BE32FE501EFBC8FB00F74DDB /* XEFormController.m in Sources */,

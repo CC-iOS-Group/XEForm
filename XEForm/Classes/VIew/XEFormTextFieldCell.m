@@ -65,6 +65,8 @@
 
 -(void)setUp
 {
+    [super setUp];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
     
@@ -83,6 +85,8 @@
 
 - (void)update
 {
+    [super update];
+    
     self.textLabel.text = self.row.title;
     self.textLabel.accessibilityValue = self.textLabel.text;
     self.textField.placeholder = [self.row.placeholder rowDescription];

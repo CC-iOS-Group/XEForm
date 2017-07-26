@@ -30,6 +30,10 @@
 
 @property (nonatomic, weak)  XEFormController *formController;
 
+// UI
+
+@property (nonatomic, strong) UIImage *logoPlaceholder;
+
 
 #pragma mark - Public method
 
