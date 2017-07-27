@@ -42,6 +42,7 @@
     plan.options = @[@"Micro", @"Normal", @"Maxi"];
     plan.cellClass = NSClassFromString(@"XEFormOptionPickerCell");
     
+    // TODO: Is it suitable to set second form rows here?
     form.secondForm.rows = @[@"test", @"gender", @"interests", @"test2"];
     
     form.rows = @[@"enable", @"username", @"password", about, @"hasLogin", @"birthday", intValue, @"image", plan, @"secondForm"];

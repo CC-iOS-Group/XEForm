@@ -516,9 +516,20 @@
 {
     if ([self isSubform])
     {
-        if(self.form.formController.subViewControllerFormat)
+        XEFormRowObject *row = self;
+        NSString *rowPath = @"";
+        XEForm *form;
+        while (row)
         {
-            NSString *className = [NSString stringWithFormat:self.form.formController.subViewControllerFormat, self.key];
+            
+            rowPath = [NSString stringWithFormat:@"/%@%@", [row.key capitalizedString], rowPath];
+            form = row.form;
+            row = row.form.row;
+        }
+        
+        if (rowPath.length > 0)
+        {
+            NSString *className = [NSString stringWithFormat:@"%@%@ViewController", NSStringFromClass([form class]), rowPath];
             Class subControlloerClass = NSClassFromString(className);
             if (subControlloerClass == nil)
             {
@@ -526,6 +537,10 @@
                 subControlloerClass = objc_allocateClassPair(NSClassFromString(@"XEFormViewController"), [className UTF8String], 0);
             }
             return subControlloerClass;
+        }
+        else
+        {
+            return nil;
         }
     }
     else

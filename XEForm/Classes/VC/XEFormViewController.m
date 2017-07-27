@@ -126,11 +126,6 @@
     {
         _formController = [[XEFormController alloc] init];
         _formController.delegate = self;
-        if(_formController.subViewControllerFormat == nil)
-        {
-            NSString *vcClass = NSStringFromClass([self class]);
-            _formController.subViewControllerFormat = [vcClass stringByAppendingString:@"_%@"];
-        }
     }
     return _formController;
 }
