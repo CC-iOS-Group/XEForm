@@ -195,8 +195,6 @@
 		BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D04F1F0392C10061329A /* XETemplateForm.m */; };
 		BE37D0541F03C7FD0061329A /* XEFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */; };
 		BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */; };
-		BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0561F03C9B10061329A /* XEFormTextInputViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE37D0591F03C9B10061329A /* XEFormTextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0571F03C9B10061329A /* XEFormTextInputViewController.m */; };
 		BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0621F0499E60061329A /* XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0601F0499E60061329A /* XEForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0631F0499E60061329A /* XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0611F0499E60061329A /* XEForm.m */; };
@@ -520,8 +518,6 @@
 		BE37D04F1F0392C10061329A /* XETemplateForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XETemplateForm.m; sourceTree = "<group>"; };
 		BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextFieldCell.h; sourceTree = "<group>"; };
 		BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextFieldCell.m; sourceTree = "<group>"; };
-		BE37D0561F03C9B10061329A /* XEFormTextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextInputViewController.h; sourceTree = "<group>"; };
-		BE37D0571F03C9B10061329A /* XEFormTextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextInputViewController.m; sourceTree = "<group>"; };
 		BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XEFormControllerDelegate.h; sourceTree = "<group>"; };
 		BE37D0601F0499E60061329A /* XEForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEForm.h; sourceTree = "<group>"; };
 		BE37D0611F0499E60061329A /* XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEForm.m; sourceTree = "<group>"; };
@@ -1014,8 +1010,6 @@
 				BE32FE531EFBCB9500F74DDB /* XEFormViewController.h */,
 				BE32FE541EFBCB9500F74DDB /* XEFormViewController.m */,
 				BE32FE511EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h */,
-				BE37D0561F03C9B10061329A /* XEFormTextInputViewController.h */,
-				BE37D0571F03C9B10061329A /* XEFormTextInputViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1161,7 +1155,6 @@
 				BEB82CA21F0BA0D4008C1947 /* XEFormDatePickerCell.h in Headers */,
 				BEB82CA91F0C877A008C1947 /* XEFormImagePickerCell.h in Headers */,
 				BE32FE9F1EFCED3C00F74DDB /* XEFormUtils.h in Headers */,
-				BE37D0581F03C9B10061329A /* XEFormTextInputViewController.h in Headers */,
 				BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */,
 				BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */,
 				BEBE68A91F0F0EBB00999892 /* UIImageView+XEForm.h in Headers */,
@@ -1560,7 +1553,6 @@
 				BE37D0451F0372FD0061329A /* XEOptionsForm.m in Sources */,
 				BEB82CAE1F0DDEFF008C1947 /* XEFormOptionPickerCell.m in Sources */,
 				BEB82CB21F0DECBD008C1947 /* XEFormSegmentsCell.m in Sources */,
-				BE37D0591F03C9B10061329A /* XEFormTextInputViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,7 +42,7 @@
     }
     if (nil == self.tableView.superview)
     {
-        self.view = self.tableView;
+        [self.view addSubview: self.tableView];
     }
 }
 
@@ -62,6 +62,8 @@
 
 -(void)dealloc
 {
+    NSLog(@"%@ has dealloc", NSStringFromClass([self class]));
+    
     self.formController.delegate = nil;
 }
 
@@ -81,7 +83,8 @@
 {
     if(![self isViewLoaded])
     {
-        self.view = formTableView;
+        // TODO:
+//        self.view = formTableView;
     }
 }
 
@@ -110,7 +113,7 @@
     }
     else
     {
-        [NSException raise:XEFormsException format:@"XEFormViewController field value must be subclass of XEForm"];
+        [NSException raise:XEFormsException format:@"XEFormViewController row value must be subclass of XEForm"];
     }
     
     self.formController.parentFormController = row.form.formController;
@@ -123,6 +126,11 @@
     {
         _formController = [[XEFormController alloc] init];
         _formController.delegate = self;
+        if(_formController.subViewControllerFormat == nil)
+        {
+            NSString *vcClass = NSStringFromClass([self class]);
+            _formController.subViewControllerFormat = [vcClass stringByAppendingString:@"_%@"];
+        }
     }
     return _formController;
 }

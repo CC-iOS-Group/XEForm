@@ -35,6 +35,7 @@
 
 - (void)valueChanged
 {
+
     self.row.value = @(self.switchControl.on);
     
     if (self.row.action)

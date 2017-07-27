@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class  XEFormRowObject ,XEFormSectionObject, XEFormController;
+@class  XEFormRowObject ,XEFormSectionObject, XEFormController, XEFormViewController;
 
 @protocol XEFormDelegates <NSObject>
 
@@ -16,11 +16,11 @@
 
 @property (nonatomic, strong) XEFormRowObject *row;
 
-
-
 @end
 
 @interface XEForm : NSObject<XEFormDelegates>
+
+@property (nonatomic, strong) XEFormRowObject *row;
 
 @property (nonatomic, strong, readonly) NSArray<XEFormRowObject *> *propertyRows;
 
@@ -30,12 +30,9 @@
 
 @property (nonatomic, weak)  XEFormController *formController;
 
-// UI
-
-@property (nonatomic, strong) UIImage *logoPlaceholder;
-
-
 #pragma mark - Public method
+
+- (XEFormViewController *)formViewController;
 
 - (BOOL)canGetValueForKey:(NSString *)key;
 - (BOOL)canSetValueForKey:(NSString *)key;

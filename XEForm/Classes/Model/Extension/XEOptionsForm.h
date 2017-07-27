@@ -16,8 +16,6 @@
  */
 @interface XEOptionsForm : XEForm;
 
-//@property (nonatomic, strong) XEFormRowObject *row;
-
 - (instancetype)initWithRow:(XEFormRowObject *)row;
 
 @end

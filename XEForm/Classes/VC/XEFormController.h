@@ -27,6 +27,12 @@
 @property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowClasses;
 @property (nonatomic, assign) UIEdgeInsets originalTableContentInset;
 
+@property (nonatomic, copy) NSString *subViewControllerFormat;
+
+// UI
+@property (nonatomic, strong) UIImage *logoPlaceholder;
+
+
 - (NSUInteger)numberOfSections;
 - (NSUInteger)numberOfRowsInSection:(NSUInteger)section;
 - (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath;

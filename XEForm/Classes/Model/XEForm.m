@@ -11,6 +11,8 @@
 #import "XEFormConst.h"
 #import "XEFormRowObject.h"
 #import "XEFormSectionObject.h"
+#import "XEFormViewController.h"
+#import "XEFormController.h"
 
 @interface XEForm ()
 {
@@ -29,6 +31,23 @@
 
 #pragma mark - Public method
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self)
+    {
+        // set sub form value
+        for(XEFormRowObject *rowObject in self.propertyRows)
+        {
+            if([rowObject.valueClass isSubclassOfClass:[XEForm class]])
+            {
+                XEForm *defaultValue = [[rowObject.valueClass alloc] init];
+                [self setValue:defaultValue forKey:rowObject.key];
+            }
+        }
+    }
+    return self;
+}
 
 - (BOOL)canGetValueForKey:(NSString *)key
 {
@@ -102,6 +121,20 @@
     return NO;
 }
 
+-(XEFormViewController *)formViewController
+{
+    NSString *className = [NSString stringWithFormat:@"%@ViewController", NSStringFromClass([self class])];
+    Class subControlloerClass = NSClassFromString(className);
+    if (subControlloerClass == nil)
+    {
+        // create class through runtime
+        subControlloerClass = objc_allocateClassPair(NSClassFromString(@"XEFormViewController"), [className UTF8String], 0);
+    }
+    XEFormViewController *fromViewController = [[subControlloerClass alloc] init];
+    fromViewController.formController.form = self;
+    return fromViewController;
+}
+
 #pragma mark - Customizing
 
 -(NSSet<NSString *> *)excludeProperties
@@ -164,6 +197,12 @@
                 if(propertyObject &&
                    ![[allRows valueForKey:XEFormRowKey] containsObject:propertyObject.key])
                 {
+                    NSString *selectorStr = [(NSString *)row stringByAppendingString:@"Row:"];
+                    if (selectorStr && [self respondsToSelector:NSSelectorFromString(selectorStr)])
+                    {
+                        [self performSelector:NSSelectorFromString(selectorStr) withObject:propertyObject];
+                    }
+                    
                     [allRows addObject:propertyObject];
                 }
             }

@@ -12,6 +12,7 @@
 #import "XEFormUtils.h"
 #import "XEFormConst.h"
 #import "UIImageView+XEForm.h"
+#import "XEFormController.h"
 
 @interface XEFormBaseCell ()
 
@@ -71,7 +72,7 @@
         {
             if (logoUrl.host)
             {
-                [self.imageView setImageWithURL:logoUrl placeholder:self.row.form.logoPlaceholder];
+                [self.imageView setImageWithURL:logoUrl placeholder:self.row.form.formController.logoPlaceholder];
             }
             else if ([logoUrl isFileURL])
             {

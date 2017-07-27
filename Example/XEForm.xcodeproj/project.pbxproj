@@ -23,8 +23,9 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A8151D3B83594F49186CEF36 /* Pods_XEForm_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B419AB66A7374DD86EE6CAB /* Pods_XEForm_Tests.framework */; };
-		BE32FEA31EFD1FF200F74DDB /* SimpleForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA21EFD1FF200F74DDB /* SimpleForm.m */; };
-		BE32FEA61EFD206F00F74DDB /* SimpleForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA51EFD206F00F74DDB /* SimpleForm2.m */; };
+		BE073F841F2A048800E346CF /* SimpleFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F831F2A048800E346CF /* SimpleFormViewController.m */; };
+		BE32FEA31EFD1FF200F74DDB /* SimpleForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */; };
+		BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA51EFD206F00F74DDB /* SimpleForm.m */; };
 		BE32FEA91EFD2D0D00F74DDB /* TestForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA81EFD2D0D00F74DDB /* TestForm.m */; };
 		BE32FEAC1EFD2DC000F74DDB /* TestForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEAB1EFD2DC000F74DDB /* TestForm2.m */; };
 		DDA9DC21D6ACA80C1D6893F9 /* Pods_XEForm_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17295023F30CFBDB19C5CC5 /* Pods_XEForm_Example.framework */; };
@@ -68,10 +69,12 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B419AB66A7374DD86EE6CAB /* Pods_XEForm_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XEForm_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC04AD2081721ECA1FE3BA75 /* Pods-XEForm_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XEForm_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XEForm_Example/Pods-XEForm_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		BE32FEA11EFD1FF200F74DDB /* SimpleForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm.h; sourceTree = "<group>"; };
-		BE32FEA21EFD1FF200F74DDB /* SimpleForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm.m; sourceTree = "<group>"; };
-		BE32FEA41EFD206F00F74DDB /* SimpleForm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm2.h; sourceTree = "<group>"; };
-		BE32FEA51EFD206F00F74DDB /* SimpleForm2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm2.m; sourceTree = "<group>"; };
+		BE073F821F2A048800E346CF /* SimpleFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFormViewController.h; sourceTree = "<group>"; };
+		BE073F831F2A048800E346CF /* SimpleFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFormViewController.m; sourceTree = "<group>"; };
+		BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm2.h; sourceTree = "<group>"; };
+		BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm2.m; sourceTree = "<group>"; };
+		BE32FEA41EFD206F00F74DDB /* SimpleForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm.h; sourceTree = "<group>"; };
+		BE32FEA51EFD206F00F74DDB /* SimpleForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm.m; sourceTree = "<group>"; };
 		BE32FEA71EFD2D0D00F74DDB /* TestForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestForm.h; sourceTree = "<group>"; };
 		BE32FEA81EFD2D0D00F74DDB /* TestForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestForm.m; sourceTree = "<group>"; };
 		BE32FEAA1EFD2DC000F74DDB /* TestForm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestForm2.h; sourceTree = "<group>"; };
@@ -149,10 +152,12 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* XEFormDemoViewController.h */,
 				6003F5A6195388D20070C39A /* XEFormDemoViewController.m */,
-				BE32FEA11EFD1FF200F74DDB /* SimpleForm.h */,
-				BE32FEA21EFD1FF200F74DDB /* SimpleForm.m */,
-				BE32FEA41EFD206F00F74DDB /* SimpleForm2.h */,
-				BE32FEA51EFD206F00F74DDB /* SimpleForm2.m */,
+				BE073F821F2A048800E346CF /* SimpleFormViewController.h */,
+				BE073F831F2A048800E346CF /* SimpleFormViewController.m */,
+				BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */,
+				BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */,
+				BE32FEA41EFD206F00F74DDB /* SimpleForm.h */,
+				BE32FEA51EFD206F00F74DDB /* SimpleForm.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -414,10 +419,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE32FEA61EFD206F00F74DDB /* SimpleForm2.m in Sources */,
+				BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */,
+				BE073F841F2A048800E346CF /* SimpleFormViewController.m in Sources */,
 				6003F59E195388D20070C39A /* XEFormAppDelegate.m in Sources */,
 				BE32FEAC1EFD2DC000F74DDB /* TestForm2.m in Sources */,
-				BE32FEA31EFD1FF200F74DDB /* SimpleForm.m in Sources */,
+				BE32FEA31EFD1FF200F74DDB /* SimpleForm2.m in Sources */,
 				6003F5A7195388D20070C39A /* XEFormDemoViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				BE32FEA91EFD2D0D00F74DDB /* TestForm.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "XEFormDemoViewController.h"
 
-#import "SimpleForm2.h"
+#import "SimpleForm.h"
 #import <XEForm/XEFormController.h>
 #import <XEForm/XEFormRowObject.h>
 #import <XEForm/XEFormConst.h>
@@ -19,54 +19,38 @@
 
 @implementation XEFormDemoViewController
 
--(instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self)
-    {
-        SimpleForm2 *forms = [[SimpleForm2 alloc] init];
-        forms.logoPlaceholder = [UIImage imageNamed:@"Nitendo"];
-        
-        XEFormRowObject *username = [[XEFormRowObject alloc] initWithKey:@"username" Class:[NSString class] type:XEFormRowTypeText];
-        username.header = @"请输入用户名、密码";
-        username.title = @"用户名";
-        username.logoStr = @"https://avatars3.githubusercontent.com/u/8864284?v=3&s=40";
-        username.cellConfig = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                               [UIColor redColor], @"textLabel.color",
-                               
-                               nil];
-        
-        XEFormRowObject *password = [[XEFormRowObject alloc] initWithKey:@"password" Class:[NSString class] type:XEFormRowTypePassword];
-        password.footer = @"注意";
-        password.title= @"密码";
-        
-        XEFormRowObject *about = [[XEFormRowObject alloc] initWithKey:@"about" Class:[NSString class] type:XEFormRowTypeLongText];
-        about.placeholder = @"something";
-        
-        XEFormRowObject *intValue = [[XEFormRowObject alloc] initWithKey:@"intValue" Class:[NSNumber class] type:XEFormRowTypeInteger];
-        intValue.cellClass = NSClassFromString(@"XEFormStepperCell");
-        
-        XEFormRowObject *plan = [[XEFormRowObject alloc] initWithKey:@"plan" Class:[NSString class] type:XEFormRowTypeText];
-        plan.options = @[@"Micro", @"Normal", @"Maxi"];
-        plan.cellClass = NSClassFromString(@"XEFormOptionPickerCell");
-        
-        
-        forms.secondForm.rows = @[@"test", @"test2"];
-        
-        forms.rows = @[@"enable", username, password, about, @"hasLogin", @"birthday", intValue, @"image", plan, @"secondForm"];
-        
-        
-        
-        self.formController.form = forms;
-    } 
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
 }
+
+- (IBAction)formButtonClicked:(UIButton *)sender {
+    
+    SimpleForm *form = [[SimpleForm alloc] init];
+    
+    XEFormRowObject *about = [[XEFormRowObject alloc] initWithKey:@"about" Class:[NSString class] type:XEFormRowTypeLongText];
+    about.placeholder = @"something";
+    
+    XEFormRowObject *intValue = [[XEFormRowObject alloc] initWithKey:@"intValue" Class:[NSNumber class] type:XEFormRowTypeInteger];
+    intValue.cellClass = NSClassFromString(@"XEFormStepperCell");
+    
+    XEFormRowObject *plan = [[XEFormRowObject alloc] initWithKey:@"plan" Class:[NSString class] type:XEFormRowTypeText];
+    plan.options = @[@"Micro", @"Normal", @"Maxi"];
+    plan.cellClass = NSClassFromString(@"XEFormOptionPickerCell");
+    
+    form.secondForm.rows = @[@"test", @"gender", @"interests", @"test2"];
+    
+    form.rows = @[@"enable", @"username", @"password", about, @"hasLogin", @"birthday", intValue, @"image", plan, @"secondForm"];
+    
+    
+    XEFormViewController *rootViewController = [form formViewController];
+    [self.navigationController pushViewController:rootViewController animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

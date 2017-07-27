@@ -89,7 +89,8 @@ static inline NSSet *getNSObjectProperties()
     // Get all NSObject properties
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        kExcludeProperties = @[@"rows", @"row", @"formController", @"propertyRows", @"sections", @"logoPlaceholder"];
+        // TODO: get kExcludeProperties from getNSObjectProperties
+        kExcludeProperties = @[@"rows", @"row", @"formController", @"propertyRows", @"sections"];
         NSMutableSet *tempNSObjectProperties = [NSMutableSet setWithArray:@[@"description", @"debugDescription", @"hash", @"superclass"]];
         unsigned int propertyCount;
         objc_property_t *propertyList = class_copyPropertyList([NSObject class], &propertyCount);

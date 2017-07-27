@@ -512,6 +512,28 @@
     }
 }
 
+- (Class)subViewControllerClass
+{
+    if ([self isSubform])
+    {
+        if(self.form.formController.subViewControllerFormat)
+        {
+            NSString *className = [NSString stringWithFormat:self.form.formController.subViewControllerFormat, self.key];
+            Class subControlloerClass = NSClassFromString(className);
+            if (subControlloerClass == nil)
+            {
+                // create class through runtime
+                subControlloerClass = objc_allocateClassPair(NSClassFromString(@"XEFormViewController"), [className UTF8String], 0);
+            }
+            return subControlloerClass;
+        }
+    }
+    else
+    {
+        return nil;
+    }
+}
+
 #pragma mark - Private method
 
 - (NSString *)XEFormRowInferType

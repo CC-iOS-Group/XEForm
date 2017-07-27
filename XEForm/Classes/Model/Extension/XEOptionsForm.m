@@ -48,7 +48,7 @@
         for (NSUInteger i = 0; i < row.options.count; i++)
         {
             NSInteger index = i + (row.placeholder ? 1 : 0);
-            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:[@(index) description] Class:nil type:XEFormRowTypeOption];
+            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:[@(index) description] Class:[NSString class] type:XEFormRowTypeOption];
             placeholderRow.action = action;
             placeholderRow.valueTransformer = row.valueTransformer;
             placeholderRow.title = [row optionDescriptionAtIndex:index];

@@ -8,8 +8,6 @@
 
 @import UIKit;
 
-#import <XEForm/XEFormViewController.h>
-
-@interface XEFormDemoViewController : XEFormViewController
+@interface XEFormDemoViewController : UIViewController
 
 @end

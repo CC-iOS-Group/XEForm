@@ -10,6 +10,6 @@
 
 @interface UIImageView(XEForm)
 
-- (void)setImageWithURL:(NSURL *)imageURL placeholder:(nullable UIImage *)placeholder;
+- (void)setImageWithURL:(NSURL *_Nullable)imageURL placeholder:(nullable UIImage *)placeholder;
 
 @end

@@ -44,6 +44,8 @@
 @property (nonatomic, strong) id segue;
 @property (nonatomic, assign) BOOL needDescription;
 
+@property (nonatomic, copy) NSString *viewControllerFormat;
+
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;
 - (instancetype)initWithKey:(NSString *)key Class:(Class)class type:(NSString *)type;
@@ -64,5 +66,6 @@
 - (void)setOptionSelected:(BOOL)selected atIndex:(NSUInteger)index;
 - (BOOL)isOptionSelectedAtIndex:(NSUInteger)index;
 
+- (Class)subViewControllerClass;
 
 @end

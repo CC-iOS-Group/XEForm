@@ -60,7 +60,7 @@
        [self.row.type isEqualToString:XEFormRowTypeOption])
     {
         [XEFormsFirstResponder(tableView) resignFirstResponder];
-        self.row.value = @([self.row.value boolValue]);
+        self.row.value = @(![self.row.value boolValue]);
         if (self.row.action)
         {
             self.row.action(self);
@@ -120,7 +120,22 @@
         }
         else
         {
-            subcontroller = [[self.row.viewController ? : NSClassFromString(@"XEFormViewController") alloc] init];
+            if(self.row.viewController)
+            {
+                subcontroller = self.row.viewController;
+            }
+            else
+            {
+                Class subViewControllerClass = self.row.subViewControllerClass;
+                if (subViewControllerClass)
+                {
+                    subcontroller = [[[self.row subViewControllerClass] alloc] init];
+                }
+                else
+                {
+                    return;
+                }
+            }
             ((id <XEFormRowViewControllerDelegate>)subcontroller).row = self.row;
         }
         if (subcontroller.title)
