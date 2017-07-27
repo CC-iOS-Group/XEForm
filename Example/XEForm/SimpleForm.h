@@ -6,11 +6,11 @@
 //  Copyright © 2017年 xenobladeX. All rights reserved.
 //
 
-#import "SimpleForm.h"
+#import "SimpleForm2.h"
 
 #import <XEForm/XEForm.h>
 
-@interface SimpleForm2 : XEForm
+@interface SimpleForm : XEForm
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
@@ -21,6 +21,6 @@
 
 @property (nonatomic, strong) UIImage *image;
 
-@property (nonatomic, strong) SimpleForm *secondForm;
+@property (nonatomic, strong) SimpleForm2 *secondForm;
 
 @end
