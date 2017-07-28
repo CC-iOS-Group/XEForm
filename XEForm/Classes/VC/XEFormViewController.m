@@ -29,17 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if(nil == self.tableView)
-    {
-        UITableView *formTableView =
-        [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                     style:UITableViewStyleGrouped];
-        if ([formTableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth)])
-        {
-            formTableView.cellLayoutMarginsFollowReadableWidth = NO;
-        }
-        self.formController.formTableView = formTableView;
-    }
     if (nil == self.tableView.superview)
     {
         [self.view addSubview: self.tableView];
@@ -79,14 +68,7 @@
 
 #pragma mark  - XEFormControllerDelegate
 
--(void)didSetFormTableView:(UITableView *)formTableView
-{
-    if(![self isViewLoaded])
-    {
-        // TODO:
-//        self.view = formTableView;
-    }
-}
+
 
 #pragma mark - Getter & setter
 

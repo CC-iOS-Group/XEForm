@@ -19,9 +19,13 @@
 
 @interface XEFormController ()
 
+
+
 @end
 
 @implementation XEFormController
+
+@synthesize formTableView = _formTableView;
 
 #pragma mark - Class register
 
@@ -617,21 +621,45 @@
     _delegate = delegate;
     
     //force table to update respondsToSelector: cache
-    self.formTableView.delegate = nil;
-    self.formTableView.dataSource = self;
+    _formTableView.delegate = nil;
+    _formTableView.dataSource = self;
+}
+
+-(UITableView *)formTableView
+{
+    if (nil == _formTableView)
+    {
+        if ([_delegate respondsToSelector:@selector(customizeFormTableView)])
+        {
+            _formTableView = [_delegate customizeFormTableView];
+        }
+        
+        if(nil == _formTableView)
+        {
+            UITableView *formTableView =
+            [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                         style:UITableViewStyleGrouped];
+            if ([formTableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth)])
+            {
+                formTableView.cellLayoutMarginsFollowReadableWidth = NO;
+            }
+            _formTableView = formTableView;
+        }
+        
+        _formTableView.dataSource = self;
+        _formTableView.delegate = self;
+        _formTableView.editing = YES;
+        _formTableView.allowsSelectionDuringEditing = YES;
+        
+    }
+    return _formTableView;
 }
 
 -(void)setFormTableView:(UITableView *)formTableView
 {
     _formTableView = formTableView;
-    self.formTableView.dataSource = self;
-    self.formTableView.delegate = self;
-    self.formTableView.editing = YES;
-    self.formTableView.allowsSelectionDuringEditing = YES;
-    if([_delegate respondsToSelector:@selector(didSetFormTableView:)])
-    {
-        [_delegate didSetFormTableView:_formTableView];
-    }
+    
+
     [self.formTableView reloadData];
 }
 

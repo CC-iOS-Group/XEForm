@@ -23,12 +23,6 @@
     if (self)
     {
         
-        
-        UITableView *formTableView =
-        [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                     style:UITableViewStyleGrouped];
-        
-        self.formController.formTableView = formTableView;
     }
     return self;
 }
@@ -37,7 +31,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // UI
     self.title = @"二级菜单";
+    
+    // Data
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +50,14 @@
 }
 
 
-
+-(UITableView *)customizeFormTableView
+{
+    UITableView *formTableView =
+    [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                 style:UITableViewStyleGrouped];
+    formTableView.backgroundColor = [UIColor redColor];
+    return formTableView;
+}
 
 
 

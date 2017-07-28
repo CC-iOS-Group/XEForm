@@ -138,7 +138,7 @@
             }
             ((id <XEFormRowViewControllerDelegate>)subcontroller).row = self.row;
         }
-        if (subcontroller.title)
+        if (!subcontroller.title)
         {
             subcontroller.title = self.row.title;
         }
