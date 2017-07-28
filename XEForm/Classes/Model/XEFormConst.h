@@ -49,6 +49,8 @@ UIKIT_EXTERN NSString *const XEFormRowTypeImage; //image
 
 UIKIT_EXTERN NSString *const XEFormsException;
 
+UIKIT_EXTERN NSString *const XEFormsVCSeparator;
+
 
 /** Size*/
 

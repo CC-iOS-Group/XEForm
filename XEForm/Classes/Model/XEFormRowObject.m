@@ -522,7 +522,7 @@
         while (row)
         {
             
-            rowPath = [NSString stringWithFormat:@"/%@%@", [row.key capitalizedString], rowPath];
+            rowPath = [NSString stringWithFormat:@"_%@%@", [row.key capitalizedString], rowPath];
             form = row.form;
             row = row.form.row;
         }

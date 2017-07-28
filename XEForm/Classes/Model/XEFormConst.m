@@ -49,6 +49,8 @@ NSString *const XEFormRowTypeImage = @"image";
 
 NSString *const XEFormsException = @"XEFormsException";
 
+NSString *const XEFormsVCSeparator = @"_";
+
 
 #pragma mark - SIZE
 
