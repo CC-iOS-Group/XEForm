@@ -56,13 +56,10 @@
     UITableView *formTableView =
     [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                  style:UITableViewStyleGrouped];
-    
     return formTableView;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
-}
+
+
 
 @end

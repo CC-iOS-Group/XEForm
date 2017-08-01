@@ -42,7 +42,7 @@
 @property (nonatomic, assign) BOOL isInline;
 @property (nonatomic, copy) void (^action)(id sender);
 @property (nonatomic, strong) id segue;
-@property (nonatomic, assign) BOOL needDescription;
+@property (nonatomic, assign) BOOL needDescription; /** Default is YES*/
 
 @property (nonatomic, copy) NSString *viewControllerFormat;
 

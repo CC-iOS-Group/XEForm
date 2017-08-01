@@ -29,7 +29,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.textLabel.font = [UIFont boldSystemFontOfSize:XEFormDefaultFontSize];
+        self.textLabel.font = [UIFont systemFontOfSize:XEFormDefaultFontSize];
         XEFormLabelSetMinFontSize(self.textLabel, XEFormRowMinFontSize);
         self.detailTextLabel.font = [UIFont systemFontOfSize:XEFormDefaultFontSize];
         XEFormLabelSetMinFontSize(self.detailTextLabel, XEFormRowMinFontSize);

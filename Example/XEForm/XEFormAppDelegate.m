@@ -8,11 +8,20 @@
 
 #import "XEFormAppDelegate.h"
 
+#import <XEForm/XEFormSetting.h>
+
 @implementation XEFormAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    XEFormSetting *setting = [XEFormSetting sharedSetting];
+    setting.BaseViewController = NSClassFromString(@"BaseViewController");
+    
+    
+    
+    
     return YES;
 }
 

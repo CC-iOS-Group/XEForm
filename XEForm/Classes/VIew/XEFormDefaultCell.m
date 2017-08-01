@@ -12,6 +12,7 @@
 #import "XEFormConst.h"
 #import "XEFormUtils.h"
 #import "XEFormRowViewControllerDelegate.h"
+#import "XEFormViewController.h"
 
 @implementation XEFormDefaultCell
 
@@ -41,6 +42,10 @@
         self.detailTextLabel.text = nil;
         self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
         self.accessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    }
+    else if([self.row.type isEqualToString:XEFormRowTypeText])
+    {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else if(self.row.action)
     {

@@ -15,8 +15,4 @@
 
 @interface XEFormViewController : UIViewController<XEFormRowViewControllerDelegate, XEFormControllerDelegate>
 
-@property (nonatomic, strong, readonly) XEFormController *formController;
-
-- (UITableView *)tableView;
-
 @end

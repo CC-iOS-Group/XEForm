@@ -6,8 +6,8 @@
 //  Copyright (c) 2017 xenobladeX. All rights reserved.
 //
 
-@import UIKit;
+#import "BaseViewController.h"
 
-@interface XEFormDemoViewController : UIViewController
+@interface XEFormDemoViewController : BaseViewController
 
 @end

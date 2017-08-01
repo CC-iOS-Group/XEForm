@@ -16,6 +16,9 @@
 
 #import "XEFormRowCellDelegate.h"
 #import "XEFormViewController.h"
+#import "XEFormHeaderFooterView.h"
+
+static CGFloat kOffsetY = 15;
 
 @interface XEFormController ()
 
@@ -367,15 +370,15 @@
     return [self numberOfSections];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [[self sectionAtIndex:section].header description];
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    return [[self sectionAtIndex:section].footer description];
-}
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return [[self sectionAtIndex:section].header description];
+//}
+//
+//-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+//{
+//    return [[self sectionAtIndex:section].footer description];
+//}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -499,6 +502,20 @@
     {
         return header;
     }
+    
+    NSString *sectionHeaderStr = [[self sectionAtIndex:section].header description];
+    if (sectionHeaderStr)
+    {
+        NSAttributedString *headerAttributedStr =
+        [[NSAttributedString alloc] initWithString:sectionHeaderStr
+                                        attributes:@{
+                                                     NSFontAttributeName: [UIFont systemFontOfSize:15.
+                                                                           
+                                                                           ]}];
+        XEFormHeaderFooterView *headerFooterView = [[XEFormHeaderFooterView alloc] initWithTableWidth:self.formTableView.frame.size.width text:headerAttributedStr];
+        return headerFooterView;
+    }
+    
     return nil;
 }
 
@@ -514,9 +531,22 @@
     UIView *header = [self sectionAtIndex:section].header;
     if ([header isKindOfClass:[UIView class]])
     {
-        return header.frame.size.height ?: UITableViewAutomaticDimension;
+        return header.frame.size.height ?: kOffsetY;
     }
-    return UITableViewAutomaticDimension;
+    
+    NSString *sectionHeaderStr = [[self sectionAtIndex:section].header description];
+    if (sectionHeaderStr)
+    {
+        NSAttributedString *headerAttributedStr =
+        [[NSAttributedString alloc] initWithString:sectionHeaderStr
+                                        attributes:@{
+                                                     NSFontAttributeName: [UIFont systemFontOfSize:15.
+                                                                           
+                                                                           ]}];
+        return [XEFormHeaderFooterView heightWithMaxWidth:self.formTableView.frame.size.width Text:headerAttributedStr];
+    }
+    
+    return kOffsetY;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -533,6 +563,20 @@
     {
         return footer;
     }
+    
+    NSString *sectionFooterStr = [[self sectionAtIndex:section].footer description];
+    if (sectionFooterStr)
+    {
+        NSAttributedString *footerAttributedStr =
+        [[NSAttributedString alloc] initWithString:sectionFooterStr
+                                        attributes:@{
+                                                     NSFontAttributeName: [UIFont systemFontOfSize:15.
+                                                                           
+                                                                           ]}];
+        XEFormHeaderFooterView *headerFooterView = [[XEFormHeaderFooterView alloc] initWithTableWidth:self.formTableView.frame.size.width text:footerAttributedStr];
+        return headerFooterView;
+    }
+    
     return nil;
 }
 
@@ -548,9 +592,22 @@
     UIView *footer = [self sectionAtIndex:section].footer;
     if ([footer isKindOfClass:[UIView class]])
     {
-        return footer.frame.size.height ?: UITableViewAutomaticDimension;
+        return footer.frame.size.height ?: kOffsetY;
     }
-    return UITableViewAutomaticDimension;
+    
+    NSString *sectionFooterStr = [[self sectionAtIndex:section].footer description];
+    if (sectionFooterStr)
+    {
+        NSAttributedString *footerAttributedStr =
+        [[NSAttributedString alloc] initWithString:sectionFooterStr
+                                        attributes:@{
+                                                     NSFontAttributeName: [UIFont systemFontOfSize:15.
+                                                     
+                                                                           ]}];
+        return [XEFormHeaderFooterView heightWithMaxWidth:self.formTableView.frame.size.width Text:footerAttributedStr];
+    }
+    
+    return kOffsetY;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

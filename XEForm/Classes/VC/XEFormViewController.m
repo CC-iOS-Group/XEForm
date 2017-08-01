@@ -14,6 +14,7 @@
 #import "XEOptionsForm.h"
 #import "XETemplateForm.h"
 #import "XEFormUtils.h"
+#import <objc/runtime.h>
 
 @interface XEFormViewController ()
 

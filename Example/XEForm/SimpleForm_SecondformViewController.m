@@ -39,14 +39,16 @@
     
 }
 
+-(void)viewDidLayoutSubviews
+{
+    
+    self.tableView.frame = self.view.frame;
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 10;
 }
 
 
@@ -55,15 +57,9 @@
     UITableView *formTableView =
     [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                  style:UITableViewStyleGrouped];
-    formTableView.backgroundColor = [UIColor redColor];
+    
     return formTableView;
 }
-
-
-
-
-
-
 
 
 @end
