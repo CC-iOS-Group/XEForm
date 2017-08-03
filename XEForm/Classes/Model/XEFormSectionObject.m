@@ -20,6 +20,7 @@
 {
     NSMutableArray *sections = [NSMutableArray array];
     XEFormSectionObject *section = nil;
+    NSInteger sectionIndex = 0, rowIndex = 0;
     for (XEFormRowObject *row in form.rows)
     {
         XEForm *subform = nil;
@@ -65,11 +66,14 @@
                 section.isSortable = ([form isKindOfClass:[XETemplateForm class]] && ((XETemplateForm *)form).row.isSortable);
                 [sections addObject:section];
             }
+            row.indexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
             [section.rows addObject:row];
+            rowIndex++;
             if(row.footer)
             {
                 section.footer = row.footer;
                 section = nil;
+                sectionIndex++;
             }
         }
     }

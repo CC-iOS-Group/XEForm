@@ -37,6 +37,8 @@
 - (BOOL)canGetValueForKey:(NSString *)key;
 - (BOOL)canSetValueForKey:(NSString *)key;
 
+- (NSInteger)numberOfRowsInSection:(NSInteger)section;
+
 - (void)addNewRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)removeRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)moveRowAtIndexPath:(NSIndexPath *)indexPath1 toIndexPath:(NSIndexPath *)indexPath2;

@@ -50,6 +50,13 @@
     }
 }
 
+-(void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    self.tableView.frame = self.view.frame;
+}
+
 -(void)dealloc
 {
     NSLog(@"%@ has dealloc", NSStringFromClass([self class]));

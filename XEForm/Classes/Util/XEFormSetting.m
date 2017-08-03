@@ -15,8 +15,17 @@
 #import "XEFormController.h"
 #import "XEFormControllerDelegate.h"
 #import "XEFormRowViewControllerDelegate.h"
+#import "UIImage+XEForm.h"
 
 @implementation XEFormHeaderFooterViewSetting
+
+@end
+
+@implementation XEFormCommonCellSetting
+
+@end
+
+@implementation XEFormSpecialCellSetting
 
 @end
 
@@ -26,9 +35,15 @@
 
 @end
 
+#define kDefault_headerFooterTitleColor             [UIColor grayColor]
+#define kDefault_cellDescriptionColor               [UIColor grayColor]
 
-static CGFloat kDefault_OffsetX = 15.;
-static CGFloat kDefault_OffsetY = 7.5;
+
+static CGFloat kDefault_OffsetX =                   15.;
+static CGFloat kDefault_OffsetY =                   7.5;
+static CGFloat kDefault_headerFooterTitleFont =     15.;
+static CGFloat kDefault_cellTitleFont =             15.;
+static CGFloat kDefault_cellDescriptionFont =       13.;
 
 @implementation XEFormSetting
 
@@ -56,13 +71,32 @@ static CGFloat kDefault_OffsetY = 7.5;
 {
     XEFormHeaderFooterViewSetting *headerFooterViewSetting = [XEFormHeaderFooterViewSetting new];
     headerFooterViewSetting.edgeInsets = UIEdgeInsetsMake(kDefault_OffsetY, kDefault_OffsetX, kDefault_OffsetY, kDefault_OffsetX);
+    headerFooterViewSetting.titleAttributes = @{
+                                                NSFontAttributeName: [UIFont systemFontOfSize:kDefault_headerFooterTitleFont],
+                                                NSForegroundColorAttributeName : kDefault_headerFooterTitleColor,
+                                                };
     
+    XEFormCommonCellSetting *cellSetting = [XEFormCommonCellSetting new];
+    cellSetting.separatorColor = [UIColor grayColor];
+    cellSetting.separatorHeight = 1.;
+    cellSetting.offsetX = kDefault_OffsetX;
+    cellSetting.offsetY = kDefault_OffsetY;
+    cellSetting.indicatorImage = [UIImage disclosureIndicatorImageWithIndicatorSize:6.];
+    cellSetting.checkMarkImage = [UIImage checkMarkWithCheckMarkSize:CGSizeMake(14., 7.)];
+    cellSetting.titleAttributes = @{
+                                                NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTitleFont],
+                                                };
     
+    cellSetting.descriptionAttributes = @{
+                                                NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellDescriptionFont],
+                                                NSForegroundColorAttributeName : kDefault_cellDescriptionColor,
+                                                };
     
     
     
     
     self.headerFooterViewSetting = headerFooterViewSetting;
+    self.cellSetting = cellSetting;
 }
 
 #pragma mark - Getter & setter
@@ -73,6 +107,5 @@ static CGFloat kDefault_OffsetY = 7.5;
     // Hack to set super class
     class_setSuperclass(NSClassFromString(@"XEFormViewController"), _BaseViewController);
 }
-
 
 @end

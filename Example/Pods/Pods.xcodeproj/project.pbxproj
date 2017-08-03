@@ -169,6 +169,10 @@
 		BE073F8B1F2B333000E346CF /* XEFormHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F891F2B333000E346CF /* XEFormHeaderFooterView.m */; };
 		BE073F951F2F4FCE00E346CF /* XEFormSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073F931F2F4FCE00E346CF /* XEFormSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE073F961F2F4FCE00E346CF /* XEFormSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F941F2F4FCE00E346CF /* XEFormSetting.m */; };
+		BE073F9F1F31FAAE00E346CF /* UIImage+XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073F9D1F31FAAE00E346CF /* UIImage+XEForm.h */; };
+		BE073FA01F31FAAE00E346CF /* UIImage+XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */; };
+		BE073FA31F33053200E346CF /* XEFormCellAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */; };
+		BE073FA41F33053200E346CF /* XEFormCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */; };
 		BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */; };
 		BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */; };
 		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A92EE8DFABFCDEC800F6B1D1AFD48D /* FBSnapshotTestCase.m */; };
@@ -497,6 +501,10 @@
 		BE073F891F2B333000E346CF /* XEFormHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormHeaderFooterView.m; sourceTree = "<group>"; };
 		BE073F931F2F4FCE00E346CF /* XEFormSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormSetting.h; sourceTree = "<group>"; };
 		BE073F941F2F4FCE00E346CF /* XEFormSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormSetting.m; sourceTree = "<group>"; };
+		BE073F9D1F31FAAE00E346CF /* UIImage+XEForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+XEForm.h"; sourceTree = "<group>"; };
+		BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XEForm.m"; sourceTree = "<group>"; };
+		BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormCellAccessoryView.h; sourceTree = "<group>"; };
+		BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormCellAccessoryView.m; sourceTree = "<group>"; };
 		BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextViewCell.h; sourceTree = "<group>"; };
 		BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextViewCell.m; sourceTree = "<group>"; };
 		BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormConst.h; sourceTree = "<group>"; };
@@ -1050,6 +1058,8 @@
 				BEB82CB01F0DECBD008C1947 /* XEFormSegmentsCell.m */,
 				BE073F881F2B333000E346CF /* XEFormHeaderFooterView.h */,
 				BE073F891F2B333000E346CF /* XEFormHeaderFooterView.m */,
+				BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */,
+				BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1062,6 +1072,8 @@
 				BE37D04B1F038CCB0061329A /* NSObject+Utils.m */,
 				BEBE68A41F0F0EB200999892 /* UIImageView+XEForm.h */,
 				BEBE68A51F0F0EB200999892 /* UIImageView+XEForm.m */,
+				BE073F9D1F31FAAE00E346CF /* UIImage+XEForm.h */,
+				BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */,
 				BE073F931F2F4FCE00E346CF /* XEFormSetting.h */,
 				BE073F941F2F4FCE00E346CF /* XEFormSetting.m */,
 			);
@@ -1150,6 +1162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE37D0621F0499E60061329A /* XEForm.h in Headers */,
+				BE073F9F1F31FAAE00E346CF /* UIImage+XEForm.h in Headers */,
 				BE37D0441F0372FD0061329A /* XEOptionsForm.h in Headers */,
 				BE32FE401EFBC58F00F74DDB /* XEFormConst.h in Headers */,
 				BE32FE5B1EFBCD2B00F74DDB /* XEFormBaseCell.h in Headers */,
@@ -1171,6 +1184,7 @@
 				BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */,
 				BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */,
 				BEBE68A91F0F0EBB00999892 /* UIImageView+XEForm.h in Headers */,
+				BE073FA31F33053200E346CF /* XEFormCellAccessoryView.h in Headers */,
 				BE073F8A1F2B333000E346CF /* XEFormHeaderFooterView.h in Headers */,
 				BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */,
 				BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */,
@@ -1546,6 +1560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */,
+				BE073FA01F31FAAE00E346CF /* UIImage+XEForm.m in Sources */,
 				BEB82C9B1F0B8C09008C1947 /* XEFormStepperCell.m in Sources */,
 				BE37D0471F03730F0061329A /* XEFormSectionObject.m in Sources */,
 				BE32FE411EFBC58F00F74DDB /* XEFormConst.m in Sources */,
@@ -1558,6 +1573,7 @@
 				BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */,
 				BE37D04D1F038CCB0061329A /* NSObject+Utils.m in Sources */,
 				BEBE68A81F0F0EB600999892 /* UIImageView+XEForm.m in Sources */,
+				BE073FA41F33053200E346CF /* XEFormCellAccessoryView.m in Sources */,
 				BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */,
 				BEB82C9F1F0B903A008C1947 /* XEFormSliderCell.m in Sources */,
 				BE32FE501EFBC8FB00F74DDB /* XEFormController.m in Sources */,

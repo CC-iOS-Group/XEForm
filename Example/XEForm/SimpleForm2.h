@@ -28,10 +28,4 @@ typedef NS_OPTIONS(NSInteger, Interests)
 
 @property (nonatomic, assign) BOOL test;
 
-@property (nonatomic, assign) BOOL test2;
-
-@property (nonatomic, assign) Gender gender;
-
-@property (nonatomic, assign) Interests interests;
-
 @end

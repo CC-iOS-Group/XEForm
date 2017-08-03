@@ -7,20 +7,16 @@
 //
 
 #import "SimpleForm2.h"
+#import "SimpleForm3.h"
 
 #import <XEForm/XEForm.h>
 
+@class SimpleForm3;
+
 @interface SimpleForm : XEForm
 
-@property (nonatomic, copy) NSString *username;
-@property (nonatomic, copy) NSString *password;
-
-@property (nonatomic, assign) BOOL enable;
-@property (nonatomic, assign) BOOL hasLogin;
-@property (nonatomic, strong) NSDate *birthday;
-
-@property (nonatomic, strong) UIImage *image;
-
 @property (nonatomic, strong) SimpleForm2 *secondForm;
+
+@property (nonatomic, strong) SimpleForm3 *secondForm2;
 
 @end

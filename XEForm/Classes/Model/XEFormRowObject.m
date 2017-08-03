@@ -11,6 +11,7 @@
 #import "XEFormUtils.h"
 #import "XEFormController.h"
 #import "NSObject+Utils.h"
+#import "XEFormSetting.h"
 
 @interface XEFormRowObject ()
 
@@ -57,7 +58,6 @@
         self.key = key;
         self.valueClass = class;
         self.type = type;
-        self.needDescription = YES;
     }
     return self;
 }
@@ -260,6 +260,32 @@
     }
     
     return [self valueDescription:self.value];
+}
+
+-(NSAttributedString *)attributedTitle
+{
+    NSString *title = self.title;
+    if (title)
+    {
+        return [[NSAttributedString alloc] initWithString:title attributes:[XEFormSetting sharedSetting].cellSetting.titleAttributes];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+-(NSAttributedString *)attributedDescription
+{
+    NSString *description = self.rowDescription;
+    if (description)
+    {
+        return [[NSAttributedString alloc] initWithString:description attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (BOOL)isIndexedType

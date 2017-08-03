@@ -16,6 +16,7 @@
 
 - (void)testRow:(XEFormRowObject *)testRow
 {
+    testRow.title = @"呵呵";
     testRow.action = ^(id sender) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             XEFormBaseCell *cell = (XEFormBaseCell *)sender;
@@ -26,19 +27,6 @@
 
     
     
-}
-
-- (void)genderRow:(XEFormRowObject *)genderRow
-{
-    genderRow.type = XEFormRowTypeDefault;
-    genderRow.options = @[@"Male", @"Female", @"It's Complicated"];
-}
-
-- (void)interestsRow:(XEFormRowObject *)interestsRow
-{
-    interestsRow.type = XEFormRowTypeBitfield;
-    interestsRow.defaultValue = @(InterestComputers);
-    interestsRow.options = @[@"Computers", @"Socializing", @"Sports"];
 }
 
 @end

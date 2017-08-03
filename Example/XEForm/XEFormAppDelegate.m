@@ -18,9 +18,7 @@
     
     XEFormSetting *setting = [XEFormSetting sharedSetting];
     setting.BaseViewController = NSClassFromString(@"BaseViewController");
-    
-    
-    
+    setting.cellSetting.logoPlaceholder = [UIImage imageNamed:@"Nitendo"];
     
     return YES;
 }

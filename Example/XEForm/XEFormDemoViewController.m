@@ -32,20 +32,8 @@
     
     SimpleForm *form = [[SimpleForm alloc] init];
     
-    XEFormRowObject *about = [[XEFormRowObject alloc] initWithKey:@"about" Class:[NSString class] type:XEFormRowTypeLongText];
-    about.placeholder = @"something";
-    
-    XEFormRowObject *intValue = [[XEFormRowObject alloc] initWithKey:@"intValue" Class:[NSNumber class] type:XEFormRowTypeInteger];
-    intValue.cellClass = NSClassFromString(@"XEFormStepperCell");
-    
-    XEFormRowObject *plan = [[XEFormRowObject alloc] initWithKey:@"plan" Class:[NSString class] type:XEFormRowTypeText];
-    plan.options = @[@"Micro", @"Normal", @"Maxi"];
-    plan.cellClass = NSClassFromString(@"XEFormOptionPickerCell");
-    
-    // TODO: Is it suitable to set second form rows here?
-    form.secondForm.rows = @[@"test", @"gender", @"interests", @"test2"];
-    
-    form.rows = @[@"enable", @"username", @"password", about, @"hasLogin", @"birthday", intValue, @"image", plan, @"secondForm"];
+    form.secondForm2.rows = @[@"test"];
+    form.rows = @[@"secondForm", @"secondForm2"];
     
     
     XEFormViewController *rootViewController = [form formViewController];

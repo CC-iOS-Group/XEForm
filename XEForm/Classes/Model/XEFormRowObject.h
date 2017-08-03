@@ -30,21 +30,21 @@
 @property (nonatomic, copy) id (^reverseValueTransformer)(id input);
 @property (nonatomic, copy) NSMutableDictionary *userInfo;
 
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
 #pragma mark UI
 @property (nonatomic, strong) Class cellClass;
 @property (nonatomic, copy) NSString *logoStr;
 @property (nonatomic, strong) id header;
 @property (nonatomic, strong) id footer;
 @property (nonatomic, strong) id viewController;
+@property (nonatomic, assign) UITableViewCellStyle cellStyle;
 @property (nonatomic, strong) NSMutableDictionary *cellConfig;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) BOOL isSortable;
 @property (nonatomic, assign) BOOL isInline;
 @property (nonatomic, copy) void (^action)(id sender);
 @property (nonatomic, strong) id segue;
-@property (nonatomic, assign) BOOL needDescription; /** Default is YES*/
-
-@property (nonatomic, copy) NSString *viewControllerFormat;
 
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;
@@ -52,6 +52,8 @@
 - (void)configWithForm:(XEForm *)form;
 
 - (NSString *)rowDescription;
+- (NSAttributedString *)attributedTitle;
+- (NSAttributedString *)attributedDescription;
 
 - (BOOL)isIndexedType;
 - (BOOL)isCollectionType;

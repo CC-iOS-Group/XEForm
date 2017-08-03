@@ -34,16 +34,8 @@
     self.title = @"一级菜单";
 
     
-    
-    
 }
 
--(void)viewDidLayoutSubviews
-{
-    
-    self.tableView.frame = self.view.frame;
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -52,7 +44,6 @@
 
 -(UITableView *)customizeFormTableView
 {
-    self.formController.logoPlaceholder = [UIImage imageNamed:@"Nitendo"];
     UITableView *formTableView =
     [[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                  style:UITableViewStyleGrouped];

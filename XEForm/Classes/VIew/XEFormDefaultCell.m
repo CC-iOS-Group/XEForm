@@ -18,11 +18,13 @@
 
 -(void)update
 {
-    self.textLabel.text = self.row.title;
-    self.textLabel.accessibilityValue = self.textLabel.text;
-    self.detailTextLabel.text = [self.row rowDescription];
-    self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
+    [super update];
     
+    self.titleLabel.attributedText = self.row.attributedTitle;
+    self.titleLabel.accessibilityValue = self.row.title;
+    self.descriptionLabel.attributedText = self.row.attributedDescription;
+    self.descriptionLabel.accessibilityValue = self.row.rowDescription;
+
     if ([self.row.type isEqualToString:XEFormRowTypeLabel])
     {
         self.accessoryType = UITableViewCellAccessoryNone;
@@ -33,8 +35,7 @@
     }
     else if([self.row isSubform] || self.row.segue)
     {
-        // TODO: custom Indicator
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.rowAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else if([self.row.type isEqualToString:XEFormRowTypeBoolean] ||
             [self.row.type isEqualToString:XEFormRowTypeOption])
@@ -58,6 +59,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 }
+
 
 -(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller
 {
@@ -160,5 +162,6 @@
         }
     }
 }
+
 
 @end

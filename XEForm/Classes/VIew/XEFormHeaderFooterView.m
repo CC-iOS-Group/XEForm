@@ -13,7 +13,7 @@
 @interface XEFormHeaderFooterView ()
 
 @property (nonatomic, readwrite) CGSize viewSize;
-
+// TODO: replace with UITextView, so we can implement tap
 @property (nonatomic, strong) UILabel *textlabel;
 
 @end

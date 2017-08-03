@@ -14,6 +14,15 @@
 
 @property (nonatomic, weak, readonly) UITableViewCell<XEFormRowCellDelegate> *nextCell;
 
+@property (nonatomic, strong) UIImageView *rowLogoView;
+@property (nonatomic, strong) UIView *rowContentView;
+@property (nonatomic, strong) UIView *upSeparatorView;
+@property (nonatomic, strong) UIView *downSeparatorView;
+@property (nonatomic, assign) UITableViewCellAccessoryType    rowAccessoryType;
+@property (nonatomic, strong) UIView *rowAccessoryView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *descriptionLabel;
+
 - (void)setUp;
 - (void)update;
 - (void)didSelectWithTableView:(UITableView *)tableView

@@ -13,6 +13,7 @@
 #import "XEFormSectionObject.h"
 #import "XEFormViewController.h"
 #import "XEFormController.h"
+#import "UIImage+XEForm.h"
 
 @interface XEForm ()
 {
@@ -46,6 +47,7 @@
                 [self setValue:defaultValue forKey:rowObject.key];
             }
         }
+
     }
     return self;
 }
@@ -134,6 +136,20 @@
     XEFormViewController *fromViewController = [[subControlloerClass alloc] init];
     fromViewController.formController.form = self;
     return fromViewController;
+}
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)section
+{
+    if (self.sections.count >= section+1)
+    {
+        XEFormSectionObject *sectionObject = [self.sections objectAtIndex:section];
+        return sectionObject.rows.count;
+    }
+    else
+    {
+        return 0;
+    }
+    
 }
 
 #pragma mark - Customizing

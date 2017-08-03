@@ -22,6 +22,7 @@
     self = [super init];
     if (self)
     {
+        // Data
         
     }
     return self;
@@ -35,14 +36,7 @@
     self.title = @"二级菜单";
     
     // Data
-    
-    
-}
-
--(void)viewDidLayoutSubviews
-{
-    
-    self.tableView.frame = self.view.frame;
+    self.formController.form.rows = @[@"test"];
     
 }
 

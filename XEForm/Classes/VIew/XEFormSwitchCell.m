@@ -19,12 +19,16 @@
 
 -(void)setUp
 {
+    [super setUp];
+    
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
     self.accessoryView = self.switchControl;
 }
 
 -(void)update
 {
+    [super update];
+    
     self.textLabel.text = self.row.title;
     self.textLabel.accessibilityValue = self.textLabel.text;
     self.switchControl.on = [self.row.value boolValue];

@@ -26,6 +26,7 @@
 		BE073F841F2A048800E346CF /* SimpleFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F831F2A048800E346CF /* SimpleFormViewController.m */; };
 		BE073F871F2ABF7000E346CF /* SimpleForm_SecondformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F861F2ABF7000E346CF /* SimpleForm_SecondformViewController.m */; };
 		BE073F921F2F3C7A00E346CF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F911F2F3C7A00E346CF /* BaseViewController.m */; };
+		BE073F9C1F31BBEC00E346CF /* SimpleForm3.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */; };
 		BE32FEA31EFD1FF200F74DDB /* SimpleForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */; };
 		BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA51EFD206F00F74DDB /* SimpleForm.m */; };
 		BE32FEA91EFD2D0D00F74DDB /* TestForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA81EFD2D0D00F74DDB /* TestForm.m */; };
@@ -77,6 +78,8 @@
 		BE073F861F2ABF7000E346CF /* SimpleForm_SecondformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm_SecondformViewController.m; sourceTree = "<group>"; };
 		BE073F901F2F3C7A00E346CF /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		BE073F911F2F3C7A00E346CF /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		BE073F9A1F31BBEC00E346CF /* SimpleForm3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm3.h; sourceTree = "<group>"; };
+		BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm3.m; sourceTree = "<group>"; };
 		BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm2.h; sourceTree = "<group>"; };
 		BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm2.m; sourceTree = "<group>"; };
 		BE32FEA41EFD206F00F74DDB /* SimpleForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				BE073F831F2A048800E346CF /* SimpleFormViewController.m */,
 				BE073F851F2ABF7000E346CF /* SimpleForm_SecondformViewController.h */,
 				BE073F861F2ABF7000E346CF /* SimpleForm_SecondformViewController.m */,
+				BE073F9A1F31BBEC00E346CF /* SimpleForm3.h */,
+				BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */,
 				BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */,
 				BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */,
 				BE32FEA41EFD206F00F74DDB /* SimpleForm.h */,
@@ -429,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE073F9C1F31BBEC00E346CF /* SimpleForm3.m in Sources */,
 				BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */,
 				BE073F921F2F3C7A00E346CF /* BaseViewController.m in Sources */,
 				BE073F841F2A048800E346CF /* SimpleFormViewController.m in Sources */,
