@@ -65,15 +65,15 @@
 - (void)configWithForm:(XEForm *)form
 {
     self.form = form;
-    if (nil == self.cellConfig)
+    if (nil == self.userInfo)
     {
         if([form respondsToSelector:@selector(row)])
         {
-            self.cellConfig = ((XEFormRowObject *)[form row]).cellConfig;
+            self.userInfo = ((XEFormRowObject *)[form row]).userInfo;
         }
         else
         {
-            self.cellConfig = [NSMutableDictionary dictionary];
+            self.userInfo = [NSMutableDictionary dictionary];
         }
     }
     
@@ -702,12 +702,12 @@
 
 - (id)valueForUndefinedKey:(NSString *)key
 {
-    return [self.cellConfig objectForKey:key];
+    return [self.userInfo objectForKey:key];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    [_cellConfig setObject:value forKey:key];
+    [_userInfo setObject:value forKey:key];
 }
 
 - (id)valueWithoutDefaultSubstitution

@@ -263,13 +263,6 @@
 -(void)setRow:(XEFormRowObject *)row
 {
     _row = row;
-    //configure cell after setting row as well
-    if(_row.cellConfig)
-    {
-        [_row.cellConfig enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL * _Nonnull stop) {
-            [self setValue:obj forKeyPath:key];
-        }];
-    }
     
     [self update];
     [self setNeedsDisplay];
@@ -354,8 +347,11 @@
     }
     else
     {
-        
+        _rowAccessoryViewWidth = 0;
     }
+    _rowAccessoryViewWidthConstraint.constant = _rowAccessoryViewWidth;
+    
+    [self setNeedsLayout];
 }
 
 -(void)setRowAccessoryType:(UITableViewCellAccessoryType)rowAccessoryType
@@ -394,9 +390,7 @@
         default:
             break;
     }
-    _rowAccessoryViewWidthConstraint.constant = _rowAccessoryViewWidth;
-    
-    [self setNeedsLayout];
+
 }
 
 -(UIView *)upSeparatorView

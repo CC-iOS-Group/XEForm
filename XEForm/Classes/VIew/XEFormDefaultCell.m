@@ -21,9 +21,9 @@
     [super update];
     
     self.titleLabel.attributedText = self.row.attributedTitle;
-    self.titleLabel.accessibilityValue = self.row.title;
+    self.titleLabel.accessibilityValue = self.titleLabel.text;
     self.descriptionLabel.attributedText = self.row.attributedDescription;
-    self.descriptionLabel.accessibilityValue = self.row.rowDescription;
+    self.descriptionLabel.accessibilityValue = self.descriptionLabel.text;
 
     if ([self.row.type isEqualToString:XEFormRowTypeLabel])
     {

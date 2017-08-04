@@ -39,7 +39,6 @@
 @property (nonatomic, strong) id footer;
 @property (nonatomic, strong) id viewController;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
-@property (nonatomic, strong) NSMutableDictionary *cellConfig;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) BOOL isSortable;
 @property (nonatomic, assign) BOOL isInline;

@@ -15,6 +15,9 @@
 
 @end
 
+static CGFloat kDefault_switchWidth = 51.;
+static CGFloat kDefault_switchHeight = 31.;
+
 @implementation XEFormSwitchCell
 
 -(void)setUp
@@ -22,15 +25,18 @@
     [super setUp];
     
     self.selectionStyle =  UITableViewCellSelectionStyleNone;
-    self.accessoryView = self.switchControl;
+    self.rowAccessoryView = self.switchControl;
 }
 
 -(void)update
 {
     [super update];
     
-    self.textLabel.text = self.row.title;
-    self.textLabel.accessibilityValue = self.textLabel.text;
+    self.titleLabel.attributedText = self.row.attributedTitle;
+    self.titleLabel.accessibilityValue = self.titleLabel.text;
+    self.descriptionLabel.attributedText = self.row.attributedDescription;
+    self.descriptionLabel.accessibilityValue = self.descriptionLabel.text;
+    
     self.switchControl.on = [self.row.value boolValue];
     
 }
@@ -39,8 +45,9 @@
 
 - (void)valueChanged
 {
-
-    self.row.value = @(self.switchControl.on);
+    XEFormRowObject *row = self.row;
+    row.value = @(self.switchControl.on);
+    self.row = row;
     
     if (self.row.action)
     {
@@ -58,7 +65,7 @@
 {
     if (nil == _switchControl)
     {
-        _switchControl = [[UISwitch alloc] init];
+        _switchControl = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, kDefault_switchWidth, kDefault_switchHeight)];
         [_switchControl addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     }
     return _switchControl;
