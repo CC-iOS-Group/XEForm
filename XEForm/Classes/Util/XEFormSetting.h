@@ -25,12 +25,15 @@
 //** Description Label*/
 @property (nonatomic, strong) NSDictionary<NSString *, id> *descriptionAttributes;
 
+
+//** Logo View */
+@property (nonatomic, assign)CGSize logoSize;
+
 @end
 
 @interface XEFormCommonCellSetting : XEFormSpecialCellSetting
 
 @property (nonatomic, assign) CGFloat offsetX;
-
 @property (nonatomic, assign) CGFloat offsetY;
 
 //** Separator*/
@@ -40,8 +43,11 @@
 /** Default rowAccessoryView*/
 @property (nonatomic, strong) UIImage *indicatorImage;
 @property (nonatomic, strong) UIImage *checkMarkImage;
+@property (nonatomic, strong) UIColor *rowAccessoryViewTintColor;
 
 @property (nonatomic, strong) UIImage *logoPlaceholder;
+
+@property (nonatomic, assign) CGFloat cellHeight;
 
 @end
 

@@ -26,8 +26,12 @@
     NSLayoutConstraint *_downSeparatorViewLeftConstraint;
     NSLayoutConstraint *_rowAccessoryViewWidthConstraint;
     
-    NSLayoutConstraint *_centerXConstraint;
-    NSLayoutConstraint *_centerYConstraint;
+    NSLayoutConstraint *_accessoryContentViewLeftConstraint;
+    NSLayoutConstraint *_accessoryContentViewcenterYConstraint;
+    
+    NSLayoutConstraint *_logoViewWidthConstraint;
+    NSLayoutConstraint *_titleLabelLeftConstraint;
+    
 }
 
 @property (nonatomic, assign) UITableViewCellStyle style;
@@ -41,7 +45,7 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self)
     {
 //        self.textLabel.font = [UIFont systemFontOfSize:XEFormDefaultFontSize];
@@ -108,17 +112,22 @@
     [self addConstraints:@[topConstraint, rightConstraint, bottomConstraint, leftConstraint]];
     
     // Row Logo View
+    leftConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    heightConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.height];
+    _logoViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.width];
+    [self addConstraints:@[leftConstraint, centerYConstraint, _logoViewWidthConstraint, heightConstraint]];
     
     // Title Label
-    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    centerYConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
     NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:self.rowContentView attribute:NSLayoutAttributeWidth multiplier:0.8 constant:0];
-    leftConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
-    [self addConstraints:@[centerYConstraint, widthConstraint, leftConstraint]];
+    _titleLabelLeftConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowLogoView attribute:NSLayoutAttributeRight multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    [self addConstraints:@[centerYConstraint, widthConstraint, _titleLabelLeftConstraint]];
     
     // Description Label
     centerYConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-    rightConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-0];
-    leftConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    rightConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+    leftConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.titleLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
     [self addConstraints:@[centerYConstraint, rightConstraint, leftConstraint]];
 }
 
@@ -131,29 +140,6 @@
 
 - (void)update
 {
-    //override
-//    if (self.row.logoStr)
-//    {
-//        NSURL *logoUrl = [NSURL URLWithString:self.row.logoStr];
-//        if (logoUrl)
-//        {
-//            if (logoUrl.host)
-//            {
-//                [self.imageView setImageWithURL:logoUrl placeholder:self.row.form.formController.logoPlaceholder];
-//            }
-//            else if ([logoUrl isFileURL])
-//            {
-//                UIImage *logo = [UIImage imageWithContentsOfFile:logoUrl.absoluteString];
-//                [self.imageView setImage: logo];
-//            }
-//            else
-//            {
-//                UIImage *logo = [UIImage imageNamed:self.row.logoStr];
-//                [self.imageView setImage: logo];
-//            }
-//        }
-//    }
-    
     if(self.row.indexPath.row == 0)
     {
         // First cell in section
@@ -174,6 +160,34 @@
         _downSeparatorViewLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
     }
     
+    if (self.row.logoStr)
+    {
+        _logoViewWidthConstraint.constant = [XEFormSetting sharedSetting].cellSetting.logoSize.width;
+        _titleLabelLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
+        NSURL *logoUrl = [NSURL URLWithString:self.row.logoStr];
+        if (logoUrl)
+        {
+            if (logoUrl.host)
+            {
+                [self.rowLogoView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
+            }
+            else if ([logoUrl isFileURL])
+            {
+                UIImage *logo = [UIImage imageWithContentsOfFile:logoUrl.absoluteString];
+                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+            }
+            else
+            {
+                UIImage *logo = [UIImage imageNamed:self.row.logoStr];
+                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+            }
+        }
+    }
+    else
+    {
+        _logoViewWidthConstraint.constant = 0;
+        _titleLabelLeftConstraint.constant = 0;
+    }
     
     [self setNeedsLayout];
     [self layoutIfNeeded];
@@ -210,6 +224,13 @@
         return (UITableViewCell <XEFormRowCellDelegate> *)[tableView cellForRowAtIndexPath:indexPath];
     }
     return nil;
+}
+
+#pragma mark - XEFormRowCellDelegate
+
++(CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width
+{
+    return [XEFormSetting sharedSetting].cellSetting.cellHeight;
 }
 
 #pragma mark - Getter & setter
@@ -261,7 +282,7 @@
     if (nil == _rowLogoView)
     {
         _rowLogoView = [[UIImageView alloc] init];
-        
+        _rowLogoView.translatesAutoresizingMaskIntoConstraints = NO;
         
     }
     return _rowLogoView;
@@ -316,19 +337,20 @@
 {
     if (_rowAccessoryContentView)
     {
-        [self.rowAccessoryView removeConstraints:@[_centerXConstraint, _centerYConstraint]];
+        [self.rowAccessoryView removeConstraints:@[_accessoryContentViewLeftConstraint, _accessoryContentViewcenterYConstraint]];
         [_rowAccessoryContentView removeFromSuperview];
     }
     _rowAccessoryContentView = rowAccessoryView;
     _rowAccessoryContentView.translatesAutoresizingMaskIntoConstraints = NO;
-    
+    _rowAccessoryContentView.tintColor = [XEFormSetting sharedSetting].cellSetting.rowAccessoryViewTintColor;
+ 
     if(_rowAccessoryContentView)
     {
-        _rowAccessoryViewWidth = _rowAccessoryContentView.frame.size.width + 2*[XEFormSetting sharedSetting].cellSetting.offsetX;
+        _rowAccessoryViewWidth = _rowAccessoryContentView.frame.size.width + [XEFormSetting sharedSetting].cellSetting.offsetX;
         [self.rowAccessoryView addSubview:_rowAccessoryContentView];
-        _centerXConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeCenterX multiplier:1. constant:0];
-        _centerYConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeCenterY multiplier:1. constant:0];
-        [self.rowAccessoryView addConstraints:@[_centerXConstraint, _centerYConstraint]];
+        _accessoryContentViewLeftConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeLeft multiplier:1. constant:0];
+        _accessoryContentViewcenterYConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeCenterY multiplier:1. constant:0];
+        [self.rowAccessoryView addConstraints:@[_accessoryContentViewLeftConstraint, _accessoryContentViewcenterYConstraint]];
     }
     else
     {

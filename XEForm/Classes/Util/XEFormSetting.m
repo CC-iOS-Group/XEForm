@@ -37,10 +37,13 @@
 
 #define kDefault_headerFooterTitleColor             [UIColor grayColor]
 #define kDefault_cellDescriptionColor               [UIColor grayColor]
-
+#define kDefault_rowAccessoryViewTintColor          [UIColor lightGrayColor]
 
 static CGFloat kDefault_OffsetX =                   15.;
 static CGFloat kDefault_OffsetY =                   7.5;
+static CGFloat kDefault_logoSize =                  20.;
+static CGFloat kDefault_cellHeight =                44.;
+
 static CGFloat kDefault_headerFooterTitleFont =     15.;
 static CGFloat kDefault_cellTitleFont =             15.;
 static CGFloat kDefault_cellDescriptionFont =       13.;
@@ -77,12 +80,13 @@ static CGFloat kDefault_cellDescriptionFont =       13.;
                                                 };
     
     XEFormCommonCellSetting *cellSetting = [XEFormCommonCellSetting new];
-    cellSetting.separatorColor = [UIColor grayColor];
-    cellSetting.separatorHeight = 1.;
+    cellSetting.separatorColor = [UIColor lightGrayColor];
+    cellSetting.separatorHeight = 0.5;
     cellSetting.offsetX = kDefault_OffsetX;
     cellSetting.offsetY = kDefault_OffsetY;
     cellSetting.indicatorImage = [UIImage disclosureIndicatorImageWithIndicatorSize:6.];
     cellSetting.checkMarkImage = [UIImage checkMarkWithCheckMarkSize:CGSizeMake(14., 7.)];
+    cellSetting.rowAccessoryViewTintColor = kDefault_rowAccessoryViewTintColor;
     cellSetting.titleAttributes = @{
                                                 NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTitleFont],
                                                 };
@@ -91,8 +95,8 @@ static CGFloat kDefault_cellDescriptionFont =       13.;
                                                 NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellDescriptionFont],
                                                 NSForegroundColorAttributeName : kDefault_cellDescriptionColor,
                                                 };
-    
-    
+    cellSetting.logoSize = CGSizeMake(kDefault_logoSize, kDefault_logoSize);
+    cellSetting.cellHeight = kDefault_cellHeight;
     
     
     self.headerFooterViewSetting = headerFooterViewSetting;

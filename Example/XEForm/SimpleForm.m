@@ -16,6 +16,7 @@
 
 - (void)secondFormRow:(XEFormRowObject *)secondFormRow
 {
+    secondFormRow.logoStr = @"https://avatars3.githubusercontent.com/u/8864284?v=4&s=40";
     secondFormRow.valueTransformer = ^id(id input) {
         return @"二级菜单";
     };
