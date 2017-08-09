@@ -6,9 +6,9 @@
 //
 //
 
-#import "XEFormBaseCell.h"
+#import "XEFormDefaultCell.h"
 
-@interface XEFormSwitchCell : XEFormBaseCell
+@interface XEFormSwitchCell : XEFormDefaultCell
 
 @property (nonatomic, strong) UISwitch *switchControl;
 

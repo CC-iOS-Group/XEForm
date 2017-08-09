@@ -9,9 +9,14 @@
 #import "XEFormTextFieldCell.h"
 
 #import "XEFormUtils.h"
+#import "XEFormSetting.h"
 
 @interface XEFormTextFieldCell ()<UITextFieldDelegate>
+{
+    NSLayoutConstraint *_textFieldWidthConstraint;
+}
 
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @property (nonatomic, assign, getter = isReturnKeyOverriden) BOOL returnKeyOverridden;
 
@@ -40,25 +45,6 @@
 {
     [super layoutSubviews];
     
-    CGRect labelFrame = self.textLabel.frame;
-    labelFrame.size.width = MIN(MAX([self.textLabel sizeThatFits:CGSizeZero].width, XEFormRowMinLabelWidth), XEFormRowMaxLabelWidth);
-    self.textLabel.frame = labelFrame;
-    
-    CGRect textFieldFrame = self.textField.frame;
-    textFieldFrame.origin.x = self.textLabel.frame.origin.x + MAX(XEFormRowMinLabelWidth, self.textLabel.frame.size.width) + XEFormRowLabelSpacing;
-    textFieldFrame.origin.y = (self.contentView.bounds.size.height - textFieldFrame.size.height) / 2;
-    textFieldFrame.size.width = self.textField.superview.frame.size.width - textFieldFrame.origin.x - XEFormRowPaddingRight;
-    if (![self.textLabel.text length])
-    {
-        textFieldFrame.origin.x = XEFormRowPaddingLeft;
-        textFieldFrame.size.width = self.contentView.bounds.size.width - XEFormRowPaddingLeft - XEFormRowPaddingRight;
-    }
-    else if (self.textField.textAlignment == NSTextAlignmentRight)
-    {
-        textFieldFrame.origin.x = self.textLabel.frame.origin.x + labelFrame.size.width + XEFormRowLabelSpacing;
-        textFieldFrame.size.width = self.textField.superview.frame.size.width - textFieldFrame.origin.x - XEFormRowPaddingRight;
-    }
-    self.textField.frame = textFieldFrame;
 }
 
 #pragma mark - Customize
@@ -67,31 +53,34 @@
 {
     [super setUp];
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-    
-    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 200, 21)];
-    self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleLeftMargin;
-    self.textField.font = [UIFont systemFontOfSize:self.textLabel.font.pointSize];
-    self.textField.minimumFontSize = XEFormLabelMinFontSize(self.textLabel);
-    self.textField.textColor = [UIColor colorWithRed:0.275f green:0.376f blue:0.522f alpha:1.000f];
-    self.textField.delegate = self;
+    [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.textField];
     
-    [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.textField action:NSSelectorFromString(@"becomeFirstResponder")]];
+    // auto layout
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:0.3 constant:0];
+    [self.contentView addConstraints:@[leftConstraint, centerYConstraint, widthConstraint]];
+    
+    
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+    _textFieldWidthConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+    [self.contentView addConstraints:@[topConstraint, bottomConstraint, rightConstraint, _textFieldWidthConstraint]];
+    
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.textField action:NSSelectorFromString(@"becomeFirstResponder")]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextFieldTextDidChangeNotification object:self.textField];
 }
 
 - (void)update
 {
-    [super update];
+    self.titleLabel.attributedText = self.row.attributedTitle;
+    self.titleLabel.accessibilityValue = self.titleLabel.text;
     
-    self.textLabel.text = self.row.title;
-    self.textLabel.accessibilityValue = self.textLabel.text;
     self.textField.placeholder = [self.row.placeholder rowDescription];
     self.textField.text = [self.row rowDescription];
-    
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.textAlignment = [self.row.title length]? NSTextAlignmentRight: NSTextAlignmentLeft;
     self.textField.secureTextEntry = NO;
@@ -141,6 +130,21 @@
         self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.textField.keyboardType = UIKeyboardTypeURL;
     }
+    
+    if(!self.titleLabel.text)
+    {
+        [self.contentView removeConstraint:_textFieldWidthConstraint];
+        _textFieldWidthConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-2*[XEFormSetting sharedSetting].cellSetting.offsetX];
+        [self.contentView addConstraint:_textFieldWidthConstraint];
+    }
+    else
+    {
+        [self.contentView removeConstraint:_textFieldWidthConstraint];
+        _textFieldWidthConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:0.7 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+        [self.contentView addConstraint:_textFieldWidthConstraint];
+    }
+    
+    [super update];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -169,7 +173,7 @@
 
 - (void)textDidChange
 {
-    [self updateRowValue];
+//    [self updateRowValue];
 }
 
 - (BOOL)textFieldShouldReturn:(__unused UITextField *)textField
@@ -182,14 +186,17 @@
     {
         [self.textField resignFirstResponder];
     }
+    
+    [self updateRowValue];
+    
+    if (self.row.action) self.row.action(self);
+    
     return NO;
 }
 
 - (void)textFieldDidEndEditing:(__unused UITextField *)textField
 {
-    [self updateRowValue];
     
-    if (self.row.action) self.row.action(self);
 }
 
 - (void)updateRowValue
@@ -210,6 +217,35 @@
 - (BOOL)resignFirstResponder
 {
     return [self.textField resignFirstResponder];
+}
+
+
+#pragma mark - Getter & setter
+
+-(UILabel *)titleLabel
+{
+    if (nil == _titleLabel)
+    {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        
+    }
+    return _titleLabel;
+}
+
+-(UITextField *)textField
+{
+    if (nil == _textField)
+    {
+        _textField = [[UITextField alloc] init];
+        _textField.translatesAutoresizingMaskIntoConstraints = NO;
+//        _textField.font;
+//        _textField.textColor;
+        _textField.delegate = self;
+    }
+    return _textField;
+    
 }
 
 

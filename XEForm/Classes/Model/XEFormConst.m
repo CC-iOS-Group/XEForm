@@ -45,6 +45,7 @@ NSString *const XEFormRowTypeDate = @"date";
 NSString *const XEFormRowTypeTime = @"time";
 NSString *const XEFormRowTypeDateTime = @"datetime";
 NSString *const XEFormRowTypeImage = @"image";
+NSString *const XEFormRowTypeTextInput = @"textInput";
 
 
 NSString *const XEFormsException = @"XEFormsException";

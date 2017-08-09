@@ -37,7 +37,8 @@
 
 #define kDefault_headerFooterTitleColor             [UIColor grayColor]
 #define kDefault_cellDescriptionColor               [UIColor grayColor]
-#define kDefault_rowAccessoryViewTintColor          [UIColor lightGrayColor]
+#define kDefault_separatorColor                     [UIColor lightGrayColor]
+#define kDefault_indicatorViewTintColor             [UIColor lightGrayColor]
 
 static CGFloat kDefault_OffsetX =                   15.;
 static CGFloat kDefault_OffsetY =                   7.5;
@@ -80,13 +81,13 @@ static CGFloat kDefault_cellDescriptionFont =       13.;
                                                 };
     
     XEFormCommonCellSetting *cellSetting = [XEFormCommonCellSetting new];
-    cellSetting.separatorColor = [UIColor lightGrayColor];
+    cellSetting.separatorColor = kDefault_separatorColor;
     cellSetting.separatorHeight = 0.5;
     cellSetting.offsetX = kDefault_OffsetX;
     cellSetting.offsetY = kDefault_OffsetY;
     cellSetting.indicatorImage = [UIImage disclosureIndicatorImageWithIndicatorSize:6.];
     cellSetting.checkMarkImage = [UIImage checkMarkWithCheckMarkSize:CGSizeMake(14., 7.)];
-    cellSetting.rowAccessoryViewTintColor = kDefault_rowAccessoryViewTintColor;
+    cellSetting.indicatorViewTintColor = kDefault_indicatorViewTintColor;
     cellSetting.titleAttributes = @{
                                                 NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTitleFont],
                                                 };

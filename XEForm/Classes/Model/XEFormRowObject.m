@@ -12,6 +12,7 @@
 #import "XEFormController.h"
 #import "NSObject+Utils.h"
 #import "XEFormSetting.h"
+#import "XETextInputForm.h"
 
 @interface XEFormRowObject ()
 
@@ -257,6 +258,12 @@
         {
             return [self.placeholder description];
         }
+    }
+    
+    else if([self.value isKindOfClass:[XETextInputForm class]])
+    {
+        XETextInputForm *textInputForm = self.value;
+        return textInputForm.text;
     }
     
     return [self valueDescription:self.value];

@@ -33,7 +33,7 @@
     SimpleForm *form = [[SimpleForm alloc] init];
     
     form.secondForm2.rows = @[@"test"];
-    form.rows = @[@"secondForm", @"secondForm2"];
+    form.rows = @[@"secondForm", @"secondForm2", @"textInput"];
     
     
     XEFormViewController *rootViewController = [form formViewController];

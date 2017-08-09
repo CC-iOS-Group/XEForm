@@ -8,6 +8,16 @@
 
 #import "SimpleForm3.h"
 
+#import <XEForm/XEFormRowObject.h>
+
 @implementation SimpleForm3
+
+- (void)testRow:(XEFormRowObject *)testRow
+{
+    testRow.title = nil;
+    testRow.valueTransformer = ^id(id input) {
+        return nil;
+    };
+}
 
 @end

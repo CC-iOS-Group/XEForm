@@ -13,12 +13,78 @@
 #import "XEFormUtils.h"
 #import "XEFormRowViewControllerDelegate.h"
 #import "XEFormViewController.h"
+#import "XEFormSetting.h"
+#import "UIImageView+XEForm.h"
+
+
+@interface XEFormDefaultCell ()
+{
+    CGFloat _rowAccessoryViewWidth;
+    UIView *_rowAccessoryContentView;
+    
+    // AutoLayouts
+    NSLayoutConstraint *_rowAccessoryViewWidthConstraint;
+    
+    NSLayoutConstraint *_accessoryContentViewLeftConstraint;
+    NSLayoutConstraint *_accessoryContentViewcenterYConstraint;
+    NSLayoutConstraint *_accessoryContentViewWidthConstraint;
+    
+    NSLayoutConstraint *_logoViewWidthConstraint;
+    NSLayoutConstraint *_titleLabelLeftConstraint;
+    NSLayoutConstraint *_titleLabelWidthConstraint;
+    NSLayoutConstraint *_descriptionLabelRightConstraint;
+    
+}
+
+@end
 
 @implementation XEFormDefaultCell
 
+@synthesize rowAccessoryView = _rowAccessoryView;
+
+-(void)setUp
+{
+    [super setUp];
+    
+    [self addSubview:self.rowContentView];
+    [self addSubview:self.rowAccessoryView];
+    
+    // rowAccessoryView
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.rowAccessoryView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.rowAccessoryView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:-0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.rowAccessoryView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    _rowAccessoryViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.rowAccessoryView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:_rowAccessoryViewWidth];
+    [self addConstraints: @[topConstraint, rightConstraint, bottomConstraint, _rowAccessoryViewWidthConstraint]];
+    
+    // Row content view
+    topConstraint = [NSLayoutConstraint constraintWithItem:self.rowContentView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    rightConstraint = [NSLayoutConstraint constraintWithItem:self.rowContentView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:-0];
+    bottomConstraint = [NSLayoutConstraint constraintWithItem:self.rowContentView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.rowContentView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    [self addConstraints:@[topConstraint, rightConstraint, bottomConstraint, leftConstraint]];
+    
+    // Row Logo View
+    leftConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.height];
+    _logoViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.width];
+    [self addConstraints:@[leftConstraint, centerYConstraint, _logoViewWidthConstraint, heightConstraint]];
+    
+    // Title Label
+    centerYConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    _titleLabelWidthConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:self.rowContentView attribute:NSLayoutAttributeWidth multiplier:0.6 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+    _titleLabelLeftConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowLogoView attribute:NSLayoutAttributeRight multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    [self addConstraints:@[centerYConstraint,  _titleLabelLeftConstraint, _titleLabelWidthConstraint]];
+    
+    // Description Label
+    centerYConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    leftConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.titleLabel attribute:NSLayoutAttributeRight multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
+    _descriptionLabelRightConstraint = [NSLayoutConstraint constraintWithItem:self.descriptionLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-[XEFormSetting sharedSetting].cellSetting.offsetX];
+    [self addConstraints:@[centerYConstraint, _descriptionLabelRightConstraint,leftConstraint]];
+}
+
 -(void)update
 {
-    [super update];
     
     self.titleLabel.attributedText = self.row.attributedTitle;
     self.titleLabel.accessibilityValue = self.titleLabel.text;
@@ -27,7 +93,7 @@
 
     if ([self.row.type isEqualToString:XEFormRowTypeLabel])
     {
-        self.accessoryType = UITableViewCellAccessoryNone;
+        self.rowAccessoryType = UITableViewCellAccessoryNone;
         if (nil == self.row.action)
         {
             self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -40,24 +106,74 @@
     else if([self.row.type isEqualToString:XEFormRowTypeBoolean] ||
             [self.row.type isEqualToString:XEFormRowTypeOption])
     {
-        self.detailTextLabel.text = nil;
-        self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
-        self.accessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        if(![[self class] isSubclassOfClass:[XEFormDefaultCell class]])
+        {
+            self.descriptionLabel.attributedText = nil;
+            self.descriptionLabel.accessibilityValue = self.descriptionLabel.text;
+            self.rowAccessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        }
     }
     else if([self.row.type isEqualToString:XEFormRowTypeText])
     {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if(![self.row.form isKindOfClass:NSClassFromString(@"XETextInputForm")])
+        {
+            self.rowAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
     else if(self.row.action)
     {
-        self.accessoryType = UITableViewCellAccessoryNone;
-        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.descriptionLabel = UITableViewCellAccessoryNone;
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     else
     {
-        self.accessoryType = UITableViewCellAccessoryNone;
+        self.rowAccessoryType = UITableViewCellAccessoryNone;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    // Update layout
+    if (self.row.logoStr)
+    {
+        _logoViewWidthConstraint.constant = [XEFormSetting sharedSetting].cellSetting.logoSize.width;
+        _titleLabelLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
+        NSURL *logoUrl = [NSURL URLWithString:self.row.logoStr];
+        if (logoUrl)
+        {
+            if (logoUrl.host)
+            {
+                [self.rowLogoView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
+            }
+            else if ([logoUrl isFileURL])
+            {
+                UIImage *logo = [UIImage imageWithContentsOfFile:logoUrl.absoluteString];
+                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+            }
+            else
+            {
+                UIImage *logo = [UIImage imageNamed:self.row.logoStr];
+                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+            }
+        }
+    }
+    else
+    {
+        _logoViewWidthConstraint.constant = 0;
+        _titleLabelLeftConstraint.constant = 0;
+    }
+    
+    if(self.row.rowDescription)
+    {
+        _descriptionLabelRightConstraint.constant = -[XEFormSetting sharedSetting].cellSetting.offsetX;
+//        [self addConstraint:_descriptionLabelWidthConstraint];
+        
+    }
+    else
+    {
+        _descriptionLabelRightConstraint.constant = 0;
+//        [self removeConstraint:_descriptionLabelWidthConstraint];
+    }
+    
+    [super update];
 }
 
 
@@ -72,7 +188,10 @@
         {
             self.row.action(self);
         }
-        self.accessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark: UITableViewCellAccessoryNone;
+        if(![[self class] isSubclassOfClass:[XEFormDefaultCell class]])
+        {
+            self.rowAccessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark: UITableViewCellAccessoryNone;
+        }
         if ([self.row.type isEqualToString:XEFormRowTypeOption])
         {
             NSIndexPath *indexPath = [tableView indexPathForCell:self];
@@ -163,5 +282,131 @@
     }
 }
 
+#pragma mark - Getter & setter
+
+-(UIImageView *)rowLogoView
+{
+    if (nil == _rowLogoView)
+    {
+        _rowLogoView = [[UIImageView alloc] init];
+        _rowLogoView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+    }
+    return _rowLogoView;
+}
+
+-(UIView *)rowContentView
+{
+    if (nil == _rowContentView)
+    {
+        _rowContentView = [[UIView alloc] init];
+        _rowContentView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_rowContentView addSubview:self.rowLogoView];
+        [_rowContentView addSubview:self.titleLabel];
+        [_rowContentView addSubview:self.descriptionLabel];
+    }
+    return _rowContentView;
+}
+
+-(UILabel *)titleLabel
+{
+    if (nil == _titleLabel)
+    {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+    }
+    return _titleLabel;
+}
+
+-(UILabel *)descriptionLabel
+{
+    if (nil == _descriptionLabel)
+    {
+        _descriptionLabel = [[UILabel alloc] init];
+        _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
+    }
+    return _descriptionLabel;
+}
+
+-(UIView *)rowAccessoryView
+{
+    if (nil == _rowAccessoryView)
+    {
+        _rowAccessoryView = [[UIView alloc] init];
+        _rowAccessoryView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _rowAccessoryView;
+}
+
+-(void)setRowAccessoryView:(UIView *)rowAccessoryView
+{
+    if (_rowAccessoryContentView)
+    {
+        [self removeConstraints:@[_accessoryContentViewLeftConstraint, _accessoryContentViewcenterYConstraint, _accessoryContentViewWidthConstraint]];
+        [_rowAccessoryContentView removeFromSuperview];
+    }
+    _rowAccessoryContentView = rowAccessoryView;
+    _rowAccessoryContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    if(_rowAccessoryContentView)
+    {
+        _rowAccessoryViewWidth = _rowAccessoryContentView.frame.size.width + [XEFormSetting sharedSetting].cellSetting.offsetX;
+        [self.rowAccessoryView addSubview:_rowAccessoryContentView];
+        _accessoryContentViewLeftConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeLeft multiplier:1. constant:0];
+        _accessoryContentViewcenterYConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowAccessoryView attribute:NSLayoutAttributeCenterY multiplier:1. constant:0];
+        _accessoryContentViewWidthConstraint = [NSLayoutConstraint constraintWithItem:_rowAccessoryContentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:_rowAccessoryContentView.frame.size.width];
+        [self addConstraints:@[_accessoryContentViewLeftConstraint, _accessoryContentViewcenterYConstraint, _accessoryContentViewWidthConstraint]];
+    }
+    else
+    {
+        _rowAccessoryViewWidth = 0;
+    }
+    _rowAccessoryViewWidthConstraint.constant = _rowAccessoryViewWidth;
+    
+    [self setNeedsLayout];
+}
+
+-(void)setRowAccessoryType:(UITableViewCellAccessoryType)rowAccessoryType
+{
+    if(_rowAccessoryType == rowAccessoryType)
+    {
+        return;
+    }
+    _rowAccessoryType = rowAccessoryType;
+    switch (rowAccessoryType) {
+        case UITableViewCellAccessoryNone:
+        {
+            self.rowAccessoryView = nil;
+        }
+            break;
+        case UITableViewCellAccessoryDisclosureIndicator:
+        case UITableViewCellAccessoryDetailDisclosureButton:
+        case UITableViewCellAccessoryDetailButton:
+        {
+            UIImage *indicatorImage = [XEFormSetting sharedSetting].cellSetting.indicatorImage;
+            UIButton *indicatorView = [UIButton buttonWithType:UIButtonTypeCustom];
+            [indicatorView setImage:indicatorImage forState:UIControlStateNormal];
+            indicatorView.frame = CGRectMake(0, 0, indicatorImage.size.width, indicatorImage.size.height);
+            indicatorView.tintColor = [XEFormSetting sharedSetting].cellSetting.indicatorViewTintColor;
+            self.rowAccessoryView = indicatorView;
+        }
+            break;
+        case UITableViewCellAccessoryCheckmark:
+        {
+            UIImage *checkMarkImage = [XEFormSetting sharedSetting].cellSetting.checkMarkImage;
+            UIButton *checkMarkView = [UIButton buttonWithType:UIButtonTypeCustom];
+            [checkMarkView setImage:checkMarkImage forState:UIControlStateNormal];
+            checkMarkView.frame = CGRectMake(0, 0, checkMarkImage.size.width, checkMarkImage.size.height);
+            checkMarkView.tintColor = self.tintColor;
+            self.rowAccessoryView = checkMarkView;
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
 
 @end

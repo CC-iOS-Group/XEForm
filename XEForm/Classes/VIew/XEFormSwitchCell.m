@@ -30,24 +30,17 @@ static CGFloat kDefault_switchHeight = 31.;
 
 -(void)update
 {
-    [super update];
-    
-    self.titleLabel.attributedText = self.row.attributedTitle;
-    self.titleLabel.accessibilityValue = self.titleLabel.text;
-    self.descriptionLabel.attributedText = self.row.attributedDescription;
-    self.descriptionLabel.accessibilityValue = self.descriptionLabel.text;
-    
     self.switchControl.on = [self.row.value boolValue];
-    
+
+    [super update];
 }
 
 #pragma mark - Action handle
 
 - (void)valueChanged
 {
-    XEFormRowObject *row = self.row;
-    row.value = @(self.switchControl.on);
-    self.row = row;
+    self.row.value = @(self.switchControl.on);
+    [self update];
     
     if (self.row.action)
     {

@@ -16,7 +16,7 @@
 
 - (void)testRow:(XEFormRowObject *)testRow
 {
-    testRow.title = @"呵呵";
+    testRow.title = @"布尔值";
     testRow.valueTransformer = ^id(NSNumber *value) {
         if (value.boolValue)
         {

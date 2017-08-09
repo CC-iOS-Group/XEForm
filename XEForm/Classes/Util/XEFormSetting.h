@@ -43,7 +43,7 @@
 /** Default rowAccessoryView*/
 @property (nonatomic, strong) UIImage *indicatorImage;
 @property (nonatomic, strong) UIImage *checkMarkImage;
-@property (nonatomic, strong) UIColor *rowAccessoryViewTintColor;
+@property (nonatomic, strong) UIColor *indicatorViewTintColor;
 
 @property (nonatomic, strong) UIImage *logoPlaceholder;
 

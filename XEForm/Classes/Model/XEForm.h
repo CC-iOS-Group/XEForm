@@ -43,6 +43,8 @@
 - (void)removeRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)moveRowAtIndexPath:(NSIndexPath *)indexPath1 toIndexPath:(NSIndexPath *)indexPath2;
 
+- (XEFormRowObject *)rowObjectForKey:(NSString *)key;
+
 #pragma mark - Customizing
 
 /**

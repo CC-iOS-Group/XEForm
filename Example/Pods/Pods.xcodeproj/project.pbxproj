@@ -173,6 +173,8 @@
 		BE073FA01F31FAAE00E346CF /* UIImage+XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */; };
 		BE073FA31F33053200E346CF /* XEFormCellAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */; };
 		BE073FA41F33053200E346CF /* XEFormCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */; };
+		BE073FB21F34932300E346CF /* XETextInputForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FB01F34932300E346CF /* XETextInputForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE073FB31F34932300E346CF /* XETextInputForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FB11F34932300E346CF /* XETextInputForm.m */; };
 		BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */; };
 		BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */; };
 		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A92EE8DFABFCDEC800F6B1D1AFD48D /* FBSnapshotTestCase.m */; };
@@ -505,6 +507,8 @@
 		BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+XEForm.m"; sourceTree = "<group>"; };
 		BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormCellAccessoryView.h; sourceTree = "<group>"; };
 		BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormCellAccessoryView.m; sourceTree = "<group>"; };
+		BE073FB01F34932300E346CF /* XETextInputForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XETextInputForm.h; sourceTree = "<group>"; };
+		BE073FB11F34932300E346CF /* XETextInputForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XETextInputForm.m; sourceTree = "<group>"; };
 		BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextViewCell.h; sourceTree = "<group>"; };
 		BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextViewCell.m; sourceTree = "<group>"; };
 		BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormConst.h; sourceTree = "<group>"; };
@@ -1087,6 +1091,8 @@
 				BE37D0431F0372FD0061329A /* XEOptionsForm.m */,
 				BE37D04E1F0392C10061329A /* XETemplateForm.h */,
 				BE37D04F1F0392C10061329A /* XETemplateForm.m */,
+				BE073FB01F34932300E346CF /* XETextInputForm.h */,
+				BE073FB11F34932300E346CF /* XETextInputForm.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1182,6 +1188,7 @@
 				BEB82CA91F0C877A008C1947 /* XEFormImagePickerCell.h in Headers */,
 				BE32FE9F1EFCED3C00F74DDB /* XEFormUtils.h in Headers */,
 				BE32FE581EFBCCAF00F74DDB /* XEFormRowCellDelegate.h in Headers */,
+				BE073FB21F34932300E346CF /* XETextInputForm.h in Headers */,
 				BEB82C9A1F0B8C05008C1947 /* XEFormStepperCell.h in Headers */,
 				BEBE68A91F0F0EBB00999892 /* UIImageView+XEForm.h in Headers */,
 				BE073FA31F33053200E346CF /* XEFormCellAccessoryView.h in Headers */,
@@ -1559,6 +1566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE073FB31F34932300E346CF /* XETextInputForm.m in Sources */,
 				BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */,
 				BE073FA01F31FAAE00E346CF /* UIImage+XEForm.m in Sources */,
 				BEB82C9B1F0B8C09008C1947 /* XEFormStepperCell.m in Sources */,

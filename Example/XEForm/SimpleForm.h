@@ -10,6 +10,7 @@
 #import "SimpleForm3.h"
 
 #import <XEForm/XEForm.h>
+#import <XEForm/XETextInputForm.h>
 
 @class SimpleForm3;
 
@@ -18,5 +19,7 @@
 @property (nonatomic, strong) SimpleForm2 *secondForm;
 
 @property (nonatomic, strong) SimpleForm3 *secondForm2;
+
+@property (nonatomic, strong) XETextInputForm *textInput;
 
 @end

@@ -38,15 +38,15 @@
     if (self)
     {
         // TODO: Is it suitable to init second XEForm here
-        for(XEFormRowObject *rowObject in self.propertyRows)
-        {
-            if([rowObject.valueClass isSubclassOfClass:[XEForm class]])
-            {
-                XEForm *defaultValue = [[rowObject.valueClass alloc] init];
-                defaultValue.row = rowObject;
-                [self setValue:defaultValue forKey:rowObject.key];
-            }
-        }
+//        for(XEFormRowObject *rowObject in self.propertyRows)
+//        {
+//            if([rowObject.valueClass isSubclassOfClass:[XEForm class]])
+//            {
+//                XEForm *defaultValue = [[rowObject.valueClass alloc] init];
+//                defaultValue.row = rowObject;
+//                [self setValue:defaultValue forKey:rowObject.key];
+//            }
+//        }
 
     }
     return self;
@@ -152,6 +152,20 @@
     
 }
 
+-(XEFormRowObject *)rowObjectForKey:(NSString *)key
+{
+    __block XEFormRowObject *rowObject;
+    [self.rows enumerateObjectsUsingBlock:^(XEFormRowObject * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj.key isEqualToString:key])
+        {
+            rowObject = obj;
+            *stop = YES;
+        }
+    }];
+    
+    return rowObject;
+}
+
 #pragma mark - Customizing
 
 -(NSSet<NSString *> *)excludeProperties
@@ -202,9 +216,17 @@
     {
         [rowObject configWithForm:self];
         [propertiesDic setObject:rowObject forKey:rowObject.key];
+        if(!(rows.count > 0))
+        {
+            NSString *selectorStr = [rowObject.key stringByAppendingString:@"Row:"];
+            if (selectorStr && [self respondsToSelector:NSSelectorFromString(selectorStr)])
+            {
+                [self performSelector:NSSelectorFromString(selectorStr) withObject:rowObject];
+            }
+        }
     }
     // combine property and @selector(rows)
-    if(rows)
+    if(rows.count > 0)
     {
         for (id row in rows)
         {
