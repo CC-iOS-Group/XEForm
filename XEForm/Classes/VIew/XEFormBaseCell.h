@@ -10,16 +10,23 @@
 
 #import "XEFormRowCellDelegate.h"
 
-@interface XEFormBaseCell : UITableViewCell<XEFormRowCellDelegate>
+@interface XEFormBaseCell : UITableViewCell
 
+@property (nonatomic, strong) XEFormRowObject *row;
+
+@property (nonatomic, weak) id<XEFormRowCellDelegate> delegate;
 @property (nonatomic, strong) UIView *upSeparatorView;
 @property (nonatomic, strong) UIView *downSeparatorView;
 @property (nonatomic, assign) UITableViewCellStyle style;
 
-@property (nonatomic, weak, readonly) UITableViewCell<XEFormRowCellDelegate> *nextCell;
-
 - (void)setUp;
 - (void)update;
+- (XEFormBaseCell *)nextCell;
 - (UITableView *)tableView;
+
+
++ (CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width;
+- (void)didSelectWithTableView:(UITableView *)tableView
+                    controller:(UIViewController *)controller;
 
 @end

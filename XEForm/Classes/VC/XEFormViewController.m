@@ -16,6 +16,8 @@
 #import "XEFormUtils.h"
 #import <objc/runtime.h>
 
+#import "XEFormTextFieldCell.h"
+
 @interface XEFormViewController ()
 
 @property (nonatomic, strong, readwrite) XEFormController *formController;
@@ -73,6 +75,7 @@
 {
     return self.formController.formTableView;
 }
+
 
 #pragma mark  - XEFormControllerDelegate
 

@@ -131,23 +131,28 @@
     return nil;
 }
 
-- (UITableViewCell <XEFormRowCellDelegate> *)nextCell
+- (XEFormBaseCell *)nextCell
 {
     UITableView *tableView = [self tableView];
     NSIndexPath *indexPath = [self indexPathForNextCell];
     if (indexPath)
     {
         //get next cell
-        return (UITableViewCell <XEFormRowCellDelegate> *)[tableView cellForRowAtIndexPath:indexPath];
+        return (XEFormBaseCell *)[tableView cellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
 
-#pragma mark - XEFormRowCellDelegate
-
 +(CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width
 {
     return [XEFormSetting sharedSetting].cellSetting.cellHeight;
+}
+
+-(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller
+{
+    // overwrite
+    
+    
 }
 
 #pragma mark - Getter & setter

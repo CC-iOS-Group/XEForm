@@ -56,10 +56,10 @@
     self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
     [self setNeedsLayout];
     
-    if (self.row.action)
-    {
-        self.row.action(self);
-    }
+//    if (self.row.action)
+//    {
+//        self.row.action(self);
+//    }
 }
 
 #pragma mark - Getter & setter

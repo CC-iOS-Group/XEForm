@@ -10,9 +10,10 @@
 
 #import "XEFormControllerDelegate.h"
 #import "XEFormRowViewControllerDelegate.h"
+#import "XEFormRowCellDelegate.h"
 
 @class XEFormController;
 
-@interface XEFormViewController : UIViewController<XEFormRowViewControllerDelegate, XEFormControllerDelegate>
+@interface XEFormViewController : UIViewController<XEFormRowViewControllerDelegate, XEFormControllerDelegate, XEFormRowCellDelegate>
 
 @end

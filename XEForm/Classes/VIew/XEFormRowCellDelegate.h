@@ -8,15 +8,16 @@
 
 @class XEFormRowObject;
 
-@protocol XEFormRowCellDelegate <NSObject>
+typedef NS_ENUM(NSInteger, XEFormValueChangeSource)
+{
+    XEFormValueChangeSource_Edit,
+    XEFormValueChangeSource_Save,
+};
 
-@property (nonatomic, strong) XEFormRowObject *row;
+@protocol XEFormRowCellDelegate <NSObject>
 
 @optional
 
-+ (CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width;
-
-- (void)didSelectWithTableView:(UITableView *)tableView
-                    controller:(UIViewController *)controller;
+- (void)willChangeRow:(XEFormRowObject *)row newValue:(id)newValue source:(XEFormValueChangeSource)source success:(void(^)(void))successBlock failure:(void(^)(void))failureBlock;
 
 @end

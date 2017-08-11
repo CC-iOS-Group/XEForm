@@ -14,7 +14,7 @@
 #import "XETemplateForm.h"
 #import "XEFormUtils.h"
 
-#import "XEFormRowCellDelegate.h"
+#import "XEFormBaseCell.h"
 #import "XEFormViewController.h"
 #import "XEFormHeaderFooterView.h"
 #import "XEFormSetting.h"
@@ -112,19 +112,19 @@
 
 - (void)registerDefaultRowCellClass:(Class)cellClass
 {
-    NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
+    NSParameterAssert([cellClass isSubclassOfClass:NSClassFromString(@"XEFormBaseCell")]);
     if(cellClass) [self.cellClassesForRowTypes setDictionary:@{XEFormRowTypeDefault: cellClass}];
 }
 
 - (void)registerCellClass:(Class)cellClass forRowType:(NSString *)rowType
 {
-    NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
+    NSParameterAssert([cellClass isSubclassOfClass:NSClassFromString(@"XEFormBaseCell")]);
     if(rowType) self.cellClassesForRowTypes[rowType] = cellClass;
 }
 
 - (void)registerCellClass:(Class)cellClass forRowClass:(__unsafe_unretained Class)rowClass
 {
-    NSParameterAssert([cellClass conformsToProtocol:@protocol(XEFormRowCellDelegate)]);
+    NSParameterAssert([cellClass isSubclassOfClass:NSClassFromString(@"XEFormBaseCell")]);
     if(rowClass) self.cellClassesForRowClasses[NSStringFromClass(rowClass)] = cellClass;
 }
 
@@ -430,7 +430,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self cellForRow:[self rowForIndexPath:indexPath]];
+    XEFormBaseCell *cell = (XEFormBaseCell *)[self cellForRow:[self rowForIndexPath:indexPath]];
+    if([self.delegate isKindOfClass:[XEFormViewController class]])
+    {
+        cell.delegate = (XEFormViewController *)(self.delegate);
+    }
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -593,7 +598,7 @@
     XEFormRowObject *row = [self rowForIndexPath:indexPath];
     
     // set form row
-     ((id<XEFormRowCellDelegate>)cell).row = row;
+     ((XEFormBaseCell *)cell).row = row;
         
     //forward to delegate
     if ([self.delegate respondsToSelector:_cmd])
@@ -605,7 +610,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //forward to cell
-    UITableViewCell<XEFormRowCellDelegate> *cell = (UITableViewCell<XEFormRowCellDelegate> *)[tableView cellForRowAtIndexPath:indexPath];
+    XEFormBaseCell *cell = (XEFormBaseCell *)[tableView cellForRowAtIndexPath:indexPath];
     if ([cell respondsToSelector:@selector(didSelectWithTableView:controller:)])
     {
         [cell didSelectWithTableView:tableView controller:[self tableViewController]];

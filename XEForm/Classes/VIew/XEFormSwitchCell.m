@@ -9,6 +9,7 @@
 #import "XEFormSwitchCell.h"
 
 #import "XEFormRowObject.h"
+#import "XEFormSetting.h"
 
 @interface XEFormSwitchCell ()
 
@@ -39,12 +40,38 @@ static CGFloat kDefault_switchHeight = 31.;
 
 - (void)valueChanged
 {
-    self.row.value = @(self.switchControl.on);
-    [self update];
-    
-    if (self.row.action)
+    if ([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
     {
-        self.row.action(self);
+        // UI change
+        
+        NSString *description = [self.row valueDescription:@(self.switchControl.on)];
+        if (description)
+        {
+            NSAttributedString *attributedDescription = [[NSAttributedString alloc] initWithString:description attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];
+            self.descriptionLabel.attributedText = attributedDescription;
+        }
+        else
+        {
+            self.descriptionLabel.attributedText = nil;
+        }
+
+        self.switchControl.userInteractionEnabled = NO;
+        [self.delegate willChangeRow:self.row newValue:@(self.switchControl.on) source:XEFormValueChangeSource_Edit success:^{
+            self.switchControl.userInteractionEnabled = YES;
+            self.row.value = @(self.switchControl.on);
+            
+            [self update];
+        } failure:^{
+            self.switchControl.userInteractionEnabled = YES;
+            self.switchControl.on = !self.switchControl.on;
+            
+            [self update];
+        }];
+    }
+    else
+    {
+        self.row.value = @(self.switchControl.on);
+        [self update];
     }
 }
 

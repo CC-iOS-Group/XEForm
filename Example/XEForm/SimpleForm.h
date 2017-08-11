@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) XETextInputForm *textInput;
 
+@property (nonatomic, strong) NSString *textInline;
+
 @end

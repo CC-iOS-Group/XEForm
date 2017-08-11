@@ -10,7 +10,7 @@
 #import "XEFormRowObject.h"
 #import "XEFormConst.h"
 
-@interface XEFormTextViewCell ()<UITextViewDelegate, XEFormRowCellDelegate>
+@interface XEFormTextViewCell ()<UITextViewDelegate>
 
 @end
 
@@ -126,13 +126,11 @@
 {
     [self updateRowValue];
     
-    if (self.row.action)
-    {
-        self.row.action(self);
-    }
+//    if (self.row.action)
+//    {
+//        self.row.action(self);
+//    }
 }
-
-#pragma mark - XEFormRowCellDelegate
 
 +(CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width
 {

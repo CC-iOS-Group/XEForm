@@ -46,10 +46,10 @@
 {
     self.row.value = @(self.slider.value);
     
-    if (self.row.action)
-    {
-        self.row.action(self);
-    }
+//    if (self.row.action)
+//    {
+//        self.row.action(self);
+//    }
 }
 
 #pragma mark - Slider

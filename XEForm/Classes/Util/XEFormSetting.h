@@ -49,6 +49,10 @@
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
+/** textInput*/
+@property (nonatomic, strong) UIFont *textInputFont;
+@property (nonatomic, assign) UIColor *textInputTextColor;
+
 @end
 
 @interface XEFormSetting : NSObject

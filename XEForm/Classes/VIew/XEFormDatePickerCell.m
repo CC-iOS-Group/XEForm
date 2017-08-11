@@ -44,8 +44,6 @@
     [self.row.placeholder isKindOfClass:[NSDate class]] ? self.row.placeholder : [NSDate date];
 }
 
-#pragma mark - XEFormRowCellDelegate
-
 -(UIView *)inputView
 {
     return self.datePicker;
@@ -79,10 +77,10 @@
     self.detailTextLabel.accessibilityValue = self.detailTextLabel.text;
     [self setNeedsLayout];
     
-    if (self.row.action)
-    {
-        self.row.action(self);
-    }
+//    if (self.row.action)
+//    {
+//        self.row.action(self);
+//    }
 }
 
 #pragma mark - Getter & setter

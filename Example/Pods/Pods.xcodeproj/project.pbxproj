@@ -203,7 +203,7 @@
 		BE37D04D1F038CCB0061329A /* NSObject+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D04B1F038CCB0061329A /* NSObject+Utils.m */; };
 		BE37D0501F0392C10061329A /* XETemplateForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D04E1F0392C10061329A /* XETemplateForm.h */; };
 		BE37D0511F0392C10061329A /* XETemplateForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D04F1F0392C10061329A /* XETemplateForm.m */; };
-		BE37D0541F03C7FD0061329A /* XEFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */; };
+		BE37D0541F03C7FD0061329A /* XEFormTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0551F03C7FD0061329A /* XEFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */; };
 		BE37D05F1F03D63A0061329A /* XEFormControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D05E1F03D62F0061329A /* XEFormControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE37D0621F0499E60061329A /* XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE37D0601F0499E60061329A /* XEForm.h */; settings = {ATTRIBUTES = (Public, ); }; };

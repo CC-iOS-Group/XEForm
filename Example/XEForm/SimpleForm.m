@@ -33,7 +33,15 @@
 
 - (void)textInputRow:(XEFormRowObject *)textInputRow
 {
-//    textInputRow.placeholder = @"请输入";
+    XETextInputForm *textInputForm = [[XETextInputForm alloc] init];
+    textInputForm.text = @"xenoblade";
+    textInputRow.value = textInputForm;
+}
+
+- (void)textInlineRow:(XEFormRowObject *)textInlineRow
+{
+    textInlineRow.value = @"默认值";
+    textInlineRow.placeholder = @"请输入";
 }
 
 @end

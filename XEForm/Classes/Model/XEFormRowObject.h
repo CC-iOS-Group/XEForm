@@ -50,6 +50,7 @@
 - (instancetype)initWithKey:(NSString *)key Class:(Class)class type:(NSString *)type;
 - (void)configWithForm:(XEForm *)form;
 
+- (NSString *)valueDescription:(id)value;
 - (NSString *)rowDescription;
 - (NSAttributedString *)attributedTitle;
 - (NSAttributedString *)attributedDescription;

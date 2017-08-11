@@ -115,10 +115,7 @@
     }
     else if([self.row.type isEqualToString:XEFormRowTypeText])
     {
-        if(![self.row.form isKindOfClass:NSClassFromString(@"XETextInputForm")])
-        {
-            self.rowAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
+        self.rowAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else if(self.row.action)
     {

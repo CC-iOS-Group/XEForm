@@ -45,9 +45,10 @@ static CGFloat kDefault_OffsetY =                   7.5;
 static CGFloat kDefault_logoSize =                  20.;
 static CGFloat kDefault_cellHeight =                44.;
 
-static CGFloat kDefault_headerFooterTitleFont =     15.;
+static CGFloat kDefault_headerFooterTitleFont =     13.;
 static CGFloat kDefault_cellTitleFont =             15.;
 static CGFloat kDefault_cellDescriptionFont =       13.;
+static CGFloat kDefault_textInputFontFont =         15.;
 
 @implementation XEFormSetting
 
@@ -98,7 +99,8 @@ static CGFloat kDefault_cellDescriptionFont =       13.;
                                                 };
     cellSetting.logoSize = CGSizeMake(kDefault_logoSize, kDefault_logoSize);
     cellSetting.cellHeight = kDefault_cellHeight;
-    
+    cellSetting.textInputFont = [UIFont systemFontOfSize: kDefault_textInputFontFont];
+    cellSetting.textInputTextColor = [UIColor blackColor];
     
     self.headerFooterViewSetting = headerFooterViewSetting;
     self.cellSetting = cellSetting;

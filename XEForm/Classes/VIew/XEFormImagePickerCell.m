@@ -68,8 +68,6 @@
     return nil;
 }
 
-#pragma mark - XEFormRowCellDelegate
-
 -(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller
 {
     [XEFormsFirstResponder(tableView) resignFirstResponder];
@@ -117,10 +115,10 @@
 {
     self.row.value = info[UIImagePickerControllerEditedImage] ?: info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    if (self.row.action)
-    {
-        self.row.action(self);
-    }
+//    if (self.row.action)
+//    {
+//        self.row.action(self);
+//    }
     [self update];
 }
 

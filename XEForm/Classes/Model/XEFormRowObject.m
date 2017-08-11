@@ -260,12 +260,6 @@
         }
     }
     
-    else if([self.value isKindOfClass:[XETextInputForm class]])
-    {
-        XETextInputForm *textInputForm = self.value;
-        return textInputForm.text;
-    }
-    
     return [self valueDescription:self.value];
 }
 
@@ -678,6 +672,12 @@
     if (self.valueTransformer)
     {
         return [self.valueTransformer(value) rowDescription];
+    }
+    
+    else if([self.valueClass isSubclassOfClass:[XETextInputForm class]])
+    {
+        XETextInputForm *textInputForm = self.value;
+        return textInputForm.text;
     }
     
     if ([value isKindOfClass:[NSDate class]])

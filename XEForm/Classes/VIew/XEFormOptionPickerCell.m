@@ -58,9 +58,6 @@
     return self.pickerView;
 }
 
-
-#pragma mark - XEFormRowCellDelegate
-
 -(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller
 {
     if (![self isFirstResponder])

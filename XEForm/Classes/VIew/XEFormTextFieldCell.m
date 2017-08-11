@@ -155,7 +155,7 @@
     {
         //get return key type
         UIReturnKeyType returnKeyType = UIReturnKeyDone;
-        UITableViewCell <XEFormRowCellDelegate> *nextCell = self.nextCell;
+        XEFormBaseCell *nextCell = self.nextCell;
         if ([nextCell canBecomeFirstResponder])
         {
             returnKeyType = UIReturnKeyNext;
@@ -168,16 +168,45 @@
 
 - (void)textFieldDidBeginEditing:(__unused UITextField *)textField
 {
-    [self.textField selectAll:nil];
+    
 }
 
 - (void)textDidChange
 {
-//    [self updateRowValue];
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    {
+        __weak typeof(self) weak_self = self;
+        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Edit success:^{
+            [weak_self updateRowValue];
+        } failure:^{
+            
+        }];
+    }
+    else
+    {
+        [self updateRowValue];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(__unused UITextField *)textField
 {
+    if(isDifferentString(self.row.value, self.textField.text))
+    {
+        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+        {
+            __weak typeof(self) weak_self = self;
+            [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
+                [weak_self updateRowValue];
+            } failure:^{
+                
+            }];
+        }
+        else
+        {
+            [self updateRowValue];
+        }
+    }
+    
     if (self.textField.returnKeyType == UIReturnKeyNext)
     {
         [self.nextCell becomeFirstResponder];
@@ -187,21 +216,36 @@
         [self.textField resignFirstResponder];
     }
     
-    [self updateRowValue];
-    
-    if (self.row.action) self.row.action(self);
-    
     return NO;
 }
 
 - (void)textFieldDidEndEditing:(__unused UITextField *)textField
 {
-    
+    if(![self.row.form isKindOfClass:NSClassFromString(@"XETextInputForm")])
+    {
+        [self update];
+    }
 }
 
 - (void)updateRowValue
 {
     self.row.value = self.textField.text;
+}
+
+-(void)updateRowValueFromOther
+{
+    if(isDifferentString(self.row.value, self.textField.text))
+    {
+        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+        {
+            __weak typeof(self) weak_self = self;
+            [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
+                [weak_self updateRowValue];
+            } failure:^{
+                
+            }];
+        }
+    }
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -218,7 +262,6 @@
 {
     return [self.textField resignFirstResponder];
 }
-
 
 #pragma mark - Getter & setter
 
@@ -240,8 +283,9 @@
     {
         _textField = [[UITextField alloc] init];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
-//        _textField.font;
-//        _textField.textColor;
+        _textField.font = [XEFormSetting sharedSetting].cellSetting.textInputFont;
+        _textField.textColor = [XEFormSetting sharedSetting].cellSetting.textInputTextColor;
+        _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _textField.delegate = self;
     }
     return _textField;
