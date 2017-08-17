@@ -86,24 +86,28 @@
 
 - (void)update
 {
-    if(self.row.indexPath.row == 0)
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:self];
+    if (indexPath)
     {
-        // First cell in section
-        self.upSeparatorView.hidden = NO;
-    }
-    else
-    {
-        self.upSeparatorView.hidden = YES;
-    }
-    
-    if([self.row.form numberOfRowsInSection: self.row.indexPath.section] == self.row.indexPath.row + 1)
-    {
-        // Last cell in section
-        _downSeparatorViewLeftConstraint.constant = 0;
-    }
-    else
-    {
-        _downSeparatorViewLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
+        if(indexPath.row == 0)
+        {
+            // First cell in section
+            self.upSeparatorView.hidden = NO;
+        }
+        else
+        {
+            self.upSeparatorView.hidden = YES;
+        }
+        
+        if([self.row.form numberOfRowsInSection: indexPath.section] == indexPath.row + 1)
+        {
+            // Last cell in section
+            _downSeparatorViewLeftConstraint.constant = 0;
+        }
+        else
+        {
+            _downSeparatorViewLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
+        }
     }
     
     [self setNeedsLayout];
@@ -145,7 +149,7 @@
 
 +(CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width
 {
-    return [XEFormSetting sharedSetting].cellSetting.cellHeight;
+    return row.cellSetting.cellHeight;
 }
 
 -(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller

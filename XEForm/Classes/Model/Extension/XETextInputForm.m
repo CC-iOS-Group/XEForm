@@ -11,6 +11,12 @@
 #import "XEFormRowObject.h"
 #import "XEFormConst.h"
 
+@interface XETextInputForm ()
+{
+    NSString *_type;
+}
+@end
+
 @implementation XETextInputForm
 
 -(instancetype)init
@@ -28,6 +34,7 @@
 {
     textRow.value = self.text;
     textRow.title = nil;
+    self.type ? textRow.type = self.type : nil;
 }
 
 -(XEFormRowObject *)textRow
@@ -35,5 +42,15 @@
     return [self rowObjectForKey:@"text"];
 }
 
+-(NSString *)type
+{
+    return _type;
+}
+
+
+-(void)setType:(NSString *)type
+{
+    _type = type;
+}
 
 @end

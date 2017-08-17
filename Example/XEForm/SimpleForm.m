@@ -40,8 +40,23 @@
 
 - (void)textInlineRow:(XEFormRowObject *)textInlineRow
 {
-    textInlineRow.value = @"默认值";
+//    textInlineRow.value = @"默认值";
     textInlineRow.placeholder = @"请输入";
+}
+
+- (void)textViewRow:(XEFormRowObject *)textViewRow
+{
+    textViewRow.title = nil;
+    textViewRow.type = XEFormRowTypeLongText;
+    textViewRow.placeholder = @"Placeholder 大师级啊付了款；点撒就离开发；骄傲的看是否感觉阿卡；砥节奉公课啊我就烦刚看了；爱的枷锁发刻录机联发科；爱的枷锁卡乐付据鞍读书立刻放假啊鄂温克浪费精力；口味啊副经理库文件分类词库；撒DJ联发科；进度撒李开复解除了撒旦会计分录快点撒就发了看大家斯洛伐克；进度撒联发科；就离开适当放宽了；微积分零库存；焦恩俊擦伤看到了伐就离开；大家是否快乐；SD就离开；金额巧克力；我放假了开启违反纪律看；请问看起来放进去了；额我放假了可千万";
+}
+
+- (void)subTextViewRow:(XEFormRowObject *)subTextViewRow
+{
+    XETextInputForm *textInputForm = [[XETextInputForm alloc] init];
+    textInputForm.text = @"大师级啊付了款；点撒就离开发；骄傲的看是否感觉阿卡；砥节奉公课啊我就烦刚看了；爱的枷锁发刻录机联发科；爱的枷锁卡乐付据鞍读书立刻放假啊鄂温克浪费精力；口味啊副经理库文件分类词库；撒DJ";
+    textInputForm.type = XEFormRowTypeLongText;
+    subTextViewRow.value = textInputForm;
 }
 
 @end

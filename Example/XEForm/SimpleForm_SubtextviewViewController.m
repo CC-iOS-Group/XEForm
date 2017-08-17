@@ -1,40 +1,34 @@
 //
-//  SimpleForm_TextinputViewController.m
+//  SimpleForm_SubtextviewViewController.m
 //  XEForm
 //
-//  Created by 丁明 on 2017/8/9.
+//  Created by 丁明 on 2017/8/16.
 //  Copyright © 2017年 xenobladeX. All rights reserved.
 //
 
-#import "SimpleForm_TextinputViewController.h"
+#import "SimpleForm_SubtextviewViewController.h"
 
-#import <XEForm/XETextInputForm.h>
-#import <XEForm/XEFormController.h>
+#import <XEForm/XEFormTextViewCell.h>
 #import <XEForm/XEFormRowObject.h>
-#import <XEForm/XEFormTextFieldCell.h>
 
 #import "XEFormDemoUtils.h"
 
-@interface SimpleForm_TextinputViewController ()
+@interface SimpleForm_SubtextviewViewController ()
 {
     UIBarButtonItem *_rightItem;
 }
+
 @end
 
-@implementation SimpleForm_TextinputViewController
+@implementation SimpleForm_SubtextviewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    XETextInputForm *form = (XETextInputForm *)self.formController.form;
-    XEFormRowObject *rowObject = form.textRow;
-    rowObject.header = @"这是抬头";
-    rowObject.footer = @"这是收尾";
     
-    form.rows = @[@"text"];
     
-    _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(tapSaveButton)];
+    _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(tapSaveButton)];
     _rightItem.enabled = NO;
     [self.navigationItem setRightBarButtonItem:_rightItem];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -42,7 +36,6 @@
     {
         [cell becomeFirstResponder];
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,15 +43,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark -  Action handle
 
 - (void)tapSaveButton
 {
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if([cell isKindOfClass: [XEFormTextFieldCell class]])
+    if([cell isKindOfClass: [XEFormTextViewCell class]])
     {
-        XEFormTextFieldCell *textFieldCell = (XEFormTextFieldCell *)cell;
+        XEFormTextViewCell *textFieldCell = (XEFormTextViewCell *)cell;
         [textFieldCell updateRowValueFromOther];
     }
 }

@@ -11,6 +11,7 @@
 #import <objc/runtime.h>
 
 #import "XEForm.h"
+#import "XEFormSetting.h"
 
 @class XEFormController;
 
@@ -30,8 +31,6 @@
 @property (nonatomic, copy) id (^reverseValueTransformer)(id input);
 @property (nonatomic, copy) NSMutableDictionary *userInfo;
 
-@property (nonatomic, strong) NSIndexPath *indexPath;
-
 #pragma mark UI
 @property (nonatomic, strong) Class cellClass;
 @property (nonatomic, copy) NSString *logoStr;
@@ -44,6 +43,7 @@
 @property (nonatomic, assign) BOOL isInline;
 @property (nonatomic, copy) void (^action)(id sender);
 @property (nonatomic, strong) id segue;
+@property (nonatomic, strong) XEFormSpecialCellSetting *cellSetting;
 
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;

@@ -18,15 +18,21 @@
 
 @interface XEFormSpecialCellSetting : NSObject
 
-//** Title Label */
+/** Title Label */
 @property (nonatomic, strong) NSDictionary<NSString *, id> *titleAttributes;
 
-
-//** Description Label*/
+/** Description Label*/
 @property (nonatomic, strong) NSDictionary<NSString *, id> *descriptionAttributes;
 
+/** textView attributes*/
+@property (nonatomic, strong) NSDictionary<NSString *, id> *textFieldAttributes;
 
-//** Logo View */
+/** textView attributes*/
+@property (nonatomic, strong) NSDictionary<NSString *, id> *textViewAttributes;
+
+@property (nonatomic, assign) CGFloat cellHeight;
+
+/** Logo View */
 @property (nonatomic, assign)CGSize logoSize;
 
 @end
@@ -46,12 +52,6 @@
 @property (nonatomic, strong) UIColor *indicatorViewTintColor;
 
 @property (nonatomic, strong) UIImage *logoPlaceholder;
-
-@property (nonatomic, assign) CGFloat cellHeight;
-
-/** textInput*/
-@property (nonatomic, strong) UIFont *textInputFont;
-@property (nonatomic, assign) UIColor *textInputTextColor;
 
 @end
 

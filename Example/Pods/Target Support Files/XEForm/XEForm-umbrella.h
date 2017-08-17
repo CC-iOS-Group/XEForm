@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char XEFormVersionString[];
 #import <XEForm/XEFormSetting.h>
 #import <XEForm/XETextInputForm.h>
 #import <XEForm/XEFormTextFieldCell.h>
+#import <XEForm/XEFormTextViewCell.h>

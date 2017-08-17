@@ -204,7 +204,16 @@
 
 - (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath
 {
-    return [self sectionAtIndex:indexPath.section].rows[indexPath.row];
+    XEFormSectionObject *sectionObject = [self sectionAtIndex:indexPath.section];
+    NSArray *sectionRows = sectionObject.rows;
+    if(sectionRows.count >= indexPath.row+1)
+    {
+        return [sectionRows objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row
@@ -212,10 +221,10 @@
     NSUInteger sectionIndex = 0;
     for (XEFormSectionObject *section in self.form.sections)
     {
-        NSUInteger fieldIndex = [section.rows indexOfObject:row];
-        if (fieldIndex != NSNotFound)
+        NSUInteger rowIndex = [section.rows indexOfObject:row];
+        if (rowIndex != NSNotFound)
         {
-            return [NSIndexPath indexPathForRow:fieldIndex inSection:sectionIndex];
+            return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
         }
         sectionIndex ++;
     }
@@ -433,6 +442,7 @@
     XEFormBaseCell *cell = (XEFormBaseCell *)[self cellForRow:[self rowForIndexPath:indexPath]];
     if([self.delegate isKindOfClass:[XEFormViewController class]])
     {
+        // TODO: Maybe not elegance
         cell.delegate = (XEFormViewController *)(self.delegate);
     }
     return cell;

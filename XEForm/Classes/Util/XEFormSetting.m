@@ -23,9 +23,26 @@
 
 @implementation XEFormCommonCellSetting
 
+@synthesize cellHeight = _cellHeight;
+
+-(CGFloat)cellHeight
+{
+    return _cellHeight;
+}
+
 @end
 
 @implementation XEFormSpecialCellSetting
+
+
+-(CGFloat)cellHeight
+{
+    if (_cellHeight == 0)
+    {
+        return [XEFormSetting sharedSetting].cellSetting.cellHeight;
+    }
+    return _cellHeight;
+}
 
 @end
 
@@ -49,6 +66,8 @@ static CGFloat kDefault_headerFooterTitleFont =     13.;
 static CGFloat kDefault_cellTitleFont =             15.;
 static CGFloat kDefault_cellDescriptionFont =       13.;
 static CGFloat kDefault_textInputFontFont =         15.;
+static CGFloat kDefault_cellTextFiledFont =         15.;
+static CGFloat kDefault_cellTextViewFont =          15.;
 
 @implementation XEFormSetting
 
@@ -97,10 +116,16 @@ static CGFloat kDefault_textInputFontFont =         15.;
                                                 NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellDescriptionFont],
                                                 NSForegroundColorAttributeName : kDefault_cellDescriptionColor,
                                                 };
+    cellSetting.textFieldAttributes = @{
+                                        NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTextFiledFont],
+                                        };
+    cellSetting.textViewAttributes = @{
+                                        NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTextViewFont],
+                                        };
+    
+    
     cellSetting.logoSize = CGSizeMake(kDefault_logoSize, kDefault_logoSize);
     cellSetting.cellHeight = kDefault_cellHeight;
-    cellSetting.textInputFont = [UIFont systemFontOfSize: kDefault_textInputFontFont];
-    cellSetting.textInputTextColor = [UIColor blackColor];
     
     self.headerFooterViewSetting = headerFooterViewSetting;
     self.cellSetting = cellSetting;

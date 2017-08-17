@@ -19,53 +19,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../XEForm/Classes/Model/XEFormSectionObject.m"
-            timestampString = "524018334.722731"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "+sectionsWithForm:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[XEFormSectionObject sectionsWithForm:]"
-                  moduleName = "XEForm"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xenoblade/Documents/IOS/My-Project/XEForm/XEForm/Classes/Model/XEFormSectionObject.m"
-                  timestampString = "524018453.13634"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "156">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "+[XEFormSectionObject sectionsWithForm:]"
-                  moduleName = "XEForm"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xenoblade/Documents/IOS/My-Project/XEForm/XEForm/Classes/Model/XEFormSectionObject.m"
-                  timestampString = "524018453.139171"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "164">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

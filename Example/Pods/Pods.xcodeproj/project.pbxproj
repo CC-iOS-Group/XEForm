@@ -175,8 +175,12 @@
 		BE073FA41F33053200E346CF /* XEFormCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */; };
 		BE073FB21F34932300E346CF /* XETextInputForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FB01F34932300E346CF /* XETextInputForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE073FB31F34932300E346CF /* XETextInputForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FB11F34932300E346CF /* XETextInputForm.m */; };
+		BE073FEC1F44698000E346CF /* XEFormNavigationAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FEA1F44698000E346CF /* XEFormNavigationAccessoryView.h */; };
+		BE073FED1F44698000E346CF /* XEFormNavigationAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FEB1F44698000E346CF /* XEFormNavigationAccessoryView.m */; };
+		BE073FF01F44714900E346CF /* UIView+XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FEE1F44714900E346CF /* UIView+XEForm.h */; };
+		BE073FF11F44714900E346CF /* UIView+XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FEF1F44714900E346CF /* UIView+XEForm.m */; };
 		BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */; };
-		BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */; };
+		BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A92EE8DFABFCDEC800F6B1D1AFD48D /* FBSnapshotTestCase.m */; };
 		BE32FE401EFBC58F00F74DDB /* XEFormConst.h in Headers */ = {isa = PBXBuildFile; fileRef = BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE32FE411EFBC58F00F74DDB /* XEFormConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FE3E1EFBC58F00F74DDB /* XEFormConst.m */; };
@@ -509,6 +513,10 @@
 		BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormCellAccessoryView.m; sourceTree = "<group>"; };
 		BE073FB01F34932300E346CF /* XETextInputForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XETextInputForm.h; sourceTree = "<group>"; };
 		BE073FB11F34932300E346CF /* XETextInputForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XETextInputForm.m; sourceTree = "<group>"; };
+		BE073FEA1F44698000E346CF /* XEFormNavigationAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormNavigationAccessoryView.h; sourceTree = "<group>"; };
+		BE073FEB1F44698000E346CF /* XEFormNavigationAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormNavigationAccessoryView.m; sourceTree = "<group>"; };
+		BE073FEE1F44714900E346CF /* UIView+XEForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XEForm.h"; sourceTree = "<group>"; };
+		BE073FEF1F44714900E346CF /* UIView+XEForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XEForm.m"; sourceTree = "<group>"; };
 		BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormTextViewCell.h; sourceTree = "<group>"; };
 		BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormTextViewCell.m; sourceTree = "<group>"; };
 		BE32FE3D1EFBC58F00F74DDB /* XEFormConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormConst.h; sourceTree = "<group>"; };
@@ -1064,6 +1072,8 @@
 				BE073F891F2B333000E346CF /* XEFormHeaderFooterView.m */,
 				BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */,
 				BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */,
+				BE073FEA1F44698000E346CF /* XEFormNavigationAccessoryView.h */,
+				BE073FEB1F44698000E346CF /* XEFormNavigationAccessoryView.m */,
 			);
 			path = VIew;
 			sourceTree = "<group>";
@@ -1078,6 +1088,8 @@
 				BEBE68A51F0F0EB200999892 /* UIImageView+XEForm.m */,
 				BE073F9D1F31FAAE00E346CF /* UIImage+XEForm.h */,
 				BE073F9E1F31FAAE00E346CF /* UIImage+XEForm.m */,
+				BE073FEE1F44714900E346CF /* UIView+XEForm.h */,
+				BE073FEF1F44714900E346CF /* UIView+XEForm.m */,
 				BE073F931F2F4FCE00E346CF /* XEFormSetting.h */,
 				BE073F941F2F4FCE00E346CF /* XEFormSetting.m */,
 			);
@@ -1180,6 +1192,7 @@
 				23F941C44E7A18A7105C98164BC302D0 /* XEForm-umbrella.h in Headers */,
 				BE37D04C1F038CCB0061329A /* NSObject+Utils.h in Headers */,
 				BE32FE4B1EFBC8D900F74DDB /* XEFormRowObject.h in Headers */,
+				BE073FF01F44714900E346CF /* UIView+XEForm.h in Headers */,
 				BE37D0461F0373030061329A /* XEFormSectionObject.h in Headers */,
 				BE37D0501F0392C10061329A /* XETemplateForm.h in Headers */,
 				BE32FE4F1EFBC8FB00F74DDB /* XEFormController.h in Headers */,
@@ -1196,6 +1209,7 @@
 				BE32FE521EFBCA9500F74DDB /* XEFormRowViewControllerDelegate.h in Headers */,
 				BE32FE631EFBD0D000F74DDB /* XEFormSwitchCell.h in Headers */,
 				BE32FE551EFBCB9500F74DDB /* XEFormViewController.h in Headers */,
+				BE073FEC1F44698000E346CF /* XEFormNavigationAccessoryView.h in Headers */,
 				BE10C7BF1F09F4F2007B3B63 /* XEFormTextViewCell.h in Headers */,
 				BEB82CB11F0DECBD008C1947 /* XEFormSegmentsCell.h in Headers */,
 			);
@@ -1567,6 +1581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE073FB31F34932300E346CF /* XETextInputForm.m in Sources */,
+				BE073FF11F44714900E346CF /* UIView+XEForm.m in Sources */,
 				BE10C7BE1F09F4EE007B3B63 /* XEFormTextViewCell.m in Sources */,
 				BE073FA01F31FAAE00E346CF /* UIImage+XEForm.m in Sources */,
 				BEB82C9B1F0B8C09008C1947 /* XEFormStepperCell.m in Sources */,
@@ -1592,6 +1607,7 @@
 				BEB82CAE1F0DDEFF008C1947 /* XEFormOptionPickerCell.m in Sources */,
 				BE073F961F2F4FCE00E346CF /* XEFormSetting.m in Sources */,
 				BEB82CB21F0DECBD008C1947 /* XEFormSegmentsCell.m in Sources */,
+				BE073FED1F44698000E346CF /* XEFormNavigationAccessoryView.m in Sources */,
 				BE073F8B1F2B333000E346CF /* XEFormHeaderFooterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

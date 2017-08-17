@@ -24,4 +24,8 @@
 
 @property (nonatomic, strong) NSString *textInline;
 
+@property (nonatomic, strong) NSString *textView;
+
+@property (nonatomic, strong) XETextInputForm *subTextView;
+
 @end

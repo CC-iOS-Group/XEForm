@@ -80,7 +80,7 @@
     self.titleLabel.accessibilityValue = self.titleLabel.text;
     
     self.textField.placeholder = [self.row.placeholder rowDescription];
-    self.textField.text = [self.row rowDescription];
+    self.textField.attributedText = self.row.rowDescription ? [[NSAttributedString alloc] initWithString:self.row.rowDescription attributes:[XEFormSetting sharedSetting].cellSetting.textFieldAttributes] : nil;
     self.textField.returnKeyType = UIReturnKeyDone;
     self.textField.textAlignment = [self.row.title length]? NSTextAlignmentRight: NSTextAlignmentLeft;
     self.textField.secureTextEntry = NO;
@@ -173,6 +173,8 @@
 
 - (void)textDidChange
 {
+    self.textField.attributedText = self.textField.text ? [[NSAttributedString alloc] initWithString:self.textField.text attributes:[XEFormSetting sharedSetting].cellSetting.textFieldAttributes] : nil;
+    
     if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
     {
         __weak typeof(self) weak_self = self;
@@ -234,17 +236,14 @@
 
 -(void)updateRowValueFromOther
 {
-    if(isDifferentString(self.row.value, self.textField.text))
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
     {
-        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
-        {
-            __weak typeof(self) weak_self = self;
-            [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
-                [weak_self updateRowValue];
-            } failure:^{
-                
-            }];
-        }
+        __weak typeof(self) weak_self = self;
+        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
+            [weak_self updateRowValue];
+        } failure:^{
+            
+        }];
     }
 }
 
@@ -283,9 +282,8 @@
     {
         _textField = [[UITextField alloc] init];
         _textField.translatesAutoresizingMaskIntoConstraints = NO;
-        _textField.font = [XEFormSetting sharedSetting].cellSetting.textInputFont;
-        _textField.textColor = [XEFormSetting sharedSetting].cellSetting.textInputTextColor;
         _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _textField.font = [[XEFormSetting sharedSetting].cellSetting.textFieldAttributes valueForKey:NSFontAttributeName];
         _textField.delegate = self;
     }
     return _textField;

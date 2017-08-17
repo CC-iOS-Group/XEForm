@@ -28,6 +28,8 @@
 		BE073F921F2F3C7A00E346CF /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F911F2F3C7A00E346CF /* BaseViewController.m */; };
 		BE073F9C1F31BBEC00E346CF /* SimpleForm3.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */; };
 		BE073FBB1F3B2CDE00E346CF /* SimpleForm_TextinputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FBA1F3B2CDE00E346CF /* SimpleForm_TextinputViewController.m */; };
+		BE073FE51F44264800E346CF /* SimpleForm_SubtextviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FE41F44264800E346CF /* SimpleForm_SubtextviewViewController.m */; };
+		BE073FE81F44267600E346CF /* XEFormDemoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FE71F44267600E346CF /* XEFormDemoUtils.m */; };
 		BE32FEA31EFD1FF200F74DDB /* SimpleForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */; };
 		BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA51EFD206F00F74DDB /* SimpleForm.m */; };
 		BE32FEA91EFD2D0D00F74DDB /* TestForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32FEA81EFD2D0D00F74DDB /* TestForm.m */; };
@@ -83,6 +85,10 @@
 		BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm3.m; sourceTree = "<group>"; };
 		BE073FB91F3B2CDE00E346CF /* SimpleForm_TextinputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm_TextinputViewController.h; sourceTree = "<group>"; };
 		BE073FBA1F3B2CDE00E346CF /* SimpleForm_TextinputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm_TextinputViewController.m; sourceTree = "<group>"; };
+		BE073FE31F44264800E346CF /* SimpleForm_SubtextviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm_SubtextviewViewController.h; sourceTree = "<group>"; };
+		BE073FE41F44264800E346CF /* SimpleForm_SubtextviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm_SubtextviewViewController.m; sourceTree = "<group>"; };
+		BE073FE61F44267600E346CF /* XEFormDemoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XEFormDemoUtils.h; sourceTree = "<group>"; };
+		BE073FE71F44267600E346CF /* XEFormDemoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormDemoUtils.m; sourceTree = "<group>"; };
 		BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm2.h; sourceTree = "<group>"; };
 		BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleForm2.m; sourceTree = "<group>"; };
 		BE32FEA41EFD206F00F74DDB /* SimpleForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleForm.h; sourceTree = "<group>"; };
@@ -172,12 +178,16 @@
 				BE073F861F2ABF7000E346CF /* SimpleForm_SecondformViewController.m */,
 				BE073FB91F3B2CDE00E346CF /* SimpleForm_TextinputViewController.h */,
 				BE073FBA1F3B2CDE00E346CF /* SimpleForm_TextinputViewController.m */,
+				BE073FE31F44264800E346CF /* SimpleForm_SubtextviewViewController.h */,
+				BE073FE41F44264800E346CF /* SimpleForm_SubtextviewViewController.m */,
 				BE073F9A1F31BBEC00E346CF /* SimpleForm3.h */,
 				BE073F9B1F31BBEC00E346CF /* SimpleForm3.m */,
 				BE32FEA11EFD1FF200F74DDB /* SimpleForm2.h */,
 				BE32FEA21EFD1FF200F74DDB /* SimpleForm2.m */,
 				BE32FEA41EFD206F00F74DDB /* SimpleForm.h */,
 				BE32FEA51EFD206F00F74DDB /* SimpleForm.m */,
+				BE073FE61F44267600E346CF /* XEFormDemoUtils.h */,
+				BE073FE71F44267600E346CF /* XEFormDemoUtils.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -441,6 +451,7 @@
 			files = (
 				BE073FBB1F3B2CDE00E346CF /* SimpleForm_TextinputViewController.m in Sources */,
 				BE073F9C1F31BBEC00E346CF /* SimpleForm3.m in Sources */,
+				BE073FE51F44264800E346CF /* SimpleForm_SubtextviewViewController.m in Sources */,
 				BE32FEA61EFD206F00F74DDB /* SimpleForm.m in Sources */,
 				BE073F921F2F3C7A00E346CF /* BaseViewController.m in Sources */,
 				BE073F841F2A048800E346CF /* SimpleFormViewController.m in Sources */,
@@ -449,6 +460,7 @@
 				BE32FEA31EFD1FF200F74DDB /* SimpleForm2.m in Sources */,
 				6003F5A7195388D20070C39A /* XEFormDemoViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				BE073FE81F44267600E346CF /* XEFormDemoUtils.m in Sources */,
 				BE073F871F2ABF7000E346CF /* SimpleForm_SecondformViewController.m in Sources */,
 				BE32FEA91EFD2D0D00F74DDB /* TestForm.m in Sources */,
 			);

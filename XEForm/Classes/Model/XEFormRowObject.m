@@ -966,4 +966,17 @@
     return _isSortable && ([self.valueClass isSubclassOfClass:[NSArray class]] || [self.valueClass isSubclassOfClass:[NSOrderedSet class]]);
 }
 
+-(XEFormSpecialCellSetting *)cellSetting
+{
+    if (nil == _cellSetting)
+    {
+        _cellSetting = [[XEFormSpecialCellSetting alloc] init];
+        if ([self.type isEqualToString: XEFormRowTypeLongText])
+        {
+            _cellSetting.cellHeight = 110.;
+        }
+    }
+    return _cellSetting;
+}
+
 @end

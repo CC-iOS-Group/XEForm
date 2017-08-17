@@ -8,10 +8,15 @@
 
 #import "XEFormBaseCell.h"
 
+@interface XEFormTextView : UITextView
+
+@end
+
+
 @interface XEFormTextViewCell : XEFormBaseCell
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) XEFormTextView *textView;
 
-@property (nonatomic, strong) UILabel *placeholder;
+- (void)updateRowValueFromOther;
 
 @end

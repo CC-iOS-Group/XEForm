@@ -14,4 +14,8 @@
 
 - (XEFormRowObject *)textRow;
 
+- (NSString *)type;
+
+- (void)setType:(NSString *)type;
+
 @end

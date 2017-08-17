@@ -55,17 +55,18 @@ static CGFloat kDefault_switchHeight = 31.;
             self.descriptionLabel.attributedText = nil;
         }
 
+        __weak typeof(self) weak_self = self;
         self.switchControl.userInteractionEnabled = NO;
         [self.delegate willChangeRow:self.row newValue:@(self.switchControl.on) source:XEFormValueChangeSource_Edit success:^{
-            self.switchControl.userInteractionEnabled = YES;
-            self.row.value = @(self.switchControl.on);
+            weak_self.switchControl.userInteractionEnabled = YES;
+            weak_self.row.value = @(weak_self.switchControl.on);
             
-            [self update];
+            [weak_self update];
         } failure:^{
-            self.switchControl.userInteractionEnabled = YES;
-            self.switchControl.on = !self.switchControl.on;
+            weak_self.switchControl.userInteractionEnabled = YES;
+            weak_self.switchControl.on = !weak_self.switchControl.on;
             
-            [self update];
+            [weak_self update];
         }];
     }
     else
