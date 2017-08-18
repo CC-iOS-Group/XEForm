@@ -9,7 +9,7 @@
 #import "XEFormViewController.h"
 
 #import "XEFormController.h"
-#import "XEForm.h"
+#import "XEFormObject.h"
 #import "XEFormRowObject.h"
 #import "XEOptionsForm.h"
 #import "XETemplateForm.h"
@@ -228,7 +228,7 @@
 {
     _row = row;
     
-    XEForm *form = nil;
+    XEFormObject *form = nil;
     if (row.options)
     {
         form = [[XEOptionsForm alloc] initWithRow:row];
@@ -237,7 +237,7 @@
     {
         form = [[XETemplateForm alloc] initWithRow:row];
     }
-    else if([row.valueClass isSubclassOfClass:[XEForm class]])
+    else if([row.valueClass isSubclassOfClass:[XEFormObject class]])
     {
         if (!row.value && ![row.valueClass isSubclassOfClass:XEFormClassFromString(@"NSManagedObject")])
         {

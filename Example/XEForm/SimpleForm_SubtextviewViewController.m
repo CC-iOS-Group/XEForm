@@ -8,8 +8,7 @@
 
 #import "SimpleForm_SubtextviewViewController.h"
 
-#import <XEForm/XEFormTextViewCell.h>
-#import <XEForm/XEFormRowObject.h>
+#import <XEForm/XEForm.h>
 
 #import "XEFormDemoUtils.h"
 

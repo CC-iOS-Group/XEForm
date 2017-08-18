@@ -14,7 +14,7 @@
 #import "UIImageView+XEForm.h"
 #import "XEFormController.h"
 #import "XEFormSetting.h"
-#import "XEForm.h"
+#import "XEFormObject.h"
 #import "XEFormCellAccessoryView.h"
 #import "XEFormViewController.h"
 

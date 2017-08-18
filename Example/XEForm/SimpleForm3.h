@@ -8,7 +8,7 @@
 
 #import <XEForm/XEForm.h>
 
-@interface SimpleForm3 : XEForm
+@interface SimpleForm3 : XEFormObject
 
 @property (nonatomic, assign) BOOL test;
 

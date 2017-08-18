@@ -63,7 +63,7 @@
     return self;
 }
 
-- (void)configWithForm:(XEForm *)form
+- (void)configWithForm:(XEFormObject *)form
 {
     self.form = form;
     if (nil == self.userInfo)
@@ -326,7 +326,7 @@
 - (BOOL)isSubform
 {
     return (![self.type isEqualToString:XEFormRowTypeLabel] &&
-            ([self.valueClass isSubclassOfClass:[XEForm class]] ||
+            ([self.valueClass isSubclassOfClass:[XEFormObject class]] ||
              [self.valueClass isSubclassOfClass:[UIViewController class]] ||
              self.options || [self isCollectionType] || self.viewController));
 }
@@ -546,7 +546,7 @@
     {
         XEFormRowObject *row = self;
         NSString *rowPath = @"";
-        XEForm *form;
+        XEFormObject *form;
         while (row)
         {
             

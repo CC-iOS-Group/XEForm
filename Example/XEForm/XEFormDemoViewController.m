@@ -8,9 +8,7 @@
 
 #import "XEFormDemoViewController.h"
 
-#import <XEForm/XEFormController.h>
-#import <XEForm/XEFormRowObject.h>
-#import <XEForm/XEFormConst.h>
+#import <XEForm/XEForm.h>
 
 #import "SimpleFormViewController.h"
 

@@ -8,10 +8,6 @@
 
 #import "SimpleForm2.h"
 
-#import <XEForm/XEFormRowObject.h>
-#import <XEForm/XEFormConst.h>
-#import <XEForm/XEFormBaseCell.h>
-
 @implementation SimpleForm2
 
 - (void)testRow:(XEFormRowObject *)testRow

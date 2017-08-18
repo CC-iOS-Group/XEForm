@@ -9,12 +9,9 @@
 #import "SimpleForm2.h"
 #import "SimpleForm3.h"
 
-#import <XEForm/XEForm.h>
-#import <XEForm/XETextInputForm.h>
-
 @class SimpleForm3;
 
-@interface SimpleForm : XEForm
+@interface SimpleForm : XEFormObject
 
 @property (nonatomic, strong) SimpleForm2 *secondForm;
 

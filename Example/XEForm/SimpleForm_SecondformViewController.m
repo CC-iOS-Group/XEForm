@@ -8,9 +8,6 @@
 
 #import "SimpleForm_SecondformViewController.h"
 
-#import <XEForm/XEFormController.h>
-#import <XEForm/XEFormRowObject.h>
-
 @interface SimpleForm_SecondformViewController ()
 
 @end

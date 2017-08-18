@@ -24,7 +24,7 @@ typedef NS_OPTIONS(NSInteger, Interests)
     InterestSports = 1 << 2
 };
 
-@interface SimpleForm2 : XEForm
+@interface SimpleForm2 : XEFormObject
 
 @property (nonatomic, assign) BOOL test;
 

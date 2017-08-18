@@ -6,7 +6,7 @@
 //
 //
 
-#import "XEForm.h"
+#import "XEFormObject.h"
 
 #import "XEFormConst.h"
 #import "XEFormRowObject.h"
@@ -15,7 +15,7 @@
 #import "XEFormController.h"
 #import "UIImage+XEForm.h"
 
-@interface XEForm ()
+@interface XEFormObject ()
 {
     BOOL _hasSetRows;
 }
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation XEForm
+@implementation XEFormObject
 
 @synthesize rows = _rows;
 

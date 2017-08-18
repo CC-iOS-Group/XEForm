@@ -18,7 +18,7 @@
 
 @end
 
-@interface XEForm : NSObject<XEFormDelegates>
+@interface XEFormObject : NSObject<XEFormDelegates>
 
 @property (nonatomic, strong) XEFormRowObject *row;
 

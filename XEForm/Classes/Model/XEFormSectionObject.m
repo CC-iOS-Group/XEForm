@@ -16,7 +16,7 @@
 
 @implementation XEFormSectionObject
 
-+(NSArray *)sectionsWithForm:(XEForm *)form
++(NSArray *)sectionsWithForm:(XEFormObject *)form
 {
     NSMutableArray *sections = [NSMutableArray array];
     XEFormSectionObject *section = nil;
@@ -33,7 +33,7 @@
             subform = [[XETemplateForm alloc] initWithRow:row];
         }
         // custom sub XEForm
-        else if([row.valueClass isSubclassOfClass:[XEForm class]] && row.isInline)
+        else if([row.valueClass isSubclassOfClass:[XEFormObject class]] && row.isInline)
         {
             if(!row.value && [row respondsToSelector:@selector(init)] &&
                [row.valueClass isSubclassOfClass:XEFormClassFromString(@"NSManagedObject")])

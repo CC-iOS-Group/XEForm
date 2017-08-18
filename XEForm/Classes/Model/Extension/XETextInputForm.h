@@ -6,9 +6,9 @@
 //
 //
 
-#import <XEForm/XEForm.h>
+#import "XEFormObject.h"
 
-@interface XETextInputForm : XEForm
+@interface XETextInputForm : XEFormObject
 
 @property (nonatomic, copy) NSString *text;
 

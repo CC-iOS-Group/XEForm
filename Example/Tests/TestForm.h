@@ -12,7 +12,7 @@
 
 #import "TestForm2.h"
 
-@interface TestForm : XEForm
+@interface TestForm : XEFormObject
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;

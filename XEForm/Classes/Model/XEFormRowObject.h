@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#import "XEForm.h"
+#import "XEFormObject.h"
 #import "XEFormSetting.h"
 
 @class XEFormController;
@@ -20,7 +20,7 @@
 #pragma mark - Property
 
 @property (nonatomic, copy, readonly) NSString *key;
-@property (nonatomic, weak) XEForm *form;
+@property (nonatomic, weak) XEFormObject *form;
 @property (nonatomic, strong) id value;
 @property (nonatomic, strong) id defaultValue;
 @property (nonatomic, strong) NSArray *options;
@@ -48,7 +48,7 @@
 #pragma mark - Method
 + (instancetype)objectWithProperty:(objc_property_t)property;
 - (instancetype)initWithKey:(NSString *)key Class:(Class)class type:(NSString *)type;
-- (void)configWithForm:(XEForm *)form;
+- (void)configWithForm:(XEFormObject *)form;
 
 - (NSString *)valueDescription:(id)value;
 - (NSString *)rowDescription;

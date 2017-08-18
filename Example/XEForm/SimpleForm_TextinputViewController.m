@@ -8,10 +8,7 @@
 
 #import "SimpleForm_TextinputViewController.h"
 
-#import <XEForm/XETextInputForm.h>
-#import <XEForm/XEFormController.h>
-#import <XEForm/XEFormRowObject.h>
-#import <XEForm/XEFormTextFieldCell.h>
+#import <XEForm/XEForm.h>
 
 #import "XEFormDemoUtils.h"
 

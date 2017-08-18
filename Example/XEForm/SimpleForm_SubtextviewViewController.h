@@ -6,7 +6,7 @@
 //  Copyright © 2017年 xenobladeX. All rights reserved.
 //
 
-#import <XEForm/XEFormViewController.h>
+#import <XEForm/XEForm.h>
 
 @interface SimpleForm_SubtextviewViewController : XEFormViewController
 

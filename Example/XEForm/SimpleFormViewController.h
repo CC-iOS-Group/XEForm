@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <XEForm/XEFormViewController.h>
+#import <XEForm/XEForm.h>
 
 @interface SimpleFormViewController : XEFormViewController
 

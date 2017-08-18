@@ -10,7 +10,7 @@
 
 #import <XEForm/XEForm.h>
 
-@interface TestForm2 : XEForm
+@interface TestForm2 : XEFormObject
 
 @property (nonatomic, assign) int age;
 

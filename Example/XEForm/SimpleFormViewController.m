@@ -8,9 +8,6 @@
 
 #import "SimpleFormViewController.h"
 
-#import <XEForm/XEFormController.h>
-#import <XEForm/XEFormRowObject.h>
-
 #import "SimpleForm.h"
 
 @interface SimpleFormViewController ()
