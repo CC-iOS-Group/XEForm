@@ -12,6 +12,4 @@
 
 @property (nonatomic, strong) UITextField *textField;
 
-- (void)updateRowValueFromOther;
-
 @end

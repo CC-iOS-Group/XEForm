@@ -16,6 +16,7 @@
 #import "XEFormControllerDelegate.h"
 #import "XEFormRowViewControllerDelegate.h"
 #import "UIImage+XEForm.h"
+#import "XEFormConst.h"
 
 @implementation XEFormHeaderFooterViewSetting
 
@@ -129,6 +130,33 @@ static CGFloat kDefault_cellTextViewFont =          15.;
     
     self.headerFooterViewSetting = headerFooterViewSetting;
     self.cellSetting = cellSetting;
+    self.cellClassesForRowTypes = [@{
+                                 XEFormRowTypeDefault: NSClassFromString(@"XEFormDefaultCell"),
+                                 XEFormRowTypeText: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeLongText: NSClassFromString(@"XEFormTextViewCell"),
+                                 XEFormRowTypeURL: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeEmail: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypePhone: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypePassword: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeNumber: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeFloat: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeInteger: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeUnsigned: NSClassFromString(@"XEFormTextFieldCell"),
+                                 XEFormRowTypeBoolean: NSClassFromString(@"XEFormSwitchCell"),
+                                 XEFormRowTypeDate: NSClassFromString(@"XEFormDatePickerCell"),
+                                 XEFormRowTypeTime: NSClassFromString(@"XEFormDatePickerCell"),
+                                 XEFormRowTypeDateTime: NSClassFromString(@"XEFormDatePickerCell"),
+                                 XEFormRowTypeImage: NSClassFromString(@"XEFormImagePickerCell"),
+                                 
+                                 
+                                 } mutableCopy];
+    self.cellClassesForRowClasses = [@{
+                                   
+                                   } mutableCopy];
+    self.controllerClassesForRowTypes = [@{
+                                       XEFormRowTypeDefault: NSClassFromString(@"XEFormViewController"),
+                                       } mutableCopy];
+    self.controllerClassesForRowClasses = [NSMutableDictionary dictionary];
 }
 
 #pragma mark - Getter & setter

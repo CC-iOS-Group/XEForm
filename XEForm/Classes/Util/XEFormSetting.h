@@ -59,10 +59,18 @@
 
 + (instancetype)sharedSetting;
 
+/** UI setting*/
 @property (nonatomic, strong) Class BaseViewController;
 
 @property (nonatomic, strong) XEFormHeaderFooterViewSetting *headerFooterViewSetting;
 
 @property (nonatomic, strong) XEFormCommonCellSetting *cellSetting;
+
+/** Customize Class*/
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForRowTypes;
+@property (nonatomic, strong) NSMutableDictionary *cellClassesForRowClasses;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowTypes;
+@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowClasses;
+
 
 @end

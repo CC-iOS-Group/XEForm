@@ -155,7 +155,7 @@
     {
         //get return key type
         UIReturnKeyType returnKeyType = UIReturnKeyDone;
-        XEFormBaseCell *nextCell = self.nextCell;
+        XEFormBaseCell *nextCell = [self nextCellWithDirection:XEFormNavigationDirectionNext];
         if ([nextCell canBecomeFirstResponder])
         {
             returnKeyType = UIReturnKeyNext;
@@ -211,7 +211,7 @@
     
     if (self.textField.returnKeyType == UIReturnKeyNext)
     {
-        [self.nextCell becomeFirstResponder];
+        [[self nextCellWithDirection:XEFormNavigationDirectionNext] becomeFirstResponder];
     }
     else
     {

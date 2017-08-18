@@ -8,10 +8,11 @@
 
 #import "XEFormDemoViewController.h"
 
-#import "SimpleForm.h"
 #import <XEForm/XEFormController.h>
 #import <XEForm/XEFormRowObject.h>
 #import <XEForm/XEFormConst.h>
+
+#import "SimpleFormViewController.h"
 
 @interface XEFormDemoViewController ()
 
@@ -30,13 +31,7 @@
 
 - (IBAction)formButtonClicked:(UIButton *)sender {
     
-    SimpleForm *form = [[SimpleForm alloc] init];
-    
-    form.secondForm2.rows = @[@"test"];
-    form.rows = @[@"secondForm", @"secondForm2", @"textInput", @"textInline", @"textView", @"subTextView"];
-    
-    
-    XEFormViewController *rootViewController = [form formViewController];
+    SimpleFormViewController *rootViewController = [[SimpleFormViewController alloc] init];
     [self.navigationController pushViewController:rootViewController animated:YES];
 }
 

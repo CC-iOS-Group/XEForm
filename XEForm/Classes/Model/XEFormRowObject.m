@@ -22,7 +22,7 @@
 
 @implementation XEFormRowObject
 
-@synthesize isSortable = _isSortable, value = _value;
+@synthesize isSortable = _isSortable, value = _value, cellClass = _cellClass;
 
 -(instancetype)init
 {
@@ -541,6 +541,7 @@
 
 - (Class)subViewControllerClass
 {
+    // TODO:  One Class to one row OR One Class to one type(class)
     if ([self isSubform])
     {
         XEFormRowObject *row = self;
@@ -977,6 +978,32 @@
         }
     }
     return _cellSetting;
+}
+
+-(Class)cellClass
+{
+    if (nil == _cellClass)
+    {
+        if (self.type != XEFormRowTypeDefault)
+        {
+            return [XEFormSetting sharedSetting].cellClassesForRowTypes[self.type] ? :
+            [XEFormSetting sharedSetting].cellClassesForRowTypes[XEFormRowTypeDefault];
+        }
+        else
+        {
+            Class valueClass = self.valueClass;
+            while (valueClass && valueClass != [NSObject class]) {
+                Class cellClass = [XEFormSetting sharedSetting].cellClassesForRowClasses[NSStringFromClass(valueClass)];
+                if (cellClass)
+                {
+                    return cellClass;
+                }
+                valueClass = [valueClass superclass];
+            }
+            return [XEFormSetting sharedSetting].cellClassesForRowTypes[XEFormRowTypeDefault];
+        }
+    }
+    return _cellClass;
 }
 
 @end

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, XEFormNavigationDirection) {
+    XEFormNavigationDirectionPrevious = 0,
+    XEFormNavigationDirectionNext
+};
+
 @interface XEFormNavigationAccessoryView : UIToolbar
 
 @property (nonatomic, strong) UIBarButtonItem *previousButton;

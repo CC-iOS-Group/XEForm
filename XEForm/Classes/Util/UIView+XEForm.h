@@ -12,6 +12,8 @@
 
 @interface UIView(XEForm)
 
+- (UIView *)findFirstResponder;
+
 - (XEFormBaseCell *)formCell;
 
 @end

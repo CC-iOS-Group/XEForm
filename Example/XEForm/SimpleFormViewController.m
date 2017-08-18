@@ -11,6 +11,8 @@
 #import <XEForm/XEFormController.h>
 #import <XEForm/XEFormRowObject.h>
 
+#import "SimpleForm.h"
+
 @interface SimpleFormViewController ()
 
 @end
@@ -33,7 +35,12 @@
     // Do any additional setup after loading the view.
     self.title = @"一级菜单";
 
+    SimpleForm *form = [[SimpleForm alloc] init];
     
+    form.secondForm2.rows = @[@"test"];
+    form.rows = @[@"secondForm", @"secondForm2", @"textInput", @"textInline", @"textView", @"subTextView"];
+    
+    self.formController.form = form;
 }
 
 

@@ -11,14 +11,13 @@
 #import "XEFormControllerDelegate.h"
 #import "XEFormRowViewControllerDelegate.h"
 #import "XEFormRowCellDelegate.h"
-
-typedef NS_ENUM(NSUInteger, XEFormNavigationDirection) {
-    XEFormNavigationDirectionPrevious = 0,
-    XEFormNavigationDirectionNext
-};
+#import "XEFormNavigationAccessoryView.h"
 
 @class XEFormController;
 
 @interface XEFormViewController : UIViewController<XEFormRowViewControllerDelegate, XEFormControllerDelegate, XEFormRowCellDelegate>
+
+
+@property (nonatomic, strong) XEFormNavigationAccessoryView *navigationAccessoryView;
 
 @end

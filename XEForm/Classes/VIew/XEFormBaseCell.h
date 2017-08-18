@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "XEFormRowCellDelegate.h"
+#import "XEFormNavigationAccessoryView.h"
 
 @interface XEFormBaseCell : UITableViewCell
 
@@ -21,8 +22,9 @@
 
 - (void)setUp;
 - (void)update;
-- (XEFormBaseCell *)nextCell;
+- (XEFormBaseCell *)nextCellWithDirection:(XEFormNavigationDirection)direction;
 - (UITableView *)tableView;
+- (void)updateRowValueFromOther;
 
 
 + (CGFloat)heightForRow:(XEFormRowObject *)row width:(CGFloat)width;

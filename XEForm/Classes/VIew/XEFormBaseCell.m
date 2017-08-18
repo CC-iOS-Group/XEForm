@@ -16,6 +16,7 @@
 #import "XEFormSetting.h"
 #import "XEForm.h"
 #import "XEFormCellAccessoryView.h"
+#import "XEFormViewController.h"
 
 @interface XEFormBaseCell ()
 {
@@ -114,35 +115,94 @@
     [self layoutIfNeeded];
 }
 
+- (void)updateRowValueFromOther
+{
+    
+    
+}
+
+-(UIView *)inputAccessoryView
+{
+    if(![self canBecomeFirstResponder])
+    {
+        return nil;
+    }
+    else
+    {
+        XEFormBaseCell *nextCell = [self nextCellWithDirection:XEFormNavigationDirectionNext];
+        XEFormBaseCell *previousCell = [self nextCellWithDirection:XEFormNavigationDirectionPrevious];
+        
+        if([self.delegate isKindOfClass:[XEFormViewController class]])
+        {
+            XEFormViewController *formVC = (XEFormViewController *)self.delegate;
+            [formVC.navigationAccessoryView.previousButton setEnabled:(previousCell != nil)];
+            [formVC.navigationAccessoryView.nextButton setEnabled:(nextCell != nil)];
+            return formVC.navigationAccessoryView;
+        }
+        return nil;
+        
+    }
+}
+
 #pragma mark - Private method
 
-- (NSIndexPath *)indexPathForNextCell
+- (NSIndexPath *)indexPathForNextCellWithDirection:(XEFormNavigationDirection)direction
 {
     UITableView *tableView = self.tableView;
     NSIndexPath *indexPath = [tableView indexPathForCell:self];
     if (indexPath)
     {
-        //get next indexpath
-        if ([tableView numberOfRowsInSection:indexPath.section] > indexPath.row + 1)
-        {
-            return [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+        switch (direction) {
+            case XEFormNavigationDirectionNext:
+            {
+                //get next indexpath
+                if ([tableView numberOfRowsInSection:indexPath.section] > indexPath.row + 1)
+                {
+                    return [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+                }
+                else if ([tableView numberOfSections] > indexPath.section + 1)
+                {
+                    return [NSIndexPath indexPathForRow:0 inSection:indexPath.section + 1];
+                }
+            }
+                break;
+            case XEFormNavigationDirectionPrevious:
+            {
+                if (0 <= indexPath.row - 1)
+                {
+                    return [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+                }
+                else if (0 <= indexPath.section - 1)
+                {
+                    return [NSIndexPath indexPathForRow:0 inSection:indexPath.section - 1];
+                }
+            }
+                break;
+            default:
+                return nil;
+                break;
         }
-        else if ([tableView numberOfSections] > indexPath.section + 1)
-        {
-            return [NSIndexPath indexPathForRow:0 inSection:indexPath.section + 1];
-        }
+        
     }
     return nil;
 }
 
-- (XEFormBaseCell *)nextCell
+- (XEFormBaseCell *)nextCellWithDirection:(XEFormNavigationDirection)direction
 {
     UITableView *tableView = [self tableView];
-    NSIndexPath *indexPath = [self indexPathForNextCell];
+    NSIndexPath *indexPath = [self indexPathForNextCellWithDirection:direction];
     if (indexPath)
     {
         //get next cell
-        return (XEFormBaseCell *)[tableView cellForRowAtIndexPath:indexPath];
+        XEFormBaseCell *nextCell = [tableView cellForRowAtIndexPath:indexPath];
+        if(![nextCell canBecomeFirstResponder])
+        {
+            return [nextCell nextCellWithDirection:direction];
+        }
+        else
+        {
+            return nextCell;
+        }
     }
     return nil;
 }

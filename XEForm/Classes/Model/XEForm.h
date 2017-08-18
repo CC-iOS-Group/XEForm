@@ -32,8 +32,6 @@
 
 #pragma mark - Public method
 
-- (XEFormViewController *)formViewController;
-
 - (BOOL)canGetValueForKey:(NSString *)key;
 - (BOOL)canSetValueForKey:(NSString *)key;
 

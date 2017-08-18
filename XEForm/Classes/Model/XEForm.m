@@ -124,20 +124,6 @@
     return NO;
 }
 
--(XEFormViewController *)formViewController
-{
-    NSString *className = [NSString stringWithFormat:@"%@ViewController", NSStringFromClass([self class])];
-    Class subControlloerClass = NSClassFromString(className);
-    if (subControlloerClass == nil)
-    {
-        // create class through runtime
-        subControlloerClass = objc_allocateClassPair(NSClassFromString(@"XEFormViewController"), [className UTF8String], 0);
-    }
-    XEFormViewController *fromViewController = [[subControlloerClass alloc] init];
-    fromViewController.formController.form = self;
-    return fromViewController;
-}
-
 - (NSInteger)numberOfRowsInSection:(NSInteger)section
 {
     if (self.sections.count >= section+1)
@@ -331,9 +317,7 @@
     _sections = [XEFormSectionObject sectionsWithForm:self];
     _hasSetRows = YES;
     // TODO: update rows
-    
-    
-    
+
 }
 
 
@@ -345,6 +329,5 @@
     }
     return _sections;
 }
-
 
 @end

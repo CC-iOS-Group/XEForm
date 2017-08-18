@@ -26,4 +26,22 @@
     return nil;
 }
 
+- (UIView *)findFirstResponder
+{
+    if ([self isFirstResponder])
+    {
+        return self;
+    }
+    for (UIView *subview in self.subviews)
+    {
+        UIView *responder = [subview findFirstResponder];
+        if (responder)
+        {
+            return responder;
+        }
+    }
+    return nil;
+}
+
+
 @end

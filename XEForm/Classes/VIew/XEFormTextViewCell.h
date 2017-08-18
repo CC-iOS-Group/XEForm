@@ -17,6 +17,4 @@
 
 @property (nonatomic, strong) XEFormTextView *textView;
 
-- (void)updateRowValueFromOther;
-
 @end

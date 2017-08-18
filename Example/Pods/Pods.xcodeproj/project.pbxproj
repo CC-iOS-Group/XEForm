@@ -175,7 +175,7 @@
 		BE073FA41F33053200E346CF /* XEFormCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FA21F33053200E346CF /* XEFormCellAccessoryView.m */; };
 		BE073FB21F34932300E346CF /* XETextInputForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FB01F34932300E346CF /* XETextInputForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE073FB31F34932300E346CF /* XETextInputForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FB11F34932300E346CF /* XETextInputForm.m */; };
-		BE073FEC1F44698000E346CF /* XEFormNavigationAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FEA1F44698000E346CF /* XEFormNavigationAccessoryView.h */; };
+		BE073FEC1F44698000E346CF /* XEFormNavigationAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FEA1F44698000E346CF /* XEFormNavigationAccessoryView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE073FED1F44698000E346CF /* XEFormNavigationAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FEB1F44698000E346CF /* XEFormNavigationAccessoryView.m */; };
 		BE073FF01F44714900E346CF /* UIView+XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = BE073FEE1F44714900E346CF /* UIView+XEForm.h */; };
 		BE073FF11F44714900E346CF /* UIView+XEForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE073FEF1F44714900E346CF /* UIView+XEForm.m */; };

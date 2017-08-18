@@ -14,7 +14,6 @@
 #import "XEOptionsForm.h"
 #import "XETemplateForm.h"
 #import "XEFormUtils.h"
-#import "XEFormNavigationAccessoryView.h"
 #import "UIView+XEForm.h"
 
 #import <objc/runtime.h>
@@ -28,8 +27,6 @@
 }
 
 @property (nonatomic, strong, readwrite) XEFormController *formController;
-
-@property (nonatomic, strong) XEFormNavigationAccessoryView *navigationAccessoryView;
 
 @end
 
@@ -100,7 +97,6 @@
 {
     NSLog(@"%@ has dealloc", NSStringFromClass([self class]));
     
-    self.formController.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,14 +109,6 @@
     return self.formController.formTableView;
 }
 
--(UIView *)inputAccessoryViewForRow:(XEFormRowObject *)row
-{
-    XEFormBaseCell *cell = (XEFormBaseCell *)row;
-    
-    
-    
-    
-}
 
 #pragma mark - Notification handle
 
@@ -131,7 +119,7 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    UIView *firstResponderView = XEFormsFirstResponder(self.tableView);
+    UIView *firstResponderView = [self.tableView findFirstResponder];
     XEFormBaseCell *cell = [firstResponderView formCell];
     if (cell)
     {
@@ -184,30 +172,45 @@
 #pragma mark - Navigation Between Fields
 
 
--(void)rowNavigationAction:(UIBarButtonItem *)sender
+-(void)rowNavigationNextAction
 {
  
+    [self navigateToDirection: XEFormNavigationDirectionNext];
     
+}
+
+-(void)rowNavigationPreviousAction
+{
+    
+    [self navigateToDirection: XEFormNavigationDirectionPrevious];
     
 }
 
 -(void)rowNavigationDone:(UIBarButtonItem *)sender
 {
- 
+    // cell which is first responder
+    UIView *firstResponderView = [self.tableView findFirstResponder];
+    XEFormBaseCell *cell = [firstResponderView formCell];
+    [cell updateRowValueFromOther];
     
-    
+    [self.tableView endEditing:YES];
 }
 
 
 -(void)navigateToDirection:(XEFormNavigationDirection)direction
 {
-    
-    
-}
-
-
--(XEFormRowObject *)nextRowObjectForRow:(XEFormRowObject*)currentRow withDirection:(XEFormNavigationDirection)direction
-{
+    UIView *firstResponderView = [self.tableView findFirstResponder];
+    XEFormBaseCell *cell = [firstResponderView formCell];
+    XEFormBaseCell *nextCell = [cell nextCellWithDirection:direction];
+    if (nextCell)
+    {
+        if ([nextCell canBecomeFirstResponder])
+        {
+            NSIndexPath * nextIndexPath = [self.tableView indexPathForCell:nextCell];
+            [self.tableView scrollToRowAtIndexPath:nextIndexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+            [nextCell becomeFirstResponder];
+        }
+    }
     
 }
 
@@ -256,7 +259,7 @@
     if (nil == _formController)
     {
         _formController = [[XEFormController alloc] init];
-        _formController.delegate = self;
+        _formController.formViewController = self;
     }
     return _formController;
 }
@@ -267,9 +270,9 @@
     {
         _navigationAccessoryView = [XEFormNavigationAccessoryView new];
         _navigationAccessoryView.previousButton.target = self;
-        _navigationAccessoryView.previousButton.action = @selector(rowNavigationAction:);
+        _navigationAccessoryView.previousButton.action = @selector(rowNavigationPreviousAction);
         _navigationAccessoryView.nextButton.target = self;
-        _navigationAccessoryView.nextButton.action = @selector(rowNavigationAction:);
+        _navigationAccessoryView.nextButton.action = @selector(rowNavigationNextAction);
         _navigationAccessoryView.doneButton.target = self;
         _navigationAccessoryView.doneButton.action = @selector(rowNavigationDone:);
         _navigationAccessoryView.tintColor = self.view.tintColor;
