@@ -57,6 +57,15 @@
         [self.tableView deselectRowAtIndexPath:selected animated:YES];
     }
     
+    if([self.formController.form isKindOfClass:NSClassFromString(@"XETextInputForm")])
+    {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        if(cell)
+        {
+            [cell becomeFirstResponder];
+        }
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(contentSizeCategoryChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification

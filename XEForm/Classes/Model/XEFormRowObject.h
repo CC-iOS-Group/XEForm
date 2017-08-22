@@ -41,7 +41,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) BOOL isSortable;
 @property (nonatomic, assign) BOOL isInline;
-@property (nonatomic, copy) void (^action)(id sender);
+@property (nonatomic, copy) void (^action)(id sender, void(^successBlock)(), void(^failureBlock)(NSError *error));
 @property (nonatomic, strong) id segue;
 @property (nonatomic, strong) XEFormSpecialCellSetting *cellSetting;
 

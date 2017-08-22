@@ -66,7 +66,6 @@ static CGFloat kDefault_cellHeight =                44.;
 static CGFloat kDefault_headerFooterTitleFont =     13.;
 static CGFloat kDefault_cellTitleFont =             15.;
 static CGFloat kDefault_cellDescriptionFont =       13.;
-static CGFloat kDefault_textInputFontFont =         15.;
 static CGFloat kDefault_cellTextFiledFont =         15.;
 static CGFloat kDefault_cellTextViewFont =          15.;
 

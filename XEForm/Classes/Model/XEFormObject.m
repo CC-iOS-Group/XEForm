@@ -124,19 +124,6 @@
     return NO;
 }
 
-- (NSInteger)numberOfRowsInSection:(NSInteger)section
-{
-    if (self.sections.count >= section+1)
-    {
-        XEFormSectionObject *sectionObject = [self.sections objectAtIndex:section];
-        return sectionObject.rows.count;
-    }
-    else
-    {
-        return 0;
-    }
-    
-}
 
 -(XEFormRowObject *)rowObjectForKey:(NSString *)key
 {
@@ -158,6 +145,77 @@
 {
     return [NSSet set];
 }
+
+#pragma mark - Data
+
+- (NSUInteger)numberOfSections
+{
+    return [self.sections count];
+}
+
+- (XEFormSectionObject *)sectionAtIndex:(NSUInteger)index
+{
+    if(index+1 <= [self numberOfSections])
+    {
+        return self.sections[index];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSUInteger)numberOfRowsInSection:(NSUInteger)index
+{
+    XEFormSectionObject *section = [self sectionAtIndex:index];
+    
+    return section.rows.count;
+}
+
+- (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath
+{
+    XEFormSectionObject *sectionObject = [self sectionAtIndex:indexPath.section];
+    NSArray *sectionRows = sectionObject.rows;
+    if(sectionRows.count >= indexPath.row+1)
+    {
+        return [sectionRows objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row
+{
+    NSUInteger sectionIndex = 0;
+    for (XEFormSectionObject *section in self.sections)
+    {
+        NSUInteger rowIndex = [section.rows indexOfObject:row];
+        if (rowIndex != NSNotFound)
+        {
+            return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
+        }
+        sectionIndex ++;
+    }
+    return nil;
+}
+
+- (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block
+{
+    NSUInteger sectionIndex = 0;
+    for (XEFormSectionObject *section in self.sections)
+    {
+        NSUInteger fieldIndex = 0;
+        for (XEFormRowObject *row in section.rows)
+        {
+            block(row, [NSIndexPath indexPathForRow:fieldIndex inSection:sectionIndex]);
+            fieldIndex ++;
+        }
+        sectionIndex ++;
+    }
+}
+
 
 #pragma mark - Private method
 

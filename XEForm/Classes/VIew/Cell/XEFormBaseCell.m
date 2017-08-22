@@ -87,7 +87,7 @@
 
 - (void)update
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:self];
+    NSIndexPath *indexPath = [self.row.form indexPathForRow:self.row];
     if (indexPath)
     {
         if(indexPath.row == 0)

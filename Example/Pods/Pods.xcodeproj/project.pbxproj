@@ -1047,29 +1047,7 @@
 		BE32FE441EFBC59E00F74DDB /* VIew */ = {
 			isa = PBXGroup;
 			children = (
-				BE32FE571EFBCCAF00F74DDB /* XEFormRowCellDelegate.h */,
-				BE32FE591EFBCD2B00F74DDB /* XEFormBaseCell.h */,
-				BE32FE5A1EFBCD2B00F74DDB /* XEFormBaseCell.m */,
-				BE32FE5D1EFBD09700F74DDB /* XEFormDefaultCell.h */,
-				BE32FE5E1EFBD09700F74DDB /* XEFormDefaultCell.m */,
-				BE32FE611EFBD0D000F74DDB /* XEFormSwitchCell.h */,
-				BE32FE621EFBD0D000F74DDB /* XEFormSwitchCell.m */,
-				BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */,
-				BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */,
-				BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */,
-				BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */,
-				BEB82C961F0B8C00008C1947 /* XEFormStepperCell.h */,
-				BEB82C971F0B8C00008C1947 /* XEFormStepperCell.m */,
-				BEB82C9C1F0B903A008C1947 /* XEFormSliderCell.h */,
-				BEB82C9D1F0B903A008C1947 /* XEFormSliderCell.m */,
-				BEB82CA01F0BA0D4008C1947 /* XEFormDatePickerCell.h */,
-				BEB82CA11F0BA0D4008C1947 /* XEFormDatePickerCell.m */,
-				BEB82CA71F0C877A008C1947 /* XEFormImagePickerCell.h */,
-				BEB82CA81F0C877A008C1947 /* XEFormImagePickerCell.m */,
-				BEB82CAB1F0DDEFF008C1947 /* XEFormOptionPickerCell.h */,
-				BEB82CAC1F0DDEFF008C1947 /* XEFormOptionPickerCell.m */,
-				BEB82CAF1F0DECBD008C1947 /* XEFormSegmentsCell.h */,
-				BEB82CB01F0DECBD008C1947 /* XEFormSegmentsCell.m */,
+				BEDDC8AE1F4C23DA00C6591D /* Cell */,
 				BE073F881F2B333000E346CF /* XEFormHeaderFooterView.h */,
 				BE073F891F2B333000E346CF /* XEFormHeaderFooterView.m */,
 				BE073FA11F33053200E346CF /* XEFormCellAccessoryView.h */,
@@ -1109,6 +1087,36 @@
 				BE073FB11F34932300E346CF /* XETextInputForm.m */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BEDDC8AE1F4C23DA00C6591D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE32FE571EFBCCAF00F74DDB /* XEFormRowCellDelegate.h */,
+				BE32FE591EFBCD2B00F74DDB /* XEFormBaseCell.h */,
+				BE32FE5A1EFBCD2B00F74DDB /* XEFormBaseCell.m */,
+				BE32FE5D1EFBD09700F74DDB /* XEFormDefaultCell.h */,
+				BE32FE5E1EFBD09700F74DDB /* XEFormDefaultCell.m */,
+				BE32FE611EFBD0D000F74DDB /* XEFormSwitchCell.h */,
+				BE32FE621EFBD0D000F74DDB /* XEFormSwitchCell.m */,
+				BE37D0521F03C7FD0061329A /* XEFormTextFieldCell.h */,
+				BE37D0531F03C7FD0061329A /* XEFormTextFieldCell.m */,
+				BE10C7BA1F09F4E8007B3B63 /* XEFormTextViewCell.h */,
+				BE10C7BB1F09F4E8007B3B63 /* XEFormTextViewCell.m */,
+				BEB82C961F0B8C00008C1947 /* XEFormStepperCell.h */,
+				BEB82C971F0B8C00008C1947 /* XEFormStepperCell.m */,
+				BEB82C9C1F0B903A008C1947 /* XEFormSliderCell.h */,
+				BEB82C9D1F0B903A008C1947 /* XEFormSliderCell.m */,
+				BEB82CA01F0BA0D4008C1947 /* XEFormDatePickerCell.h */,
+				BEB82CA11F0BA0D4008C1947 /* XEFormDatePickerCell.m */,
+				BEB82CA71F0C877A008C1947 /* XEFormImagePickerCell.h */,
+				BEB82CA81F0C877A008C1947 /* XEFormImagePickerCell.m */,
+				BEB82CAB1F0DDEFF008C1947 /* XEFormOptionPickerCell.h */,
+				BEB82CAC1F0DDEFF008C1947 /* XEFormOptionPickerCell.m */,
+				BEB82CAF1F0DECBD008C1947 /* XEFormSegmentsCell.h */,
+				BEB82CB01F0DECBD008C1947 /* XEFormSegmentsCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C8865E6FEF7AB016FF754F08F41F09E4 /* Pods-XEForm_Example */ = {

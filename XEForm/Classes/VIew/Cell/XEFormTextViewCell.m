@@ -118,6 +118,8 @@
 
 -(void)setUp
 {
+    [super setUp];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self.contentView addSubview:self.titleLabel];

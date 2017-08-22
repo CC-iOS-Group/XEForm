@@ -34,11 +34,6 @@
     _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(tapSaveButton)];
     _rightItem.enabled = NO;
     [self.navigationItem setRightBarButtonItem:_rightItem];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if(cell)
-    {
-        [cell becomeFirstResponder];
-    }
 
 }
 

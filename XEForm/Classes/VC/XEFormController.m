@@ -90,66 +90,6 @@
     [invocation invokeWithTarget:self.formViewController];
 }
 
-#pragma mark - Data
-
-- (NSUInteger)numberOfSections
-{
-    return [self.form.sections count];
-}
-
-- (XEFormSectionObject *)sectionAtIndex:(NSUInteger)index
-{
-    return self.form.sections[index];
-}
-
-- (NSUInteger)numberOfRowsInSection:(NSUInteger)index
-{
-    return [self sectionAtIndex:index].rows.count;
-}
-
-- (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath
-{
-    XEFormSectionObject *sectionObject = [self sectionAtIndex:indexPath.section];
-    NSArray *sectionRows = sectionObject.rows;
-    if(sectionRows.count >= indexPath.row+1)
-    {
-        return [sectionRows objectAtIndex:indexPath.row];
-    }
-    else
-    {
-        return nil;
-    }
-}
-
-- (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row
-{
-    NSUInteger sectionIndex = 0;
-    for (XEFormSectionObject *section in self.form.sections)
-    {
-        NSUInteger rowIndex = [section.rows indexOfObject:row];
-        if (rowIndex != NSNotFound)
-        {
-            return [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
-        }
-        sectionIndex ++;
-    }
-    return nil;
-}
-
-- (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block
-{
-    NSUInteger sectionIndex = 0;
-    for (XEFormSectionObject *section in self.form.sections)
-    {
-        NSUInteger fieldIndex = 0;
-        for (XEFormRowObject *row in section.rows)
-        {
-            block(row, [NSIndexPath indexPathForRow:fieldIndex inSection:sectionIndex]);
-            fieldIndex ++;
-        }
-        sectionIndex ++;
-    }
-}
 
 #pragma mark - Action Handle
 
@@ -193,7 +133,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self numberOfSections];
+    return [self.form numberOfSections];
 }
 
 //-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -208,7 +148,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self numberOfRowsInSection:section];
+    return [self.form numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)cellForRow:(XEFormRowObject *)row
@@ -236,7 +176,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XEFormRowObject *row = [self rowForIndexPath:indexPath];
+    XEFormRowObject *row = [self.form rowForIndexPath:indexPath];
     Class cellClass = row.cellClass;
     if([cellClass respondsToSelector:@selector(heightForRow:width:)])
     {
@@ -257,7 +197,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XEFormBaseCell *cell = (XEFormBaseCell *)[self cellForRow:[self rowForIndexPath:indexPath]];
+    XEFormBaseCell *cell = (XEFormBaseCell *)[self cellForRow:[self.form rowForIndexPath:indexPath]];
     if([self.formViewController isKindOfClass:[XEFormViewController class]])
     {
         // TODO: Maybe not elegance
@@ -286,7 +226,7 @@
 
 -(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
-    XEFormSectionObject *section = [self sectionAtIndex:sourceIndexPath.section];
+    XEFormSectionObject *section = [self.form sectionAtIndex:sourceIndexPath.section];
     if (sourceIndexPath.section == proposedDestinationIndexPath.section &&
         proposedDestinationIndexPath.row < (NSInteger)[section.rows count] - 1)
     {
@@ -297,7 +237,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XEFormSectionObject *section = [self sectionAtIndex:indexPath.section];
+    XEFormSectionObject *section = [self.form sectionAtIndex:indexPath.section];
     if ([self.form isKindOfClass:[XETemplateForm class]])
     {
         if (indexPath.row < section.rows.count -1)
@@ -320,13 +260,13 @@
     }
     
     //handle view or class
-    id header = [self sectionAtIndex:section].header;
+    id header = [self.form sectionAtIndex:section].header;
     if ([header isKindOfClass:[UIView class]])
     {
         return header;
     }
     
-    NSString *sectionHeaderStr = [[self sectionAtIndex:section].header description];
+    NSString *sectionHeaderStr = [[self.form sectionAtIndex:section].header description];
     if (sectionHeaderStr)
     {
         NSAttributedString *headerAttributedStr =
@@ -348,13 +288,13 @@
     }
     
     //handle view or class
-    UIView *header = [self sectionAtIndex:section].header;
+    UIView *header = [self.form sectionAtIndex:section].header;
     if ([header isKindOfClass:[UIView class]])
     {
         return header.frame.size.height ?: 2*[XEFormSetting sharedSetting].cellSetting.offsetY;
     }
     
-    NSString *sectionHeaderStr = [[self sectionAtIndex:section].header description];
+    NSString *sectionHeaderStr = [[self.form sectionAtIndex:section].header description];
     if (sectionHeaderStr)
     {
         NSAttributedString *headerAttributedStr =
@@ -375,13 +315,13 @@
     }
     
     //handle view or class
-    id footer = [self sectionAtIndex:section].footer;
+    id footer = [self.form sectionAtIndex:section].footer;
     if ([footer isKindOfClass:[UIView class]])
     {
         return footer;
     }
     
-    NSString *sectionFooterStr = [[self sectionAtIndex:section].footer description];
+    NSString *sectionFooterStr = [[self.form sectionAtIndex:section].footer description];
     if (sectionFooterStr)
     {
         NSAttributedString *footerAttributedStr =
@@ -403,13 +343,13 @@
     }
     
     //handle view or class
-    UIView *footer = [self sectionAtIndex:section].footer;
+    UIView *footer = [self.form sectionAtIndex:section].footer;
     if ([footer isKindOfClass:[UIView class]])
     {
         return footer.frame.size.height ?: 0.01;
     }
     
-    NSString *sectionFooterStr = [[self sectionAtIndex:section].footer description];
+    NSString *sectionFooterStr = [[self.form sectionAtIndex:section].footer description];
     if (sectionFooterStr)
     {
         NSAttributedString *footerAttributedStr =
@@ -423,7 +363,7 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XEFormRowObject *row = [self rowForIndexPath:indexPath];
+    XEFormRowObject *row = [self.form rowForIndexPath:indexPath];
     
     // set form row
      ((XEFormBaseCell *)cell).row = row;
@@ -453,7 +393,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(__unused UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XEFormSectionObject *section = [self sectionAtIndex:indexPath.section];
+    XEFormSectionObject *section = [self.form sectionAtIndex:indexPath.section];
     if ([self.form isKindOfClass:[XETemplateForm class]])
     {
         if (indexPath.row == (NSInteger)[section.rows count] - 1)

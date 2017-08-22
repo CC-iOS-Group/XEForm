@@ -23,7 +23,7 @@
     NSInteger sectionIndex = 0, rowIndex = 0;
     for (XEFormRowObject *row in form.rows)
     {
-        XEForm *subform = nil;
+        XEFormObject *subform = nil;
         if(row.options && row.isInline)
         {
             subform = [[XEOptionsForm alloc] initWithRow:row];

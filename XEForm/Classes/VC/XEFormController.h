@@ -25,11 +25,7 @@
 @property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowClasses;
 @property (nonatomic, assign) UIEdgeInsets originalTableContentInset;
 
-- (NSUInteger)numberOfSections;
-- (NSUInteger)numberOfRowsInSection:(NSUInteger)section;
-- (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath;
-- (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row;
-- (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block;
+
 
 - (void)performAction:(SEL)selector withSender:(id)sender;
 - (UIViewController *)tableViewController;

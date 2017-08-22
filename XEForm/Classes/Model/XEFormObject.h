@@ -35,7 +35,12 @@
 - (BOOL)canGetValueForKey:(NSString *)key;
 - (BOOL)canSetValueForKey:(NSString *)key;
 
-- (NSInteger)numberOfRowsInSection:(NSInteger)section;
+- (NSUInteger)numberOfSections;
+- (XEFormSectionObject *)sectionAtIndex:(NSUInteger)index;
+- (NSUInteger)numberOfRowsInSection:(NSUInteger)section;
+- (XEFormRowObject *)rowForIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForRow:(XEFormRowObject *)row;
+- (void)enumerateRowsWithBlock:(void (^)(XEFormRowObject *row, NSIndexPath *indexPath))block;
 
 - (void)addNewRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)removeRowAtIndexPath:(NSIndexPath *)indexPath;

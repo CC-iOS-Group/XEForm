@@ -183,7 +183,11 @@
         self.row.value = @(![self.row.value boolValue]);
         if (self.row.action)
         {
-            self.row.action(self);
+            self.row.action(self, ^{
+                
+            }, ^(NSError *error) {
+                
+            });
         }
         if(![[self class] isSubclassOfClass:[XEFormDefaultCell class]])
         {
@@ -207,7 +211,11 @@
     else if (self.row.action && (![self.row isSubform] || !self.row.options))
     {
         [XEFormsFirstResponder(tableView) resignFirstResponder];
-        self.row.action(self);
+        self.row.action(self, ^{
+            
+        }, ^(NSError *error) {
+            
+        });
         [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
     }
     else if(self.row.segue && [self.row.segue class] != self.row.segue)

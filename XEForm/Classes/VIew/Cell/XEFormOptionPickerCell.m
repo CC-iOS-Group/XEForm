@@ -100,7 +100,11 @@
     
     if (self.row.action)
     {
-        self.row.action(self);
+        self.row.action(self, ^{
+            
+        }, ^(NSError *error) {
+            
+        });
     }
 }
 

@@ -27,10 +27,14 @@
             {
                 // Pass the expected cell as the sender
                 XEFormController *formController = row.form.formController;
-                [formController enumerateRowsWithBlock:^(XEFormRowObject *aRow, NSIndexPath *indexPath) {
+                [self enumerateRowsWithBlock:^(XEFormRowObject *aRow, NSIndexPath *indexPath) {
                     if([aRow.key isEqualToString:row.key])
                     {
-                        row.action([formController.formTableView cellForRowAtIndexPath:indexPath]);
+                        row.action([formController.formTableView cellForRowAtIndexPath:indexPath], ^{
+                            
+                        }, ^(NSError *error) {
+                            
+                        });
                     }
                 }];
             }
