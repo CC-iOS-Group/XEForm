@@ -67,5 +67,12 @@ UIKIT_EXTERN const CGFloat XEFormRowPaddingTop ;
 UIKIT_EXTERN const CGFloat XEFormRowPaddingBottom ;
 
 
+typedef NS_ENUM(NSUInteger, XEFormPickerType) {
+    XEFormPickerType_Sub,
+    XEFormPickerType_Inline,
+    XEFormPickerType_InputView,
+    XEFormPickerType_ActionSheet,
+    XEFormPickerType_AlertView,
+};
 
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class XEFormController, XEForm, XEFormRowObject;
+@class XEFormController, XEFormObject, XEFormRowObject;
 
 @interface XEFormSectionObject : NSObject
 
@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSMutableArray<XEFormRowObject *> *rows;
 @property (nonatomic, assign) BOOL isSortable;
 
-+ (NSArray *)sectionsWithForm:(XEForm *)form;
++ (NSArray *)sectionsWithForm:(XEFormObject *)form;
 
 @end

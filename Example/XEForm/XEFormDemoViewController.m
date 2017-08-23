@@ -9,10 +9,11 @@
 #import "XEFormDemoViewController.h"
 
 #import <XEForm/XEForm.h>
+#import <YYText/YYLabel.h>
 
 #import "SimpleFormViewController.h"
 
-@interface XEFormDemoViewController ()
+@interface XEFormDemoViewController ()<XEFormDelegate>
 
 @end
 
@@ -25,6 +26,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.title = @"首页";
+    [XEFormSetting sharedSetting].delegagte = self;
 }
 
 - (IBAction)formButtonClicked:(UIButton *)sender {
@@ -33,6 +35,20 @@
     [self.navigationController pushViewController:rootViewController animated:YES];
 }
 
+
+-(void)setImageView:(UIImageView *)imageView withURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder
+{
+    [imageView setImage:placeholder];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:imageURL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        UIImage *image = [UIImage imageWithData:data];
+        [imageView setImage: image];
+    }];
+}
+
+-(Class<XEFormLabelDelegate>)xeFormLabelClass
+{
+    return [YYLabel class];
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -3,10 +3,13 @@ use_frameworks!
 target 'XEForm_Example' do
   pod 'XEForm', :path => '../'
 
+  pod 'YYText'
+
   target 'XEForm_Tests' do
     inherit! :search_paths
 
     pod 'Kiwi'
-  pod 'FBSnapshotTestCase'
+    pod 'FBSnapshotTestCase'
+
   end
 end

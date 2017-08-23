@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "XEFormConst.h"
+#import "XEFormLabelDelegate.h"
+
 @interface XEFormHeaderFooterViewSetting : NSObject
 
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
@@ -32,8 +35,12 @@
 
 @property (nonatomic, assign) CGFloat cellHeight;
 
-/** Logo View */
-@property (nonatomic, assign)CGSize logoSize;
+
+- (XEFormPickerType)pickerType;
+- (void)setPickerType:(XEFormPickerType)pickerType;
+
+- (UITableViewCellStyle)cellStyle;
+- (void)setCellStyle:(UITableViewCellStyle)cellStyle;
 
 @end
 
@@ -55,12 +62,24 @@
 
 @end
 
+@protocol XEFormDelegate <NSObject>
+
+- (void)setImageView:(UIImageView *)imageView withURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder;
+
+@optional
+
+- (Class<XEFormLabelDelegate>)xeFormLabelClass;
+
+@end
+
 @interface XEFormSetting : NSObject
 
 + (instancetype)sharedSetting;
 
+/** Data setting*/
+@property (nonatomic, strong, readonly) NSSet *objectProperties;
 /** UI setting*/
-@property (nonatomic, strong) Class BaseViewController;
+@property (nonatomic, strong) Class baseViewControllerClass;
 
 @property (nonatomic, strong) XEFormHeaderFooterViewSetting *headerFooterViewSetting;
 
@@ -69,8 +88,11 @@
 /** Customize Class*/
 @property (nonatomic, strong) NSMutableDictionary *cellClassesForRowTypes;
 @property (nonatomic, strong) NSMutableDictionary *cellClassesForRowClasses;
-@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowTypes;
-@property (nonatomic, strong) NSMutableDictionary *controllerClassesForRowClasses;
+@property (nonatomic, strong) NSMutableDictionary *viewControllerClassesForRowTypes;
+@property (nonatomic, strong) NSMutableDictionary *viewControllerClassesForRowClasses;
 
+@property (nonatomic, weak) id<XEFormDelegate> delegagte;
+
+- (Class<XEFormLabelDelegate>)xeFormLabelClass;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "XEFormBaseCell.h"
+#import "XEFormLabelDelegate.h"
 
 @interface XEFormDefaultCell : XEFormBaseCell
 
@@ -14,7 +15,7 @@
 @property (nonatomic, strong) UIView *rowContentView;
 @property (nonatomic, assign) UITableViewCellAccessoryType    rowAccessoryType;
 @property (nonatomic, strong) UIView *rowAccessoryView;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UIView<XEFormLabelDelegate> *titleLabel;
+@property (nonatomic, strong) UIView<XEFormLabelDelegate> *descriptionLabel;
 
 @end

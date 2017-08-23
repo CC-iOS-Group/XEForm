@@ -10,30 +10,12 @@
 
 #import "XEFormConst.h"
 #import "XEFormRowObject.h"
+#import "XEFormSetting.h"
 
 #import <objc/runtime.h>
 
 #pragma mark - UI
 
-static NSSet *NSObjectProperties;
-static NSArray *kExcludeProperties;
-
-static inline UIView *XEFormsFirstResponder(UIView *view)
-{
-    if ([view isFirstResponder])
-    {
-        return view;
-    }
-    for (UIView *subview in view.subviews)
-    {
-        UIView *responder = XEFormsFirstResponder(subview);
-        if (responder)
-        {
-            return responder;
-        }
-    }
-    return nil;
-}
 
 static inline CGFloat XEFormLabelMinFontSize(UILabel *label)
 {
@@ -84,31 +66,10 @@ static Class XEFormClassFromString(NSString *className)
     return cls;
 }
 
-static inline NSSet *getNSObjectProperties()
-{
-    // Get all NSObject properties
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // TODO: get kExcludeProperties from getNSObjectProperties
-        kExcludeProperties = @[@"rows", @"row", @"formController", @"propertyRows", @"sections"];
-        NSMutableSet *tempNSObjectProperties = [NSMutableSet setWithArray:@[@"description", @"debugDescription", @"hash", @"superclass"]];
-        unsigned int propertyCount;
-        objc_property_t *propertyList = class_copyPropertyList([NSObject class], &propertyCount);
-        for(unsigned int i = 0; i< propertyCount; i++)
-        {
-            objc_property_t property = propertyList[i];
-            const char *propertyName = property_getName(property);
-            [tempNSObjectProperties addObject:@(propertyName)];
-        }
-        free(propertyList);
-        NSObjectProperties = [tempNSObjectProperties copy];
-    });
-    return NSObjectProperties;
-}
-
 static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NSString **key, Class *rowValueClass, NSString **type)
 {
-    getNSObjectProperties();
+    NSSet *excludeProperties = [NSSet setWithObjects:@"rows", @"row", @"formController", @"propertyRows", @"sections", nil];
+    NSSet *objectProperties = [XEFormSetting sharedSetting].objectProperties;
     const char *propertyName = property_getName(property);
     *key = @(propertyName);
     // Ignore NSObject properties, unless overridden as readwrite
@@ -116,12 +77,12 @@ static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NS
     if (nil != readonly)
     {
         free(readonly);
-        if ([NSObjectProperties containsObject:*key] || [kExcludeProperties containsObject:*key])
+        if ([objectProperties containsObject:*key] || [excludeProperties containsObject:*key])
         {
             return NO;
         }
     }
-    if ([kExcludeProperties containsObject:*key])
+    if ([excludeProperties containsObject:*key])
     {
         return NO;
     }
@@ -179,8 +140,8 @@ static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NS
             valueType = XEFormRowTypeFloat;
         }
             break;
-        case '{':   //struct
-        case '(':   //union
+        case '{':   // struct
+        case '(':   // union
         {
             valueClass = [NSValue class];
             valueType = XEFormRowTypeLabel;
@@ -190,8 +151,8 @@ static inline BOOL XEFormRowObjectValueWithProperty(objc_property_t property, NS
         case 'c':   // char
         case 'C':   // char *
         case '[':   // array
-        case ':':   //selector
-        case '#':   //class
+        case ':':   // selector
+        case '#':   // class
         default:
         {
             valueClass = nil;

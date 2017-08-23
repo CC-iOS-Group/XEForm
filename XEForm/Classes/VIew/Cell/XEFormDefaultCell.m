@@ -14,7 +14,7 @@
 #import "XEFormRowViewControllerDelegate.h"
 #import "XEFormViewController.h"
 #import "XEFormSetting.h"
-#import "UIImageView+XEForm.h"
+#import "UIView+XEForm.h"
 
 
 @interface XEFormDefaultCell ()
@@ -66,8 +66,8 @@
     // Row Logo View
     leftConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:[XEFormSetting sharedSetting].cellSetting.offsetX];
     NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.rowContentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.height];
-    _logoViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoSize.width];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder.size.height];
+    _logoViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.rowLogoView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1. constant:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder.size.width];
     [self addConstraints:@[leftConstraint, centerYConstraint, _logoViewWidthConstraint, heightConstraint]];
     
     // Title Label
@@ -131,14 +131,16 @@
     // Update layout
     if (self.row.logoStr)
     {
-        _logoViewWidthConstraint.constant = [XEFormSetting sharedSetting].cellSetting.logoSize.width;
+        _logoViewWidthConstraint.constant = [XEFormSetting sharedSetting].cellSetting.logoPlaceholder.size.width;
         _titleLabelLeftConstraint.constant = [XEFormSetting sharedSetting].cellSetting.offsetX;
         NSURL *logoUrl = [NSURL URLWithString:self.row.logoStr];
         if (logoUrl)
         {
             if (logoUrl.host)
             {
-                [self.rowLogoView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
+                [[XEFormSetting sharedSetting].delegagte setImageView:self.rowLogoView withURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
+//                [self.rowLogoView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
+//                [self.imageView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
             }
             else if ([logoUrl isFileURL])
             {
@@ -161,13 +163,11 @@
     if(self.row.rowDescription)
     {
         _descriptionLabelRightConstraint.constant = -[XEFormSetting sharedSetting].cellSetting.offsetX;
-//        [self addConstraint:_descriptionLabelWidthConstraint];
         
     }
     else
     {
         _descriptionLabelRightConstraint.constant = 0;
-//        [self removeConstraint:_descriptionLabelWidthConstraint];
     }
     
     [super update];
@@ -179,7 +179,7 @@
     if([self.row.type isEqualToString:XEFormRowTypeBoolean] ||
        [self.row.type isEqualToString:XEFormRowTypeOption])
     {
-        [XEFormsFirstResponder(tableView) resignFirstResponder];
+        [[tableView findFirstResponder] resignFirstResponder];
         self.row.value = @(![self.row.value boolValue]);
         if (self.row.action)
         {
@@ -210,7 +210,7 @@
     }
     else if (self.row.action && (![self.row isSubform] || !self.row.options))
     {
-        [XEFormsFirstResponder(tableView) resignFirstResponder];
+        [[tableView findFirstResponder] resignFirstResponder];
         self.row.action(self, ^{
             
         }, ^(NSError *error) {
@@ -220,7 +220,7 @@
     }
     else if(self.row.segue && [self.row.segue class] != self.row.segue)
     {
-        [XEFormsFirstResponder(tableView) resignFirstResponder];
+        [[tableView findFirstResponder] resignFirstResponder];
         if ([self.row.segue isKindOfClass:[UIStoryboardSegue class]])
         {
             [controller prepareForSegue:self.row.segue sender:self];
@@ -233,7 +233,7 @@
     }
     else if ([self.row isSubform])
     {
-        [XEFormsFirstResponder(tableView) resignFirstResponder];
+        [[tableView findFirstResponder] resignFirstResponder];
         UIViewController *subcontroller = nil;
         if ([self.row.valueClass isSubclassOfClass:[UIViewController class]])
         {
@@ -313,22 +313,24 @@
     return _rowContentView;
 }
 
--(UILabel *)titleLabel
+-(UIView<XEFormLabelDelegate> *)titleLabel
 {
     if (nil == _titleLabel)
     {
-        _titleLabel = [[UILabel alloc] init];
+        Class XEFormLabel = [XEFormSetting sharedSetting].xeFormLabelClass;
+        _titleLabel = [[XEFormLabel alloc] init];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         
     }
     return _titleLabel;
 }
 
--(UILabel *)descriptionLabel
+-(UIView<XEFormLabelDelegate> *)descriptionLabel
 {
     if (nil == _descriptionLabel)
     {
-        _descriptionLabel = [[UILabel alloc] init];
+        Class XEFormLabel = [XEFormSetting sharedSetting].xeFormLabelClass;
+        _descriptionLabel = [[XEFormLabel alloc] init];
         _descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
         
     }

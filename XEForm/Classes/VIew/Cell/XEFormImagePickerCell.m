@@ -11,6 +11,7 @@
 #import "XEFormConst.h"
 #import "XEFormRowObject.h"
 #import "XEFormUtils.h"
+#import "UIView+XEForm.h"
 
 @interface XEFormImagePickerCell ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
@@ -70,7 +71,7 @@
 
 -(void)didSelectWithTableView:(UITableView *)tableView controller:(UIViewController *)controller
 {
-    [XEFormsFirstResponder(tableView) resignFirstResponder];
+    [[tableView findFirstResponder] resignFirstResponder];
     [tableView deselectRowAtIndexPath:tableView.indexPathForSelectedRow animated:YES];
     
     if (!TARGET_IPHONE_SIMULATOR &&

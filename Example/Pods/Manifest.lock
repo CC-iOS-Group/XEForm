@@ -6,11 +6,13 @@ PODS:
     - FBSnapshotTestCase/Core
   - Kiwi (2.4.0)
   - XEForm (0.1.0)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
   - Kiwi
   - XEForm (from `../`)
+  - YYText
 
 EXTERNAL SOURCES:
   XEForm:
@@ -19,8 +21,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  XEForm: 665b320dcc60ab22734275105a9ad160d74423f6
+  XEForm: fda3251f1cf46362e98e1f00af076765a57e7f1e
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 4db92b106dfcaf706a6d6acf403b57c935b68615
+PODFILE CHECKSUM: 5222e40d10926e25185e41efcf033d085c0efb82
 
 COCOAPODS: 1.1.1

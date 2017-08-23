@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
     
     XEFormSetting *setting = [XEFormSetting sharedSetting];
-    setting.BaseViewController = NSClassFromString(@"BaseViewController");
+    setting.baseViewControllerClass = NSClassFromString(@"BaseViewController");
     setting.cellSetting.logoPlaceholder = [UIImage imageNamed:@"Nitendo"];
     
     return YES;

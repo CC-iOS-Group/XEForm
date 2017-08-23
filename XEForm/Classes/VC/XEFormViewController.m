@@ -156,7 +156,7 @@
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    UIView *firstResponderView = XEFormsFirstResponder(self.tableView);
+    UIView *firstResponderView = [self.tableView findFirstResponder];
     XEFormBaseCell *cell = [firstResponderView formCell];
     if (cell)
     {

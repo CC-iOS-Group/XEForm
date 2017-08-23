@@ -18,6 +18,7 @@
 #import "XEFormViewController.h"
 #import "XEFormHeaderFooterView.h"
 #import "XEFormSetting.h"
+#import "UIView+XEForm.h"
 
 @interface XEFormController ()
 
@@ -167,7 +168,7 @@
     else
     {
 
-        UITableViewCellStyle style  = row.cellStyle;
+        UITableViewCellStyle style  = row.cellSetting.cellStyle;
         
         //don't recycle cells - it would make things complicated
         return [[cellClass alloc] initWithStyle:style reuseIdentifier:NSStringFromClass(cellClass)];
@@ -413,7 +414,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     //dismiss keyboard
-    [XEFormsFirstResponder(self.formTableView) resignFirstResponder];
+    [[self.formTableView findFirstResponder] resignFirstResponder];
     
     //forward to delegate
     if ([self.formViewController respondsToSelector:_cmd])
@@ -502,7 +503,7 @@
     return nil;
 }
 
--(void)setForm:(XEForm *)form
+-(void)setForm:(XEFormObject *)form
 {
     _form = form;
     _form.formController = self;

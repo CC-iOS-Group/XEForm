@@ -20,6 +20,15 @@
 
 @implementation XEFormHeaderFooterViewSetting
 
+
+@end
+
+@interface XEFormCommonCellSetting ()
+{
+    XEFormPickerType _pickerType;
+    UITableViewCellStyle _cellStyle;
+}
+
 @end
 
 @implementation XEFormCommonCellSetting
@@ -31,6 +40,33 @@
     return _cellHeight;
 }
 
+-(XEFormPickerType)pickerType
+{
+    return _pickerType;
+}
+
+-(void)setPickerType:(XEFormPickerType)pickerType
+{
+    _pickerType = pickerType;
+}
+
+-(UITableViewCellStyle)cellStyle
+{
+    return _cellStyle;
+}
+-(void)setCellStyle:(UITableViewCellStyle)cellStyle
+{
+    _cellStyle = cellStyle;
+}
+
+@end
+
+@interface XEFormSpecialCellSetting ()
+{
+    NSNumber *_pickerTypeNum;
+    NSNumber *_cellStyleNum;
+}
+
 @end
 
 @implementation XEFormSpecialCellSetting
@@ -38,11 +74,39 @@
 
 -(CGFloat)cellHeight
 {
-    if (_cellHeight == 0)
+    if (0 == _cellHeight)
     {
         return [XEFormSetting sharedSetting].cellSetting.cellHeight;
     }
     return _cellHeight;
+}
+
+-(XEFormPickerType)pickerType
+{
+    if (nil == _pickerTypeNum)
+    {
+        return [XEFormSetting sharedSetting].cellSetting.pickerType;
+    }
+    return (XEFormPickerType)_pickerTypeNum.integerValue;
+}
+
+-(void)setPickerType:(XEFormPickerType)pickerType
+{
+    _pickerTypeNum = [NSNumber numberWithInteger:pickerType];
+}
+
+-(UITableViewCellStyle)cellStyle
+{
+    if(nil == _cellStyleNum)
+    {
+        return [XEFormSetting sharedSetting].cellSetting.cellStyle;
+    }
+    return (UITableViewCellStyle)_cellStyleNum.integerValue;
+}
+
+-(void)setCellStyle:(UITableViewCellStyle)cellStyle
+{
+    _cellStyleNum = [NSNumber numberWithInteger:cellStyle];
 }
 
 @end
@@ -60,7 +124,6 @@
 
 static CGFloat kDefault_OffsetX =                   15.;
 static CGFloat kDefault_OffsetY =                   7.5;
-static CGFloat kDefault_logoSize =                  20.;
 static CGFloat kDefault_cellHeight =                44.;
 
 static CGFloat kDefault_headerFooterTitleFont =     13.;
@@ -68,6 +131,12 @@ static CGFloat kDefault_cellTitleFont =             15.;
 static CGFloat kDefault_cellDescriptionFont =       13.;
 static CGFloat kDefault_cellTextFiledFont =         15.;
 static CGFloat kDefault_cellTextViewFont =          15.;
+
+@interface XEFormSetting ()
+
+@property (nonatomic, strong, readwrite) NSSet *objectProperties;
+
+@end
 
 @implementation XEFormSetting
 
@@ -109,12 +178,12 @@ static CGFloat kDefault_cellTextViewFont =          15.;
     cellSetting.checkMarkImage = [UIImage checkMarkWithCheckMarkSize:CGSizeMake(14., 7.)];
     cellSetting.indicatorViewTintColor = kDefault_indicatorViewTintColor;
     cellSetting.titleAttributes = @{
-                                                NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTitleFont],
-                                                };
+                                    NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTitleFont],
+                                    };
     
     cellSetting.descriptionAttributes = @{
-                                                NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellDescriptionFont],
-                                                NSForegroundColorAttributeName : kDefault_cellDescriptionColor,
+                                          NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellDescriptionFont],
+                                          NSForegroundColorAttributeName : kDefault_cellDescriptionColor,
                                                 };
     cellSetting.textFieldAttributes = @{
                                         NSFontAttributeName: [UIFont systemFontOfSize:kDefault_cellTextFiledFont],
@@ -124,47 +193,97 @@ static CGFloat kDefault_cellTextViewFont =          15.;
                                         };
     
     
-    cellSetting.logoSize = CGSizeMake(kDefault_logoSize, kDefault_logoSize);
     cellSetting.cellHeight = kDefault_cellHeight;
+    cellSetting.cellStyle = UITableViewCellStyleDefault;
     
     self.headerFooterViewSetting = headerFooterViewSetting;
     self.cellSetting = cellSetting;
-    self.cellClassesForRowTypes = [@{
-                                 XEFormRowTypeDefault: NSClassFromString(@"XEFormDefaultCell"),
-                                 XEFormRowTypeText: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeLongText: NSClassFromString(@"XEFormTextViewCell"),
-                                 XEFormRowTypeURL: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeEmail: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypePhone: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypePassword: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeNumber: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeFloat: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeInteger: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeUnsigned: NSClassFromString(@"XEFormTextFieldCell"),
-                                 XEFormRowTypeBoolean: NSClassFromString(@"XEFormSwitchCell"),
-                                 XEFormRowTypeDate: NSClassFromString(@"XEFormDatePickerCell"),
-                                 XEFormRowTypeTime: NSClassFromString(@"XEFormDatePickerCell"),
-                                 XEFormRowTypeDateTime: NSClassFromString(@"XEFormDatePickerCell"),
-                                 XEFormRowTypeImage: NSClassFromString(@"XEFormImagePickerCell"),
-                                 
-                                 
-                                 } mutableCopy];
-    self.cellClassesForRowClasses = [@{
-                                   
-                                   } mutableCopy];
-    self.controllerClassesForRowTypes = [@{
-                                       XEFormRowTypeDefault: NSClassFromString(@"XEFormViewController"),
-                                       } mutableCopy];
-    self.controllerClassesForRowClasses = [NSMutableDictionary dictionary];
+    self.cellClassesForRowTypes = self.defaultCellClassesForRowTypes;
+    self.cellClassesForRowClasses = self.defaultCellClassesForRowClasses;
+    self.viewControllerClassesForRowTypes = self.defaultViewControllerClassesForRowTypes;
+    self.viewControllerClassesForRowClasses = self.defaultViewControllerClassesForRowClasses;
+}
+
+#pragma mark - Private method
+
+- (NSMutableDictionary *)defaultCellClassesForRowTypes
+{
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            NSClassFromString(@"XEFormDefaultCell"), XEFormRowTypeDefault,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeText,
+            NSClassFromString(@"XEFormTextViewCell"), XEFormRowTypeLongText,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeURL,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeEmail,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypePhone,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypePassword,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeNumber,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeFloat,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeInteger,
+            NSClassFromString(@"XEFormTextFieldCell"), XEFormRowTypeUnsigned,
+            NSClassFromString(@"XEFormSwitchCell"), XEFormRowTypeBoolean,
+            NSClassFromString(@"XEFormDatePickerCell"), XEFormRowTypeDate,
+            NSClassFromString(@"XEFormDatePickerCell"), XEFormRowTypeTime,
+            
+            nil];
+}
+
+- (NSMutableDictionary *)defaultCellClassesForRowClasses
+{
+    return [NSMutableDictionary dictionary];
+}
+
+- (NSMutableDictionary *)defaultViewControllerClassesForRowTypes
+{
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            
+            NSClassFromString(@"XEFormViewController"), XEFormRowTypeDefault,
+            
+            nil];
+}
+
+- (NSMutableDictionary *)defaultViewControllerClassesForRowClasses
+{
+    return [NSMutableDictionary dictionary];
 }
 
 #pragma mark - Getter & setter
 
--(void)setBaseViewController:(Class)BaseViewController
+-(void)setBaseViewControllerClass:(Class)baseViewControllerClass
 {
-    _BaseViewController = BaseViewController;
-    // Hack to set super class
-    class_setSuperclass(NSClassFromString(@"XEFormViewController"), _BaseViewController);
+    _baseViewControllerClass = baseViewControllerClass;
+    if(_baseViewControllerClass)
+    {
+        // Hack to set super class
+        class_setSuperclass(NSClassFromString(@"XEFormViewController"), _baseViewControllerClass);
+    }
+}
+
+-(Class<XEFormLabelDelegate>)xeFormLabelClass
+{
+    if ([_delegagte respondsToSelector:@selector(xeFormLabelClass)])
+    {
+        return [_delegagte xeFormLabelClass];
+    }
+    return [UILabel class];
+}
+
+-(NSSet *)objectProperties
+{
+    if(nil == _objectProperties)
+    {
+        NSMutableSet *tempNSObjectProperties = [NSMutableSet setWithArray:@[@"description", @"debugDescription", @"hash", @"superclass"]];
+        unsigned int propertyCount;
+        objc_property_t *propertyList = class_copyPropertyList([NSObject class], &propertyCount);
+        for(unsigned int i = 0; i< propertyCount; i++)
+        {
+            objc_property_t property = propertyList[i];
+            const char *propertyName = property_getName(property);
+            [tempNSObjectProperties addObject:@(propertyName)];
+        }
+        free(propertyList);
+        _objectProperties = [tempNSObjectProperties copy];
+    }
+    return _objectProperties;
 }
 
 @end

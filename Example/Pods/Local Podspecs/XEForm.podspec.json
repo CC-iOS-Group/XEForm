@@ -1,9 +1,9 @@
 {
   "name": "XEForm",
   "version": "0.1.0",
-  "summary": "A short description of XEForm.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/xenobladeX/XEForm",
+  "summary": "An easy setting ViewController",
+  "description": "An easy setting page builder inspired by [FXForms](https://github.com/nicklockwood/FXForms)",
+  "homepage": "https://github.com/CC-iOS-Group/XEForm",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,11 @@
     "xenobladeX": "xenonlade407@icloud.com"
   },
   "source": {
-    "git": "https://github.com/xenobladeX/XEForm.git",
+    "git": "https://github.com/CC-iOS-Group/XEForm.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "7.0"
   },
   "source_files": "XEForm/Classes/**/*"
 }

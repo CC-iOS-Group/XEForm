@@ -14,6 +14,7 @@
 - (void)secondFormRow:(XEFormRowObject *)secondFormRow
 {
     secondFormRow.title = @"额吉佛陪请问胡椒粉i偶尔我就烦颇多撒娇佛安师大";
+    // @"http://7xoszx.com1.z0.glb.clouddn.com/persona5.png"
     secondFormRow.logoStr = @"https://avatars3.githubusercontent.com/u/8864284?v=4&s=40";
     secondFormRow.valueTransformer = ^id(id input) {
         return @"fsgfdadfabgfsdbfdbfsbafdbdfsbdfsbaef";

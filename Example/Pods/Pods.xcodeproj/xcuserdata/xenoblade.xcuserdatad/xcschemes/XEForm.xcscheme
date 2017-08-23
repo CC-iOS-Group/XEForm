@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6E69036A948A7CBC3B8E2729988D927E'
+               BlueprintIdentifier = '5F88D255D2771CBE3D595079EBC9FC87'
                BlueprintName = 'XEForm'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'XEForm.framework'>

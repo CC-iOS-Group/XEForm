@@ -37,8 +37,8 @@
 @property (nonatomic, strong) id header;
 @property (nonatomic, strong) id footer;
 @property (nonatomic, strong) id viewController;
-@property (nonatomic, assign) UITableViewCellStyle cellStyle;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSAttributedString *attributedTitle;
 @property (nonatomic, assign) BOOL isSortable;
 @property (nonatomic, assign) BOOL isInline;
 @property (nonatomic, copy) void (^action)(id sender, void(^successBlock)(), void(^failureBlock)(NSError *error));
@@ -52,7 +52,6 @@
 
 - (NSString *)valueDescription:(id)value;
 - (NSString *)rowDescription;
-- (NSAttributedString *)attributedTitle;
 - (NSAttributedString *)attributedDescription;
 
 - (BOOL)isIndexedType;

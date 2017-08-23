@@ -27,11 +27,21 @@
 		<key>XEForm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
+		</dict>
+		<key>YYText.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>08E74CB3F3202418A85BF801EAD3F905</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>34CD2E3428AB802BACA62286FF5074B1</key>
 		<dict>
 			<key>primary</key>
@@ -42,12 +52,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E69036A948A7CBC3B8E2729988D927E</key>
+		<key>5F88D255D2771CBE3D595079EBC9FC87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8422148BF2E80766808EAD77A46881C2</key>
+		<key>724E2EB7BA224AAE96E2B49FA9AE722B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

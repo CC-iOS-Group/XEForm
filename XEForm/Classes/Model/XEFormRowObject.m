@@ -265,15 +265,19 @@
 
 -(NSAttributedString *)attributedTitle
 {
-    NSString *title = self.title;
-    if (title)
+    if(nil == _attributedTitle)
     {
-        return [[NSAttributedString alloc] initWithString:title attributes:[XEFormSetting sharedSetting].cellSetting.titleAttributes];
+        NSString *title = self.title;
+        if (title)
+        {
+            return [[NSAttributedString alloc] initWithString:title attributes:[XEFormSetting sharedSetting].cellSetting.titleAttributes];
+        }
+        else
+        {
+            return nil;
+        }
     }
-    else
-    {
-        return nil;
-    }
+    return _attributedTitle;
 }
 
 -(NSAttributedString *)attributedDescription
@@ -677,7 +681,7 @@
     
     else if([self.valueClass isSubclassOfClass:[XETextInputForm class]])
     {
-        XETextInputForm *textInputForm = self.value;
+        XETextInputForm *textInputForm = (XETextInputForm *)value;
         return textInputForm.text;
     }
     

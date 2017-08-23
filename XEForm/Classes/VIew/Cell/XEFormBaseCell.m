@@ -11,7 +11,6 @@
 
 #import "XEFormUtils.h"
 #import "XEFormConst.h"
-#import "UIImageView+XEForm.h"
 #import "XEFormController.h"
 #import "XEFormSetting.h"
 #import "XEFormObject.h"
@@ -34,6 +33,7 @@
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        // TODO: support
         self.style = style;
         super.accessoryType = UITableViewCellAccessoryNone;
         if([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)

@@ -8,7 +8,13 @@
 
 #import "NSObject+Utils.h"
 
+#import "XEFormConst.h"
+#import "XEFormRowObject.h"
+
+#import <objc/runtime.h>
+
 @implementation NSObject(Utils)
+
 
 - (NSString *)rowDescription
 {

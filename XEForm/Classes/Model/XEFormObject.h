@@ -10,15 +10,7 @@
 
 @class  XEFormRowObject ,XEFormSectionObject, XEFormController, XEFormViewController;
 
-@protocol XEFormDelegates <NSObject>
-
-@optional
-
-@property (nonatomic, strong) XEFormRowObject *row;
-
-@end
-
-@interface XEFormObject : NSObject<XEFormDelegates>
+@interface XEFormObject : NSObject
 
 @property (nonatomic, strong) XEFormRowObject *row;
 

@@ -22,5 +22,6 @@
 #import <XEForm/XEFormTextFieldCell.h>
 #import <XEForm/XEFormTextViewCell.h>
 #import <XEForm/XEFormNavigationAccessoryView.h>
+#import <XEForm/XEFormLabelDelegate.h>
 
 #endif /* XEForm_h */
