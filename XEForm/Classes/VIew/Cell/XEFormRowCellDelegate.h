@@ -18,6 +18,6 @@ typedef NS_ENUM(NSInteger, XEFormValueChangeSource)
 
 @optional
 
-- (void)willChangeRow:(XEFormRowObject *)row newValue:(id)newValue source:(XEFormValueChangeSource)source success:(void(^)(void))successBlock failure:(void(^)(void))failureBlock;
+- (void)willChangeRow:(XEFormRowObject *)row newValue:(id)newValue source:(XEFormValueChangeSource)source completion:(void(^)(NSError *error))completionBlock;
 
 @end

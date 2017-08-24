@@ -187,7 +187,7 @@
     }
 }
 
-- (NSString *)rowDescription
+- (id)rowDescription
 {
     if (self.options)
     {
@@ -195,7 +195,7 @@
         {
             if (self.value)
             {
-                return [self optionDescriptionAtIndex:[self.value integerValue] + (self.placeholder? 1: 0)];
+                return [self optionDescriptionAtIndex:[self.tempValue integerValue] + (self.placeholder? 1: 0)];
             }
             else
             {
@@ -205,7 +205,7 @@
         
         if ([self isCollectionType])
         {
-            id value = self.value;
+            id value = self.tempValue;
             if ([value isKindOfClass:[NSIndexSet class]])
             {
                 NSMutableArray *options = [NSMutableArray array];
@@ -237,7 +237,7 @@
         }
         else if ([self.type isEqual:XEFormRowTypeBitfield])
         {
-            NSUInteger value = [self.value integerValue];
+            NSUInteger value = [self.tempValue integerValue];
             NSMutableArray *options = [NSMutableArray array];
             [self.options enumerateObjectsUsingBlock:^(id option, NSUInteger i, __unused BOOL *stop) {
                 NSUInteger bit = 1 << i;
@@ -254,13 +254,13 @@
             
             return [options count]? [options rowDescription]: [self.placeholder rowDescription];
         }
-        else if (self.placeholder && ![self.options containsObject:self.value])
+        else if (self.placeholder && ![self.options containsObject:self.tempValue])
         {
             return [self.placeholder description];
         }
     }
     
-    return [self valueDescription:self.value];
+    return [self valueDescription:self.tempValue];
 }
 
 -(NSAttributedString *)attributedTitle
@@ -282,10 +282,38 @@
 
 -(NSAttributedString *)attributedDescription
 {
-    NSString *description = self.rowDescription;
-    if (description)
+    id description = self.rowDescription;
+    if(description)
     {
-        return [[NSAttributedString alloc] initWithString:description attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];
+        if([description isKindOfClass:[NSString class]] ||
+           [description isKindOfClass:[NSMutableString class]])
+        {
+            return [[NSAttributedString alloc] initWithString:description attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];
+        }
+        else if([description isKindOfClass:[NSAttributedString class]])
+        {
+            NSMutableAttributedString *attStr = [(NSAttributedString *)description mutableCopy];
+            [attStr addAttributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes range:NSMakeRange(0,attStr.length)];
+            return attStr;
+        }
+        else
+        {
+            if([description respondsToSelector:@selector(description)])
+            {
+                if([description description])
+                {
+                    return [[NSAttributedString alloc] initWithString:[description description] attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];;
+                }
+                else
+                {
+                    return nil;
+                }
+            }
+            else
+            {
+                return nil;
+            }
+        }
     }
     else
     {
@@ -368,7 +396,7 @@
     }
 }
 
-- (NSString *)optionDescriptionAtIndex:(NSUInteger)index
+- (id)optionDescriptionAtIndex:(NSUInteger)index
 {
     if (index == 0)
     {
@@ -672,11 +700,11 @@
              }[type];
 }
 
-- (NSString *)valueDescription:(id)value
+- (id)valueDescription:(id)value
 {
     if (self.valueTransformer)
     {
-        return [self.valueTransformer(value) rowDescription];
+        return self.valueTransformer(value);
     }
     
     else if([self.valueClass isSubclassOfClass:[XETextInputForm class]])
@@ -797,7 +825,7 @@
     if (self.form && [self.form canSetValueForKey:self.key])
     {
         value = value ? : self.defaultValue;
-        
+        _tempValue = value;
         if(self.reverseValueTransformer && ![self isCollectionType] && !self.options)
         {
             value = self.reverseValueTransformer(value);

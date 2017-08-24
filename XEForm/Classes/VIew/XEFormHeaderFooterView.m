@@ -14,7 +14,7 @@
 
 @property (nonatomic, readwrite) CGSize viewSize;
 // TODO: replace with UITextView, so we can implement tap
-@property (nonatomic, strong) UILabel *textlabel;
+@property (nonatomic, strong) UIView<XEFormLabelDelegate> *textlabel;
 
 @end
 
@@ -70,11 +70,12 @@
 
 #pragma mark -  Getter & setter
 
--(UILabel *)textlabel
+-(UIView<XEFormLabelDelegate> *)textlabel
 {
     if (nil == _textlabel)
     {
-        _textlabel = [[UILabel alloc] init];
+        Class XEFormLabel = [XEFormSetting sharedSetting].xeFormLabelClass;
+        _textlabel = [[XEFormLabel alloc] init];
         _textlabel.translatesAutoresizingMaskIntoConstraints = NO;
         _textlabel.numberOfLines = 0;
     }

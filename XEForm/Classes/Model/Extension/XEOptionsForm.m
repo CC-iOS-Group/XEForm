@@ -43,7 +43,7 @@
         NSMutableArray *rows = [NSMutableArray array];
         if(row.placeholder)
         {
-            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:@"0" Class:nil type:XEFormRowTypeOption];
+            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:@"0" Class:nil type:XEFormRowTypeBoolean];
             placeholderRow.action = action;
             placeholderRow.valueTransformer = row.valueTransformer;
             placeholderRow.title = [row rowDescription];
@@ -52,7 +52,7 @@
         for (NSUInteger i = 0; i < row.options.count; i++)
         {
             NSInteger index = i + (row.placeholder ? 1 : 0);
-            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:[@(index) description] Class:[NSString class] type:XEFormRowTypeBoolean];
+            XEFormRowObject *placeholderRow = [[XEFormRowObject alloc] initWithKey:[@(index) description] Class:nil type:XEFormRowTypeBoolean];
             placeholderRow.action = action;
             placeholderRow.valueTransformer = row.valueTransformer;
             placeholderRow.title = [row optionDescriptionAtIndex:index];

@@ -37,16 +37,7 @@
     self = [super init];
     if (self)
     {
-        // TODO: Is it suitable to init second XEForm here
-//        for(XEFormRowObject *rowObject in self.propertyRows)
-//        {
-//            if([rowObject.valueClass isSubclassOfClass:[XEForm class]])
-//            {
-//                XEForm *defaultValue = [[rowObject.valueClass alloc] init];
-//                defaultValue.row = rowObject;
-//                [self setValue:defaultValue forKey:rowObject.key];
-//            }
-//        }
+
 
     }
     return self;

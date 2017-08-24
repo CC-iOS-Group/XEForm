@@ -22,6 +22,7 @@
 @property (nonatomic, copy, readonly) NSString *key;
 @property (nonatomic, weak) XEFormObject *form;
 @property (nonatomic, strong) id value;
+@property (nonatomic, strong) id tempValue;
 @property (nonatomic, strong) id defaultValue;
 @property (nonatomic, strong) NSArray *options;
 @property (nonatomic, strong) Class valueClass;
@@ -50,8 +51,7 @@
 - (instancetype)initWithKey:(NSString *)key Class:(Class)class type:(NSString *)type;
 - (void)configWithForm:(XEFormObject *)form;
 
-- (NSString *)valueDescription:(id)value;
-- (NSString *)rowDescription;
+- (id)rowDescription;
 - (NSAttributedString *)attributedDescription;
 
 - (BOOL)isIndexedType;
@@ -63,7 +63,7 @@
 - (NSUInteger)optionCount;
 - (id)optionAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfOption:(id)option;
-- (NSString *)optionDescriptionAtIndex:(NSUInteger)index;
+- (id)optionDescriptionAtIndex:(NSUInteger)index;
 - (void)setOptionSelected:(BOOL)selected atIndex:(NSUInteger)index;
 - (BOOL)isOptionSelectedAtIndex:(NSUInteger)index;
 

@@ -8,16 +8,33 @@
 
 #import "SimpleForm.h"
 
+#import <YYText/YYText.h>
+
 @implementation SimpleForm
 
 
 - (void)secondFormRow:(XEFormRowObject *)secondFormRow
 {
-    secondFormRow.title = @"额吉佛陪请问胡椒粉i偶尔我就烦颇多撒娇佛安师大";
+    secondFormRow.title = @"额吉佛陪请问";
     // @"http://7xoszx.com1.z0.glb.clouddn.com/persona5.png"
     secondFormRow.logoStr = @"https://avatars3.githubusercontent.com/u/8864284?v=4&s=40";
     secondFormRow.valueTransformer = ^id(id input) {
-        return @"fsgfdadfabgfsdbfdbfsbafdbdfsbdfsbaef";
+        NSString *text = @"点击链接";
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text];
+        NSRange range = [text rangeOfString:@"链接"];
+        // Link
+        [attributedText yy_setTextHighlightRange:range
+                                           color:[UIColor blueColor]
+                                 backgroundColor:[UIColor grayColor]
+                                       tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                                           NSLog(@"tap text range:...");
+                                       }];
+        // Image
+        UIImage *image = [UIImage imageNamed:@"Nitendo"];
+        NSMutableAttributedString *attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:[UIFont systemFontOfSize:16] alignment:YYTextVerticalAlignmentCenter];
+        [attachment appendAttributedString:attributedText];
+        
+        return attachment;
     };
 }
 

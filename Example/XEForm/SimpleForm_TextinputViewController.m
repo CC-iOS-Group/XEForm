@@ -57,7 +57,7 @@
 
 #pragma mark - XEFormRowCellDelegate
 
--(void)willChangeRow:(XEFormRowObject *)row newValue:(id)newValue source:(XEFormValueChangeSource)source success:(void (^)(void))successBlock failure:(void (^)(void))failureBlock
+-(void)willChangeRow:(XEFormRowObject *)row newValue:(id)newValue source:(XEFormValueChangeSource)source completion:(void (^)(NSError *))completionBlock
 {
     switch (source) {
         case XEFormValueChangeSource_Edit:
@@ -71,12 +71,12 @@
                 _rightItem.enabled = NO;
             }
             
-            failureBlock();
+            completionBlock([NSError errorWithDomain:@"XEForm.com" code:0 userInfo:nil]);
         }
             break;
         case XEFormValueChangeSource_Save:
         {
-            successBlock();
+            completionBlock(nil);
             [self.navigationController popViewControllerAnimated:YES];
         }
             break;

@@ -110,7 +110,7 @@
         {
             self.descriptionLabel.attributedText = nil;
             self.descriptionLabel.accessibilityValue = self.descriptionLabel.text;
-            self.rowAccessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            self.rowAccessoryType = [self.row.tempValue boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }
     }
     else if([self.row.type isEqualToString:XEFormRowTypeText])
@@ -139,18 +139,16 @@
             if (logoUrl.host)
             {
                 [[XEFormSetting sharedSetting].delegagte setImageView:self.rowLogoView withURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
-//                [self.rowLogoView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
-//                [self.imageView setImageWithURL:logoUrl placeholder:[XEFormSetting sharedSetting].cellSetting.logoPlaceholder];
             }
             else if ([logoUrl isFileURL])
             {
                 UIImage *logo = [UIImage imageWithContentsOfFile:logoUrl.absoluteString];
-                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+                [self.rowLogoView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
             }
             else
             {
                 UIImage *logo = [UIImage imageNamed:self.row.logoStr];
-                [self.imageView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
+                [self.rowLogoView setImage: (logo ? : [XEFormSetting sharedSetting].cellSetting.logoPlaceholder)];
             }
         }
     }
@@ -160,7 +158,7 @@
         _titleLabelLeftConstraint.constant = 0;
     }
     
-    if(self.row.rowDescription)
+    if(self.row.attributedDescription)
     {
         _descriptionLabelRightConstraint.constant = -[XEFormSetting sharedSetting].cellSetting.offsetX;
         
@@ -180,7 +178,7 @@
        [self.row.type isEqualToString:XEFormRowTypeOption])
     {
         [[tableView findFirstResponder] resignFirstResponder];
-        self.row.value = @(![self.row.value boolValue]);
+        self.row.tempValue = @(![self.row.tempValue boolValue]);
         if (self.row.action)
         {
             self.row.action(self, ^{
@@ -191,7 +189,7 @@
         }
         if(![[self class] isSubclassOfClass:[XEFormDefaultCell class]])
         {
-            self.rowAccessoryType = [self.row.value boolValue] ? UITableViewCellAccessoryCheckmark: UITableViewCellAccessoryNone;
+            self.rowAccessoryType = [self.row.tempValue boolValue] ? UITableViewCellAccessoryCheckmark: UITableViewCellAccessoryNone;
         }
         if ([self.row.type isEqualToString:XEFormRowTypeOption])
         {

@@ -31,7 +31,7 @@ static CGFloat kDefault_switchHeight = 31.;
 
 -(void)update
 {
-    self.switchControl.on = [self.row.value boolValue];
+    self.switchControl.on = [self.row.tempValue boolValue];
 
     [super update];
 }
@@ -40,32 +40,25 @@ static CGFloat kDefault_switchHeight = 31.;
 
 - (void)valueChanged
 {
-    if ([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    if ([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
     {
         // UI change
-        
-        NSString *description = [self.row valueDescription:@(self.switchControl.on)];
-        if (description)
-        {
-            NSAttributedString *attributedDescription = [[NSAttributedString alloc] initWithString:description attributes:[XEFormSetting sharedSetting].cellSetting.descriptionAttributes];
-            self.descriptionLabel.attributedText = attributedDescription;
-        }
-        else
-        {
-            self.descriptionLabel.attributedText = nil;
-        }
+        self.row.tempValue = @(self.switchControl.on);
+        [self update];
 
         __weak typeof(self) weak_self = self;
         self.switchControl.userInteractionEnabled = NO;
-        [self.delegate willChangeRow:self.row newValue:@(self.switchControl.on) source:XEFormValueChangeSource_Edit success:^{
+        
+        [self.delegate willChangeRow:self.row newValue:@(self.switchControl.on) source:XEFormValueChangeSource_Edit completion:^(NSError *error) {
             weak_self.switchControl.userInteractionEnabled = YES;
-            weak_self.row.value = @(weak_self.switchControl.on);
-            
-            [weak_self update];
-        } failure:^{
-            weak_self.switchControl.userInteractionEnabled = YES;
-            weak_self.switchControl.on = !weak_self.switchControl.on;
-            
+            if(error)
+            {
+                self.row.tempValue = @(!weak_self.switchControl.on);
+            }
+            else
+            {
+                weak_self.row.value = @(weak_self.switchControl.on);
+            }
             [weak_self update];
         }];
     }
@@ -74,6 +67,12 @@ static CGFloat kDefault_switchHeight = 31.;
         self.row.value = @(self.switchControl.on);
         [self update];
     }
+}
+
+-(void)updateRowValueFromOther
+{
+    
+    
 }
 
 #pragma mark - Private method

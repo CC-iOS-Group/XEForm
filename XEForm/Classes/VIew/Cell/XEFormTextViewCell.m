@@ -95,7 +95,7 @@
     NSLayoutConstraint *_textViewWidthConstraint;
 }
 
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView<XEFormLabelDelegate> *titleLabel;
 
 @end
 
@@ -173,8 +173,7 @@
         self.textView.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     }
     
-    
-    if(!self.titleLabel.text)
+    if(self.titleLabel.text.length == 0)
     {
         [self.contentView removeConstraint:_textViewWidthConstraint];
         _textViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-2*[XEFormSetting sharedSetting].cellSetting.offsetX];
@@ -210,13 +209,19 @@
 //    CGRect cursorRect = [self.textView caretRectForPosition:self.textView.selectedTextRange.end];
 //    [tableView scrollRectToVisible:[tableView convertRect:cursorRect fromView:self.textView] animated:YES];
     
-    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
     {
         __weak typeof(self) weak_self = self;
-        [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Edit success:^{
-            [weak_self updateRowValue];
-        } failure:^{
-            
+        
+        [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Edit completion:^(NSError *error) {
+            if(error)
+            {
+                
+            }
+            else
+            {
+                [weak_self updateRowValue];
+            }
         }];
     }
     else
@@ -229,13 +234,19 @@
 {
     if(![self.row.form isKindOfClass:NSClassFromString(@"XETextInputForm")])
     {
-        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
         {
             __weak typeof(self) weak_self = self;
-            [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Save success:^{
-                [weak_self updateRowValue];
-            } failure:^{
-                
+            
+            [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Save completion:^(NSError *error) {
+                if (error)
+                {
+                    
+                }
+                else
+                {
+                    [weak_self updateRowValue];
+                }
             }];
         }
         else
@@ -281,13 +292,19 @@
 
 -(void)updateRowValueFromOther
 {
-    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
     {
         __weak typeof(self) weak_self = self;
-        [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Save success:^{
-            [weak_self updateRowValue];
-        } failure:^{
-            
+        
+        [self.delegate willChangeRow:self.row newValue:self.textView.text source:XEFormValueChangeSource_Save completion:^(NSError *error) {
+            if (error)
+            {
+                
+            }
+            else
+            {
+                [weak_self updateRowValue];
+            }
         }];
     }
 }
@@ -314,11 +331,12 @@
     return _textView;
 }
 
--(UILabel *)titleLabel
+-(UIView<XEFormLabelDelegate> *)titleLabel
 {
     if (nil == _titleLabel)
     {
-        _titleLabel = [[UILabel alloc] init];
+        Class XEFormLabel = [XEFormSetting sharedSetting].xeFormLabelClass;
+        _titleLabel = [[XEFormLabel alloc] init];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         
     }

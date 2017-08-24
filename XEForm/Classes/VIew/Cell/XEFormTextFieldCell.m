@@ -16,7 +16,7 @@
     NSLayoutConstraint *_textFieldWidthConstraint;
 }
 
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView<XEFormLabelDelegate> *titleLabel;
 
 @property (nonatomic, assign, getter = isReturnKeyOverriden) BOOL returnKeyOverridden;
 
@@ -131,7 +131,7 @@
         self.textField.keyboardType = UIKeyboardTypeURL;
     }
     
-    if(!self.titleLabel.text)
+    if(self.titleLabel.text.length == 0)
     {
         [self.contentView removeConstraint:_textFieldWidthConstraint];
         _textFieldWidthConstraint = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-2*[XEFormSetting sharedSetting].cellSetting.offsetX];
@@ -175,14 +175,21 @@
 {
     self.textField.attributedText = self.textField.text ? [[NSAttributedString alloc] initWithString:self.textField.text attributes:[XEFormSetting sharedSetting].cellSetting.textFieldAttributes] : nil;
     
-    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
     {
         __weak typeof(self) weak_self = self;
-        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Edit success:^{
-            [weak_self updateRowValue];
-        } failure:^{
-            
+        
+        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Edit completion:^(NSError *error) {
+            if (error)
+            {
+                
+            }
+            else
+            {
+                [weak_self updateRowValue];
+            }
         }];
+
     }
     else
     {
@@ -192,15 +199,21 @@
 
 - (BOOL)textFieldShouldReturn:(__unused UITextField *)textField
 {
-    if(isDifferentString(self.row.value, self.textField.text))
+    if(isDifferentString(self.row.tempValue, self.textField.text))
     {
-        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+        if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
         {
             __weak typeof(self) weak_self = self;
-            [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
-                [weak_self updateRowValue];
-            } failure:^{
-                
+            
+            [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save completion:^(NSError *error) {
+                if (error)
+                {
+                    
+                }
+                else
+                {
+                    [weak_self updateRowValue];
+                }
             }];
         }
         else
@@ -231,18 +244,25 @@
 
 - (void)updateRowValue
 {
+    // TODO: tempValue vs value
     self.row.value = self.textField.text;
 }
 
 -(void)updateRowValueFromOther
 {
-    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:success:failure:)])
+    if([self.delegate respondsToSelector:@selector(willChangeRow:newValue:source:completion:)])
     {
         __weak typeof(self) weak_self = self;
-        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save success:^{
-            [weak_self updateRowValue];
-        } failure:^{
-            
+        
+        [self.delegate willChangeRow:self.row newValue:self.textField.text source:XEFormValueChangeSource_Save completion:^(NSError *error) {
+            if (error)
+            {
+                
+            }
+            else
+            {
+                [weak_self updateRowValue];
+            }
         }];
     }
 }
@@ -268,7 +288,8 @@
 {
     if (nil == _titleLabel)
     {
-        _titleLabel = [[UILabel alloc] init];
+        Class XEFormLabel = [XEFormSetting sharedSetting].xeFormLabelClass;
+        _titleLabel = [[XEFormLabel alloc] init];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         
         
