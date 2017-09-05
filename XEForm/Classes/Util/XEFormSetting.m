@@ -267,23 +267,4 @@ static CGFloat kDefault_cellTextViewFont =          15.;
     return [UILabel class];
 }
 
--(NSSet *)objectProperties
-{
-    if(nil == _objectProperties)
-    {
-        NSMutableSet *tempNSObjectProperties = [NSMutableSet setWithArray:@[@"description", @"debugDescription", @"hash", @"superclass"]];
-        unsigned int propertyCount;
-        objc_property_t *propertyList = class_copyPropertyList([NSObject class], &propertyCount);
-        for(unsigned int i = 0; i< propertyCount; i++)
-        {
-            objc_property_t property = propertyList[i];
-            const char *propertyName = property_getName(property);
-            [tempNSObjectProperties addObject:@(propertyName)];
-        }
-        free(propertyList);
-        _objectProperties = [tempNSObjectProperties copy];
-    }
-    return _objectProperties;
-}
-
 @end

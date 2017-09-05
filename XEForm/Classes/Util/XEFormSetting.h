@@ -77,7 +77,7 @@
 + (instancetype)sharedSetting;
 
 /** Data setting*/
-@property (nonatomic, strong, readonly) NSSet *objectProperties;
+
 /** UI setting*/
 @property (nonatomic, strong) Class baseViewControllerClass;
 

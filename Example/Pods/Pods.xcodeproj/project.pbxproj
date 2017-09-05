@@ -259,6 +259,7 @@
 		BD5F16D5756DD593DBA984999AFDDD18 /* YYTextWeakProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = C001D1CCD7B60692AB196116917D1D04 /* YYTextWeakProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BDFA0F9582C13E5D3568A0E736BD8A04 /* UIView+XEForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0496BCB1A442309251736CDCCD6A7A28 /* UIView+XEForm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE14F2198CDB0DAD98A567981D21C7A1 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE8CBB8579EF68BD9D7D05695CE10CE /* FBSnapshotTestCase.m */; };
+		BEA3BF561F56707F0059B29A /* XEFormUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA3BF551F56707F0059B29A /* XEFormUtils.m */; };
 		BF2879A77FCB21A337C87442F00044D8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDE4753FD29E424751EF45027C0987B5 /* CoreFoundation.framework */; };
 		BFCE460CC33E8872B7156D4166340178 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 27861E0DE3A572B23A881DDD3C8DC254 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFD1E60DE3BE78A3438C35F0E2A2A778 /* KWBackgroundTask.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB9FAA8F728B24E8C046F92B3AEEBEA /* KWBackgroundTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -385,9 +386,9 @@
 /* Begin PBXFileReference section */
 		004CFDEFA56757763B60016934650961 /* UIImage+XEForm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+XEForm.h"; sourceTree = "<group>"; };
 		00A454E01857DEA04E0FA663A12D72D5 /* KWBeBetweenMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeBetweenMatcher.m; path = Classes/Matchers/KWBeBetweenMatcher.m; sourceTree = "<group>"; };
-		01B5BFC7F7DD894F4BE558A7AFD12A56 /* Pods-XEForm_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-XEForm_Tests.modulemap"; sourceTree = "<group>"; };
+		01B5BFC7F7DD894F4BE558A7AFD12A56 /* Pods-XEForm_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-XEForm_Tests.modulemap"; sourceTree = "<group>"; };
 		01FAD1D176E57A27D13248E83B5D3223 /* KWMatcherFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWMatcherFactory.m; path = Classes/Core/KWMatcherFactory.m; sourceTree = "<group>"; };
-		028C98C6C242CD0F4F9F6F89AB842405 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
+		028C98C6C242CD0F4F9F6F89AB842405 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 		03F085C0D45BC18266D022FBA418736D /* KWStringUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWStringUtilities.m; path = Classes/Core/KWStringUtilities.m; sourceTree = "<group>"; };
 		0417DB593C691AFCA5FA412B4CD65BB9 /* KWContainStringMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWContainStringMatcher.m; path = Classes/Matchers/KWContainStringMatcher.m; sourceTree = "<group>"; };
 		04762799D5D123C60E7D0A307BC0E596 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -437,7 +438,7 @@
 		21A3EF82E17C69AA2BC7513FD821933E /* KWExampleSuite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWExampleSuite.m; path = Classes/Core/KWExampleSuite.m; sourceTree = "<group>"; };
 		2296D2541B9D1A86D3353527A9FC3E5B /* XEFormSliderCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormSliderCell.h; sourceTree = "<group>"; };
 		244961C9917B46308D818190524247B3 /* XEForm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XEForm-dummy.m"; sourceTree = "<group>"; };
-		26590503C8FB14920CD7F5D8C7C0D056 /* Pods_XEForm_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_XEForm_Tests.framework; path = "Pods-XEForm_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26590503C8FB14920CD7F5D8C7C0D056 /* Pods_XEForm_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XEForm_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D619D43FBAB85258E02C24BB239566 /* YYLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYLabel.m; path = YYText/YYLabel.m; sourceTree = "<group>"; };
 		27861E0DE3A572B23A881DDD3C8DC254 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		27A08B9AD96EA2C4711CA74839C3D9E2 /* KWWorkarounds.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWWorkarounds.h; path = Classes/Core/KWWorkarounds.h; sourceTree = "<group>"; };
@@ -455,7 +456,7 @@
 		2EA8590BD307370E95C74486776281A5 /* XEFormImagePickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormImagePickerCell.h; sourceTree = "<group>"; };
 		2EB6BDBFE73EBD7F5CD55E55AA23FB3E /* KWNotificationMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWNotificationMatcher.h; path = Classes/Matchers/KWNotificationMatcher.h; sourceTree = "<group>"; };
 		301982D6FA0937A8D3067F76040F9F3E /* NSValue+KiwiAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSValue+KiwiAdditions.m"; path = "Classes/Core/NSValue+KiwiAdditions.m"; sourceTree = "<group>"; };
-		30588243FF6B338FADE4BC2E0E382F32 /* Kiwi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Kiwi.modulemap; sourceTree = "<group>"; };
+		30588243FF6B338FADE4BC2E0E382F32 /* Kiwi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Kiwi.modulemap; sourceTree = "<group>"; };
 		30744737D3CD01FC77DF06E436FFCE35 /* KWBlockRaiseMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBlockRaiseMatcher.h; path = Classes/Matchers/KWBlockRaiseMatcher.h; sourceTree = "<group>"; };
 		316C95AFB737AECD846DF3A4ADBDA8AC /* KWReceiveMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWReceiveMatcher.h; path = Classes/Matchers/KWReceiveMatcher.h; sourceTree = "<group>"; };
 		3171B801CCBC949C07AA0CB269975EC5 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
@@ -528,7 +529,7 @@
 		604EBEBAAC335F7F0B05FE04F2F967B1 /* KWSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWSpec.h; path = Classes/Core/KWSpec.h; sourceTree = "<group>"; };
 		60A0CA009F707641E4C6DFEA1DBF3040 /* KWBeSubclassOfClassMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBeSubclassOfClassMatcher.h; path = Classes/Matchers/KWBeSubclassOfClassMatcher.h; sourceTree = "<group>"; };
 		60F8235A92E7F2A3C11E14C21D9080BB /* KWIntercept.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWIntercept.m; path = Classes/Stubbing/KWIntercept.m; sourceTree = "<group>"; };
-		614822896DDEF78009E99F3470F1FFDB /* XEForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XEForm.framework; path = XEForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		614822896DDEF78009E99F3470F1FFDB /* XEForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XEForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F9849046643C4049E4EBAC071B9636 /* KWRegisterMatchersNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWRegisterMatchersNode.m; path = Classes/Nodes/KWRegisterMatchersNode.m; sourceTree = "<group>"; };
 		6317B8357892BB9452E8DDC7B7BC0974 /* KWSymbolicator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWSymbolicator.m; path = Classes/Core/KWSymbolicator.m; sourceTree = "<group>"; };
 		63BAED6DDD48A67A14308BB2DDC75625 /* KWNull.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWNull.h; path = Classes/Core/KWNull.h; sourceTree = "<group>"; };
@@ -538,7 +539,7 @@
 		6591C1373B8E1ABB2A7FC9E94B4BDA7D /* NSInvocation+KiwiAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+KiwiAdditions.h"; path = "Classes/Core/NSInvocation+KiwiAdditions.h"; sourceTree = "<group>"; };
 		659C22D5DF05910FD17FFB927A070AF3 /* KWContainStringMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWContainStringMatcher.h; path = Classes/Matchers/KWContainStringMatcher.h; sourceTree = "<group>"; };
 		659E2C499F73E985D168564D8BE87380 /* KWHaveValueMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWHaveValueMatcher.h; path = Classes/Matchers/KWHaveValueMatcher.h; sourceTree = "<group>"; };
-		65D40C6A33E9CF39CDD06F9AD3DD747A /* Pods_XEForm_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_XEForm_Example.framework; path = "Pods-XEForm_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D40C6A33E9CF39CDD06F9AD3DD747A /* Pods_XEForm_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XEForm_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66123A2B9841C47A95639AC7748E711E /* KWBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBlock.m; path = Classes/Core/KWBlock.m; sourceTree = "<group>"; };
 		668E0198B43615E0CC90A20CA2B9056A /* YYTextEffectWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextEffectWindow.h; path = YYText/Component/YYTextEffectWindow.h; sourceTree = "<group>"; };
 		684560603CCEC862B79CCA331FFD744F /* KWBeKindOfClassMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeKindOfClassMatcher.m; path = Classes/Matchers/KWBeKindOfClassMatcher.m; sourceTree = "<group>"; };
@@ -570,7 +571,7 @@
 		792D49BAC3A78D979385EEB7ED0F25F7 /* YYTextLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextLayout.h; path = YYText/Component/YYTextLayout.h; sourceTree = "<group>"; };
 		7A3FBAE0B5CEEF8FC0BA48BDAEF6DB98 /* XEFormRowCellDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormRowCellDelegate.h; sourceTree = "<group>"; };
 		7B1EC863C291C3D061B4403301BB4EA7 /* XEFormViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormViewController.h; sourceTree = "<group>"; };
-		7B88F7C9C785230FC19865A24CA9B66C /* YYText.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YYText.modulemap; sourceTree = "<group>"; };
+		7B88F7C9C785230FC19865A24CA9B66C /* YYText.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = YYText.modulemap; sourceTree = "<group>"; };
 		7BBF3AD52F2633DF39895D814C84320C /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
 		7C9A304DB8E025B080E859294F32AD54 /* XEFormUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormUtils.h; sourceTree = "<group>"; };
 		7CE6659A8556A2D9155B19E94B30077F /* XEFormOptionCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormOptionCell.h; sourceTree = "<group>"; };
@@ -603,7 +604,7 @@
 		92271F0075F2190A66AA6EED98377B3A /* XEFormBaseCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormBaseCell.h; sourceTree = "<group>"; };
 		923A8CC56F3A42F836E67D37F9A91092 /* XEFormTextViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XEFormTextViewCell.m; sourceTree = "<group>"; };
 		9254776C037B29D38F14ACD682B209BB /* YYTextAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextAttribute.h; path = YYText/String/YYTextAttribute.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93E5C5701CE63B718FA99CF72C9875E7 /* KWFailure.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWFailure.m; path = Classes/Core/KWFailure.m; sourceTree = "<group>"; };
 		949AABD6FA0A82116634C52CC8788815 /* KWStringContainsMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWStringContainsMatcher.m; path = Classes/Matchers/KWStringContainsMatcher.m; sourceTree = "<group>"; };
 		94AD27272B56F2FFDF6B57C92E9CBF80 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -618,7 +619,7 @@
 		9994140AC63826157D8B1FF65E851E43 /* XETextInputForm.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XETextInputForm.h; sourceTree = "<group>"; };
 		99E4597DE78D0A6F78467BAF08E52610 /* YYTextLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYTextLayout.m; path = YYText/Component/YYTextLayout.m; sourceTree = "<group>"; };
 		9AB08DB4697D643CABAF403A78865912 /* KWDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWDeviceInfo.h; path = Classes/Core/KWDeviceInfo.h; sourceTree = "<group>"; };
-		9AFEB33887A50816828A51E0E82EDB2D /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kiwi.framework; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AFEB33887A50816828A51E0E82EDB2D /* Kiwi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiwi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B17D738CB08D222BB37E6E9435056FC /* XEFormSegmentsCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormSegmentsCell.h; sourceTree = "<group>"; };
 		9B79843CFFF54F54D52FFBAFD2427493 /* YYTextRunDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextRunDelegate.h; path = YYText/String/YYTextRunDelegate.h; sourceTree = "<group>"; };
 		9B7F33873D63069243B250FC5C1B9E7F /* YYTextSelectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextSelectionView.h; path = YYText/Component/YYTextSelectionView.h; sourceTree = "<group>"; };
@@ -638,17 +639,17 @@
 		A8BC2B395FBEB7C746A34AEABD4E9A89 /* Pods-XEForm_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-XEForm_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A8CF319527A502CE7BE0E7BDDFF85927 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95DD3CD35E40A0314313762030107F3 /* KWWorkarounds.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWWorkarounds.m; path = Classes/Core/KWWorkarounds.m; sourceTree = "<group>"; };
-		A9BE232E51F2403656442D7745919831 /* YYText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YYText.framework; path = YYText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9BE232E51F2403656442D7745919831 /* YYText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YYText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB19319E032FA880B8A422C6AF0A2AA /* KWGenericMatchEvaluator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWGenericMatchEvaluator.m; path = Classes/Matchers/KWGenericMatchEvaluator.m; sourceTree = "<group>"; };
-		AAC1989CD4786C79C641DCE28C72B882 /* XEForm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = XEForm.modulemap; sourceTree = "<group>"; };
-		AAF73B29BFBA1F024CDA9FCFF98C7C73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAC1989CD4786C79C641DCE28C72B882 /* XEForm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = XEForm.modulemap; sourceTree = "<group>"; };
+		AAF73B29BFBA1F024CDA9FCFF98C7C73 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1ACC7CB96E4214553E6C91823A71FE /* KWSharedExample.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWSharedExample.m; path = "Classes/Shared Examples/KWSharedExample.m"; sourceTree = "<group>"; };
 		ABAAF991133097A866B48A5AD9EB21B3 /* XEFormImagePickerCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XEFormImagePickerCell.m; sourceTree = "<group>"; };
 		ABE7FD17FA6137D5F63FE12F6489EC76 /* YYTextInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextInput.h; path = YYText/Component/YYTextInput.h; sourceTree = "<group>"; };
 		ACA7EE195756837056F940EDD61B1B9F /* KWConformToProtocolMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWConformToProtocolMatcher.h; path = Classes/Matchers/KWConformToProtocolMatcher.h; sourceTree = "<group>"; };
 		ACB122F128A7E052A8565235AF2896D8 /* KWExistVerifier.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWExistVerifier.m; path = Classes/Verifiers/KWExistVerifier.m; sourceTree = "<group>"; };
 		AED904B911D26C3790325405F6828BFA /* XEFormViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = XEFormViewController.m; sourceTree = "<group>"; };
-		B0A6541035683EB228571D62017F0E4E /* Pods-XEForm_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-XEForm_Example.modulemap"; sourceTree = "<group>"; };
+		B0A6541035683EB228571D62017F0E4E /* Pods-XEForm_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-XEForm_Example.modulemap"; sourceTree = "<group>"; };
 		B14AF3BFFA51219DC5D470A2936FF07F /* KWBlockNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWBlockNode.h; path = Classes/Nodes/KWBlockNode.h; sourceTree = "<group>"; };
 		B3AD67A9C6F49C8805B5F6B4C14DCBD9 /* KWAfterAllNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWAfterAllNode.h; path = Classes/Nodes/KWAfterAllNode.h; sourceTree = "<group>"; };
 		B3DFBD993BE594C165EFED5DB4C6BE14 /* KWAfterEachNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KWAfterEachNode.h; path = Classes/Nodes/KWAfterEachNode.h; sourceTree = "<group>"; };
@@ -663,6 +664,7 @@
 		B93705674FA7C0EFDBED0E5F8FE4F468 /* YYTextContainerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextContainerView.h; path = YYText/Component/YYTextContainerView.h; sourceTree = "<group>"; };
 		BBE99EA6D751E8CD325FAC7C1F53D0F3 /* XEFormOptionPickerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = XEFormOptionPickerCell.h; sourceTree = "<group>"; };
 		BD5C3FE933D8274352E97E4E44DF2C47 /* KWBeEmptyMatcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeEmptyMatcher.m; path = Classes/Matchers/KWBeEmptyMatcher.m; sourceTree = "<group>"; };
+		BEA3BF551F56707F0059B29A /* XEFormUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XEFormUtils.m; sourceTree = "<group>"; };
 		BF1FE66748CF42B7FF1BE4959946BEE2 /* KWPendingNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWPendingNode.m; path = Classes/Nodes/KWPendingNode.m; sourceTree = "<group>"; };
 		BFC3AF45EA8D9E08BDFAD424D6DFC3B0 /* KWBeforeEachNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KWBeforeEachNode.m; path = Classes/Nodes/KWBeforeEachNode.m; sourceTree = "<group>"; };
 		C001D1CCD7B60692AB196116917D1D04 /* YYTextWeakProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYTextWeakProxy.h; path = YYText/Utility/YYTextWeakProxy.h; sourceTree = "<group>"; };
@@ -827,7 +829,6 @@
 				E1DF6EB9DBA8A8B97E1F3A5F3D258C98 /* Support Files */,
 				8A3A4AFC5F24BBE34B68E2C8A4F050D3 /* SwiftSupport */,
 			);
-			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -840,7 +841,6 @@
 				FC38BE383953ABD87722A4476270F07F /* VC */,
 				AFB2FBACA6B69BC953C8FA962404AEDA /* VIew */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -854,7 +854,6 @@
 				9994140AC63826157D8B1FF65E851E43 /* XETextInputForm.h */,
 				0C3B59B333A2467F6114B7D3F8150C4C /* XETextInputForm.m */,
 			);
-			name = Extension;
 			path = Extension;
 			sourceTree = "<group>";
 		};
@@ -1079,7 +1078,6 @@
 				301982D6FA0937A8D3067F76040F9F3E /* NSValue+KiwiAdditions.m */,
 				2A01B8BEE076F42FBB0A907FDCA59AA0 /* Support Files */,
 			);
-			name = Kiwi;
 			path = Kiwi;
 			sourceTree = "<group>";
 		};
@@ -1114,7 +1112,6 @@
 				D6F930DA3A9A7D55A6E20883EF505F4C /* XEFormTextViewCell.h */,
 				923A8CC56F3A42F836E67D37F9A91092 /* XEFormTextViewCell.m */,
 			);
-			name = Cell;
 			path = Cell;
 			sourceTree = "<group>";
 		};
@@ -1145,7 +1142,6 @@
 				D621484A96D15C01B69068AA8A340B3F /* XEFormSectionObject.m */,
 				21C41355D1A1231D302B1CF3D888B22C /* Extension */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -1154,7 +1150,6 @@
 			children = (
 				1D6FBADC2570ED2B20B609B175BC6CF2 /* Classes */,
 			);
-			name = XEForm;
 			path = XEForm;
 			sourceTree = "<group>";
 		};
@@ -1212,7 +1207,6 @@
 				69FF5936D671FBF4C60B7857F3E304DA /* YYTextWeakProxy.m */,
 				BB5C79F344032AB5B794DD3699BAF1B7 /* Support Files */,
 			);
-			name = YYText;
 			path = YYText;
 			sourceTree = "<group>";
 		};
@@ -1256,7 +1250,6 @@
 				3F86AFAD7B74E60C30E30EC7990EC796 /* XEFormNavigationAccessoryView.m */,
 				461B4D9125C70BA591FE8B03BC05FE91 /* Cell */,
 			);
-			name = VIew;
 			path = VIew;
 			sourceTree = "<group>";
 		};
@@ -1364,8 +1357,8 @@
 				F2BE9BA479F0542D64388059F8BAD95B /* XEFormSetting.h */,
 				6E49FA63D95A371C009EE8F8786DAC4E /* XEFormSetting.m */,
 				7C9A304DB8E025B080E859294F32AD54 /* XEFormUtils.h */,
+				BEA3BF551F56707F0059B29A /* XEFormUtils.m */,
 			);
-			name = Util;
 			path = Util;
 			sourceTree = "<group>";
 		};
@@ -1421,7 +1414,6 @@
 				7B1EC863C291C3D061B4403301BB4EA7 /* XEFormViewController.h */,
 				AED904B911D26C3790325405F6828BFA /* XEFormViewController.m */,
 			);
-			name = VC;
 			path = VC;
 			sourceTree = "<group>";
 		};
@@ -1907,6 +1899,7 @@
 				0020941BD7E35D047FB7BA4E76E47489 /* XEFormCheckCell.m in Sources */,
 				8E5AAC7C69E651DF16AB9C01A8B3BBD8 /* XEFormConst.m in Sources */,
 				8B9AEBE382B01CA17813454B64F8DC4D /* XEFormController.m in Sources */,
+				BEA3BF561F56707F0059B29A /* XEFormUtils.m in Sources */,
 				C8478B0754DCAB949EB92C2D40C56600 /* XEFormDatePickerCell.m in Sources */,
 				A816C65613330388296EB1A921B4AA24 /* XEFormDefaultCell.m in Sources */,
 				8D1159031E2979F84834321A16B65B86 /* XEFormHeaderFooterView.m in Sources */,

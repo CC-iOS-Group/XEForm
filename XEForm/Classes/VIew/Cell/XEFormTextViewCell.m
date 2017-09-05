@@ -25,24 +25,18 @@
     if (self)
     {
         [self addSubview:self.placeholder];
-        
-        CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
-        UIEdgeInsets textContainerInset = self.textContainerInset;
-        CGFloat x = lineFragmentPadding + textContainerInset.left;
-        CGFloat y = textContainerInset.top;
-        
-        
-        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1. constant:y];
-        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1. constant:x];
-        NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1. constant:-x];
-        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1. constant:-(textContainerInset.top+textContainerInset.bottom)];
-        [self addConstraints:@[topConstraint, leftConstraint, widthConstraint, heightConstraint]];
-        
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updatePlaceholderLabel)
-                                                     name:UITextViewTextDidChangeNotification
-                                                   object:self];
+        [self setValue:self.placeholder forKey:@"_placeholderLabel"];
+//        CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
+//        UIEdgeInsets textContainerInset = self.textContainerInset;
+//        CGFloat x = lineFragmentPadding + textContainerInset.left;
+//        CGFloat y = textContainerInset.top;
+//        
+//        
+//        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1. constant:y];
+//        NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1. constant:x];
+//        NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1. constant:-x];
+//        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.placeholder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:1. constant:-(textContainerInset.top+textContainerInset.bottom)];
+//        [self addConstraints:@[topConstraint, leftConstraint, widthConstraint, heightConstraint]];
     }
     return self;
 }
@@ -54,23 +48,24 @@
     
 }
 
--(void)dealloc
-{
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//-(void)setAttributedText:(NSAttributedString *)attributedText
+//{
+//    [super setAttributedText:attributedText];
+//    
+//    self.placeholder.hidden = self.text.length > 0;
+//}
 
--(void)setAttributedText:(NSAttributedString *)attributedText
-{
-    [super setAttributedText:attributedText];
-    
-    self.placeholder.hidden = self.text.length > 0;
-}
+//- (void)updatePlaceholderLabel
+//{
+//    self.placeholder.hidden = self.text.length > 0;
+//}
 
-- (void)updatePlaceholderLabel
-{
-    self.placeholder.hidden = self.text.length > 0;
-}
+//-(void)setFont:(UIFont *)font
+//{
+//    [super setFont:font];
+//    
+//    [self.placeholder setFont:font];
+//}
 
 -(UILabel *)placeholder
 {
@@ -80,7 +75,8 @@
         _placeholder.translatesAutoresizingMaskIntoConstraints = NO;
         _placeholder.textColor = [UIColor lightGrayColor];
         _placeholder.textAlignment = self.textAlignment;
-        _placeholder.numberOfLines = 0;
+        // if numberOfLines = 0, then the height calculate may be not perfect.
+        _placeholder.numberOfLines = 1;
     }
     return _placeholder;
 }
@@ -144,9 +140,11 @@
 
 -(void)update
 {
+    NSDictionary *textViewAttributes = [XEFormSetting sharedSetting].cellSetting.textViewAttributes;
     self.titleLabel.attributedText = self.row.attributedTitle;
     self.titleLabel.accessibilityValue = self.titleLabel.text;
-    self.textView.attributedText = self.row.rowDescription ? [[NSAttributedString alloc] initWithString:self.row.rowDescription attributes:[XEFormSetting sharedSetting].cellSetting.textViewAttributes] : nil;
+    self.textView.attributedText = self.row.rowDescription ? [[NSAttributedString alloc] initWithString:self.row.rowDescription attributes:textViewAttributes] : nil;
+    self.textView.font = textViewAttributes ? [textViewAttributes objectForKey:NSFontAttributeName] ? : [UIFont systemFontOfSize:15.] : nil;
     self.textView.placeholder.attributedText = self.row.placeholder ? [[NSAttributedString alloc] initWithString:self.row.placeholder attributes:[XEFormSetting sharedSetting].cellSetting.textViewAttributes] : nil;
     self.textView.placeholder.accessibilityValue = self.textView.placeholder.text;
     
